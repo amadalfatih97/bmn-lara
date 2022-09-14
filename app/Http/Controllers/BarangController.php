@@ -9,6 +9,7 @@ use App\satuan;
 use App\lokasi;
 class BarangController extends Controller
 {
+    
     public function index(Request $request){
         
         return view('barang.list');

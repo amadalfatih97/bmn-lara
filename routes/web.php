@@ -12,8 +12,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
-Route::get('/', 'BarangController@index');
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('/barang/list', 'BarangController@index');
 Route::get('/barang/add', 'BarangController@input');
 Route::post('/barang/add', 'BarangController@prosesInput');
@@ -49,3 +50,6 @@ Route::delete('/kategori/delete/{id}', 'KategoriController@prosesDelete');
 
 Route::get('/permintaan/list', 'PermintaanController@index');
 Route::resource('permintaan', PermintaanController::class);
+
+
+Route::get('/home', 'HomeController@index')->name('home');
