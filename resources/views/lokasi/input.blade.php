@@ -36,7 +36,7 @@
                                 id="exampleInputlokasi" name="nama_lokasi">
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
-                        <a class='btn btn-warning ml-3' href='{{url("lokasi/list")}}'>Cancel</a>
+                        <a class='btn btn-warning ml-3' href='{{url("setting/lokasi/list")}}'>Cancel</a>
                     </form>
                 </div>
             </div>

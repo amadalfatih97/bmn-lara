@@ -25,7 +25,6 @@
                         <th class="no">No</th>
                         <th>Nama</th>
                         <th>Stok</th>
-                        <th>Satuan</th>
                         <th class="hide-to-mobile">Lokasi</th>
                         <th class="hide-to-mobile">Kondisi</th>
                         <th>Status</th>
@@ -37,8 +36,8 @@
                         <tr>
                             <td>{{$barangs->firstItem() + $key  }}</td>
                             <td>{{$data->nama_barang}}</td>
-                            <td>{{$data->stok}}</td>
-                            <td>{{$data->nama_satuan}}</td>
+                            <td>{{$data->stok}} {{$data->nama_satuan}}</td>
+                            {{-- <td>{{$data->nama_satuan}}</td> --}}
                             <td class="hide-to-mobile">{{$data->nama_lokasi}}</td>
                             <td class="hide-to-mobile">{{$data->kondisi == 'b' ? 'baik' : ($data->kondisi == 'rr' ? 'rusak ringan' : 'rusak berat')}}</td>
                             <td>{{$data->status == 'true' ? 'tersedia' : 'tidak tersedia'}}</td>

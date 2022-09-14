@@ -15,11 +15,11 @@
         <div class="card px-3 py-3">
             <div class="row">
                 <div class="col-md-8 ">
-                    <a href="{{url('lokasi/add')}}" class="btn btn-success mb-2">input</a>
+                    <a href="{{url('setting/lokasi/add')}}" class="btn btn-success mb-2">input</a>
                 </div>
             
                 <div class="col-md-4 ">
-                    <form action='{{url("lokasi/list")}}' method="GET">
+                    <form action='{{url("setting/lokasi/list")}}' method="GET">
                         <div class="input-group mb-3">
                             <input name="key" type="text" class="form-control" placeholder="Search" aria-label="Search"
                                 aria-describedby="button-addon2" value="{{Request::get('key')}}">
@@ -52,7 +52,7 @@
                                     <td>{{$no++}}</td>
                                     <td>{{$data->nama_lokasi}}</td>
                                     <td>
-                                        <a class="btn btn-outline-primary" href="/lokasi/{{$data->id}}">Edit</button>
+                                        <a class="btn btn-outline-primary" href="/setting/lokasi/{{$data->id}}">Edit</button>
                                     </td>
                                     <td>
                                         <form action='{{url("lokasi/delete/{$data->id}")}}' method="post">

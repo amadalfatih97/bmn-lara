@@ -26,19 +26,26 @@ Route::get('/join', 'BarangController@join');
 
 
 
-Route::get('/satuan/list', 'SatuanController@index');
-Route::get('/satuan/add', 'SatuanController@input');
+Route::get('/setting/satuan/list', 'SatuanController@index');
+Route::get('/setting/satuan/add', 'SatuanController@input');
 Route::post('/satuan/add', 'SatuanController@prosesInput');
-Route::get('/satuan/{id}', 'SatuanController@dataById');
+Route::get('/setting/satuan/{id}', 'SatuanController@dataById');
 Route::patch('/satuan/update/{id}', 'SatuanController@prosesUpdate');
 Route::delete('/satuan/delete/{id}', 'SatuanController@prosesDelete');
 
-Route::get('/lokasi/list', 'LokasiController@index');
-Route::get('/lokasi/add', 'LokasiController@input');
+Route::get('/setting/lokasi/list', 'LokasiController@index');
+Route::get('/setting/lokasi/add', 'LokasiController@input');
 Route::post('/lokasi/add', 'LokasiController@prosesInput');
-Route::get('/lokasi/{id}', 'LokasiController@dataById');
+Route::get('/setting/lokasi/{id}', 'LokasiController@dataById');
 Route::patch('/lokasi/update/{id}', 'LokasiController@prosesUpdate');
 Route::delete('/lokasi/delete/{id}', 'LokasiController@prosesDelete');
+
+Route::get('/setting/kategori/list', 'KategoriController@index');
+Route::get('/setting/kategori/add', 'KategoriController@input');
+Route::post('/kategori/add', 'KategoriController@prosesInput');
+Route::get('/setting/kategori/{id}', 'KategoriController@dataById');
+Route::patch('/kategori/update/{id}', 'KategoriController@prosesUpdate');
+Route::delete('/kategori/delete/{id}', 'KategoriController@prosesDelete');
 
 Route::get('/permintaan/list', 'PermintaanController@index');
 Route::resource('permintaan', PermintaanController::class);

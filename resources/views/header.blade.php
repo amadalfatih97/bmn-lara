@@ -8,7 +8,7 @@
         </button>
         {{-- endoffcancvas trigger --}}
         <a class="navbar-brand fw-bold me-auto" href="#">                        
-            <img src="{{asset('images/logo-mobile.png')}}" alt="">
+            <img src="{{asset('images/logo-bdipadang.png')}}" alt="">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,9 +25,9 @@
             </form> --}}
 
             <div class="navbar-nav">
-                <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-house-door"></i></a>
-                <a class="nav-link" href="#"><i class="bi bi-bell"></i></a>
-                <a class="nav-link" href="#"><i class="bi bi-envelope"></i></a>
+                <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-house-door"><span class="hide-to-desktop"> Home</span></i></a>
+                <a class="nav-link" href="#"><i class="bi bi-bell"></i><span class="hide-to-desktop"> Notif</span></a>
+                <a class="nav-link" href="#"><i class="bi bi-envelope"><span class="hide-to-desktop"> Mail</span></i></a>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">

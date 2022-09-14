@@ -7,7 +7,7 @@
             <strong>Data Invetory</strong>
         </div>
         <div class="col-md-6 col-sm-12 px-3 text-end align-middle align-self-center hide-to-mobile">
-            <span class="fst-italic fs-6">Dashboard > Data Lokasi
+            <span class="fst-italic fs-6">Dashboard > data
             </span>
         </div>
     </div>
@@ -27,17 +27,24 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card p-3">
-                    <form action="/lokasi/update/{{$lokasi->id}}" method="post">
+                    <form action="/kategori/update/{{$kategori->id}}" method="post">
                         @method('PATCH')
                         @csrf
                         <div class="mb-3">
-                            <label for="nama_lokasi" class="form-label">Edit Nama Lokasi</label>
-                            <input value="{{old('nama_lokasi',$lokasi->nama_lokasi)}}" type="text" class="form-control" id="exampleInputlokasi"
-                                name="nama_lokasi">
-                            <div class="form-text">Silahkan Input Lokasi</div>
+                            <label for="nama_kategori" class="form-label">Edit Nama kategori</label>
+                            <input value="{{old('nama_kategori',$kategori->nama_kategori)}}" type="text" class="form-control" id="exampleInputkategori"
+                                name="nama_kategori">
+                            <div class="form-text">Silahkan Input Kategori</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="ket" class="form-label">Keterangan</label>
+                            <textarea class="form-control  
+                            {{ $errors->get('ket') ? 'is-invalid'  : ''}}" 
+                            name="ket" id="exampleFormControlTextarea1" 
+                            rows="3">{{old('ket',$kategori->ket)}} </textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
-                        <a class='btn btn-warning ml-3' href='{{url("setting/setting/lokasi/list")}}'>Cancel</a>
+                        <a class='btn btn-warning ml-3' href='{{url("setting/kategori/list")}}'>Cancel</a>
                     </form>
                 </div>
             </div>
