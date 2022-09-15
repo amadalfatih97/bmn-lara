@@ -15,14 +15,14 @@
                         Menu
                     </div>
                 </li>
-                <li>
+                {{-- <li>
                     <hr class="dropdown-divider" />
-                </li>
-                <li>
-                    {{-- <div class="text-muted small fw-bold-text-uppercase px-3">
+                </li> --}}
+                {{--<li>
+                     <div class="text-muted small fw-bold-text-uppercase px-3">
                         Menu
-                    </div> --}}
-                </li>
+                    </div>
+                </li> --}}
                 <li>
                     <a href='{{url("")}}' class="nav-link px-3 {{ Request::segment(1) == '' ? 'active' : null }}">
                         <span class="me-2"><i class="bi bi-house"></i></span>

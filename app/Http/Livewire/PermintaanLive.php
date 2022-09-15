@@ -3,8 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Barang;
-use App\detailTrans;
-use App\transaksi;
+use App\detailPinjam;
+use App\permintaan;
 use Livewire\Component;
 
 class PermintaanLive extends Component
@@ -17,11 +17,20 @@ class PermintaanLive extends Component
     // }
     public function render()
     {
-        $barangs =  Barang::select('*')
-                    ->where('aktif', '=', '1')
-                    ->orderBy('namabarang', 'ASC')->get();
-        info($this->orderProducts);
-        return view('livewire.permintaan.permintaan-live',compact('barangs'));
+        $permintaans    =   detailPinjam::select('detail_pinjams.pinjam_fk','users.name','permintaans.waktu_req','permintaans.status')
+                            ->selectRaw('COUNT(detail_pinjams.pinjam_fk) AS jumlah')
+                            ->leftJoin('permintaans', 'detail_pinjams.pinjam_fk', '=', 'permintaans.kode')
+                            ->leftJoin('users', 'permintaans.user_fk', '=', 'users.id')
+                            // ->whereBetween('transaksis.tanggal_trans', [$this->date1, $this->date2])
+                            ->groupBy('detail_pinjams.pinjam_fk')
+                            ->orderBy('waktu_req','DESC')
+                            ->get();
+        // $barangs     = Barang::select('*')
+        //              ->where('aktif', '=', '1')
+        //              ->orderBy('namabarang', 'ASC')->get();
+        // info($this->orderProducts);
+        // return view('livewire.permintaan.permintaan-live',compact('barangs'));
+        return view('livewire.permintaan.permintaan-live', compact('permintaans'));
     }
 
     public function eventAdd(){

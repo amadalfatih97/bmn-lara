@@ -25,6 +25,7 @@
                             </div>
                         </div>
 
+
                         <div class="form-group row">
                             <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
 
@@ -49,7 +50,7 @@
                                     <option value="kasubag">Kasubag</option>
                                     <option value="pegawai">Pegawai</option>
                                 </select>
-                                @error('password')
+                                @error('role')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -57,6 +58,23 @@
                             </div>
                         </div>
 
+                        <div class="form-group row row{{$errors->has('unit') ? 'has-error' : null}}">
+                            <label for="unit" class="col-md-4 col-form-label text-md-right">{{ __('Unit') }}</label>
+
+                            <div class="col-md-6">
+                                <select name="unit" class="form-control @error('unit') is-invalid @enderror" required>
+                                    <option value="">--Pilih Unit--</option>
+                                    <option value="tu">Tata Usaha</option>
+                                    <option value="pkd">Pengembangan</option>
+                                    <option value="pd">Penyelenggara</option>
+                                </select>
+                                @error('unit')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 

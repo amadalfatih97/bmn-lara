@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
     @livewireStyles
-    <title>Invetory</title>
+    <title>BMN-BDIP</title>
 </head>
 
 <body>

@@ -36,36 +36,41 @@
                 <table class="table table-striped table-hover">
                     <thead>
                         <th class="no">No</th>
-                        <th>Tanggal</th>
+                        <th>Kode</th>
                         <th>User</th>
                         <th>Jumlah Item</th>
+                        <th>Tanggal</th>
+                        <th>status</th>
                         <th>#</th>
                     </thead>
                     <tbody>
-                        {{-- <?php $no=1; ?>
-                            @forelse($trans as $data)
-                            <tr>
-                                <td>{{$no++}}</td>
-                        <td>{{$data->tanggal_trans}}</td>
-                        <td>{{$data->user_fk}}</td>
-                        <td>{{$data->jumlah}} jenis item</td>
-                        <td><a class="btn btn-outline-primary " data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                title="Lihat Detail" href='{{url("barang-keluar/detail/{$data->trans_fk}")}}'>
-                                <span class="hide-to-mobile">-<<</span> <i class="bi bi-eye-fill"></i><span
-                                            class="hide-to-mobile">>>-</span>
-                            </a></td>
-                        </tr>
-                        {{-- @empty --}}
+                        <?php $no=1 ?>
+                        @forelse($permintaans as $data)
                         <tr>
-                            <td class="text-center" colspan="5">data not found!</td>
+                            <td>{{$no++}}</td>
+                            <td>{{$data->pinjam_fk}}</td>
+                            <td>{{$data->user_fk}}</td>
+                            <td>{{$data->jumlah}} item</td>
+                            <td>{{$data->waktu_req}}</td>
+                            <td>{{$data->status}}</td>
+                            <td><a class="btn btn-outline-primary " data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                    title="Lihat Detail" href='{{url("barang-keluar/detail/{$data->trans_fk}")}}'>
+                                    <span class="hide-to-mobile">-<<</span> <i class="bi bi-eye-fill"></i><span
+                                                class="hide-to-mobile">>>-</span>
+                                </a>
+                            </td>
                         </tr>
-                        {{-- @endforelse --}}
+                        @empty
+                        <tr>
+                            <td class="text-center" colspan="7">data not found!</td>
+                        </tr>
+                        @endforelse
 
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-    @include('livewire.permintaan.modal.add-modal')
+    {{-- @include('livewire.permintaan.modal.add-modal') --}}
 </div>
 
