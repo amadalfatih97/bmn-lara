@@ -56,7 +56,7 @@
                             <td><a class="btn btn-outline-primary " data-bs-toggle="tooltip" data-bs-placement="bottom"
                                     title="Lihat Detail" href='{{url("barang-keluar/detail/{$data->trans_fk}")}}'>
                                     <span class="hide-to-mobile">-<<</span> <i class="bi bi-eye-fill"></i><span
-                                                class="hide-to-mobile">>>-</span>
+                                    class="hide-to-mobile">>>-</span>
                                 </a>
                             </td>
                         </tr>
@@ -71,6 +71,6 @@
             </div>
         </div>
     </div>
-    {{-- @include('livewire.permintaan.modal.add-modal') --}}
+    @include('livewire.permintaan.modal.add-modal')
 </div>
 
