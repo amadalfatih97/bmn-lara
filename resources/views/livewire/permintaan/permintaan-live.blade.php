@@ -2,7 +2,7 @@
     @csrf
     <div class="row">
         <div class="col-md-6 col-sm-12 col-12">
-            <button wire:click="eventAdd()" class="btn btn-success mb-3 me-2 ">input</button>
+            <a href='{{url("permintaan/input")}}' class="btn btn-success mb-3 me-2 ">input</a>
         </div>
         <div class="col-md-6 col-sm-12 col-12">
             <form action='{{url("report/out")}}' method="POST">
@@ -71,6 +71,5 @@
             </div>
         </div>
     </div>
-    @include('livewire.permintaan.modal.add-modal')
 </div>
 

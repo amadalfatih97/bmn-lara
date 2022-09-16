@@ -49,6 +49,7 @@ Route::patch('/kategori/update/{id}', 'KategoriController@prosesUpdate');
 Route::delete('/kategori/delete/{id}', 'KategoriController@prosesDelete');
 
 Route::get('/permintaan/list', 'PermintaanController@index');
+Route::get('/permintaan/input', 'PermintaanController@input');
 Route::resource('permintaan', PermintaanController::class);
 
 

@@ -13,6 +13,11 @@ class PermintaanController extends Controller
         return view('Permintaan.list');
     }
 
+    public function input(Request $request){
+        
+        return view('Permintaan.input');
+    }
+
     public function store(Request $request)
     {
         date_default_timezone_set('Asia/Jakarta');

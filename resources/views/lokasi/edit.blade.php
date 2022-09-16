@@ -37,7 +37,7 @@
                             <div class="form-text">Silahkan Input Lokasi</div>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
-                        <a class='btn btn-warning ml-3' href='{{url("setting/setting/lokasi/list")}}'>Cancel</a>
+                        <a class='btn btn-warning ml-3' href='{{url("setting/lokasi/list")}}'>Cancel</a>
                     </form>
                 </div>
             </div>

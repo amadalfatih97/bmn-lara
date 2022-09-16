@@ -6,6 +6,15 @@ window.addEventListener('openAddModal', function(){
     $(".addModal").modal('show');
 })
 
+window.addEventListener('openFindModal',function(){
+  $('.findModal').modal('show');
+})
+
+window.addEventListener('openAsetModal',function(){
+  $('.detailAsetModal').modal('show');
+})
+
+
 window.addEventListener('saveSuccessed', function(event){
   alert('data tersimpan, dan segera diproses!');
   $(".addModal").modal('hide');
