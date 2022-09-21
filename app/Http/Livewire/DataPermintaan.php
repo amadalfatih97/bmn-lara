@@ -50,22 +50,27 @@ class DataPermintaan extends Component
         $this->dispatchBrowserEvent('openAsetModal');
     }
 
-    public function onAdding(){
+    public function onAdding($kode, $name){
         $exist=0;
         // if (count($this->orderProducts) > 0 ) {
             foreach ($this->requestAsets as $key => $requestItem) {
-                if ($this->requestAsets[$key]['productid'] == $this->kode) {
+                if ($this->requestAsets[$key]['productid'] == $kode) {
                     $this->requestAsets[$key] = [
-                        'productid' => $this->kode, 
-                        'nameitem' => $this->nama_barang
+                        'productid' => $kode, 
+                        'nameitem' => $name
                     ];
                     $exist= 1;
                 }
             }
             if($exist == 0){
-                $this->requestAsets[] = ['productid' => $this->kode, 'nameitem' => $this->nama_barang];
+                $this->requestAsets[] = ['productid' => $kode, 'nameitem' => $name];
             }
-    }
+        $this->dispatchBrowserEvent('openToast',[
+            'type'=>'success',
+            'title'=>'berhasil',
+            'msg'=>'aset berhasil ditambahkan!'
+        ]);
+        }
 
     public function removeItem($index){
         unset($this->requestAsets[$index]);

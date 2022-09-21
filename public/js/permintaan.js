@@ -14,6 +14,10 @@ window.addEventListener('openAsetModal',function(){
   $('.detailAsetModal').modal('show');
 })
 
+window.addEventListener('openToast', function() {
+  $('.toast').toast('show');
+})
+
 
 window.addEventListener('saveSuccessed', function(event){
   alert('data tersimpan, dan segera diproses!');

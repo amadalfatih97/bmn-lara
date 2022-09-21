@@ -26,8 +26,10 @@
                 <textarea name="keperluan" wire:model="keperluan" class="form-control text-capitalize"> </textarea>
             </div>
             {{-- <button type="button" disabled class="btn btn-primary" id="add">Tambah</button> --}}
-            <button type="button" class="btn btn-primary" wire:click.prevent="addProduct">Tambah</button>
-            <button type="button" class='btn btn-warning ml-3'>Cancel</button>
+            <button type="button" class="btn btn-primary" wire:click.prevent="addProduct"
+            data-bs-toggle="tooltip" data-bs-placement="left" title="Tambah Data Request Peminjaman" >Tambah</button>
+            <button type="button" class='btn btn-warning ml-3'
+            data-bs-toggle="tooltip" data-bs-placement="right" title="ke halamam sebelumnya" >Cancel</button>
             {{-- end add item --}}
         
             <div class="my-3" id=" show-items">
@@ -48,12 +50,12 @@
                                     class="form-control"
                                     name="requestAsets[{{$index}}][productid]"
                                     wire:model="requestAsets.{{$index}}.productid"/>
-                                <input type="text" readonly
-                                    class="form-control"
+                                <input type="text" readonly style="border:none;"
                                     name="requestAsets[{{$index}}][nameitem]"
                                     wire:model="requestAsets.{{$index}}.nameitem"/>
                             </td>
-                            <td><a href="#" wire:click.prevent="removeItem({{$index}})">Delete</a></td>
+                            <td><a type="button" class="btn btn-outline-danger btn-sm" wire:click.prevent="removeItem({{$index}})"
+                                data-bs-toggle="tooltip" data-bs-placement="bottom" title="hapus dari list" ><i class="bi bi-trash"></i></a></td>
                         </tr>
                     @endforeach
                     </tbody>

@@ -8,6 +8,18 @@ aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-keyboard="false" 
                 </button>
             </div> 
             <div class="modal-body">
+                <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
+                    <div class="toast align-items-center text-bg-primary border-0" role="alert" 
+                    data-bs-delay="1000" aria-live="assertive" aria-atomic="true">
+                        <div class="d-flex">
+                            <div class="toast-body">
+                                aset berhasil ditambahkan!
+                            </div>
+                            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
@@ -39,23 +51,19 @@ aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-keyboard="false" 
                                             <td>
                                                 seadia
                                             </td>
-                                            {{-- <td><a href="#" wire:click.prevent="removeProduct({{$index}})">Delete</a></td> --}}
-                                            
                                             <td>
-                                                <button type="button" class="btn btn-primary btn-sm" wire:click.prevent=""><i class="bi bi-info-lg"></i></button> |
-                                                <button type="button" class="btn btn-primary btn-sm" wire:click.prevent="detailAset"><i class="bi bi-download"></i></button>
+                                                <button type="button" class="btn btn-primary btn-sm" wire:click.prevent="onAdding({{$item->kode}}, '{{$item->nama_barang}}')" 
+                                                data-bs-toggle="tooltip" data-bs-placement="left" title="request aset ini" >
+                                                    <i class="bi bi-download"></i>
+                                                </button> |
+                                                <button type="button" class="btn btn-outline-primary btn-sm" wire:click.prevent="detailAset"
+                                                data-bs-toggle="tooltip" data-bs-placement="right" title="Lihat Detail" >
+                                                    <i class="bi bi-info-lg"></i>
+                                                </button> 
                                             </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
-                                    {{-- @if (count($orderProducts) <= 0) --}}
-                                        {{-- <tbody id="rowitem">
-                                            <tr>
-                                                <th colspan="4">Item Kosong</th>
-                                            </tr>
-                                            
-                                        </tbody> --}}
-                                    {{-- @endif --}}
                                 </table>
                             </div>
             
