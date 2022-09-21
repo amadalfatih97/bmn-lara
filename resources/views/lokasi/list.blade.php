@@ -52,13 +52,13 @@
                                     <td>{{$no++}}</td>
                                     <td>{{$data->nama_lokasi}}</td>
                                     <td>
-                                        <a class="btn btn-outline-primary" href="/setting/lokasi/{{$data->id}}">Edit</button>
+                                        <a class="btn btn-outline-primary" href="/setting/lokasi/{{$data->id}}"><i class="bi bi-pencil-square"></i></button>
                                     </td>
                                     <td>
                                         <form action='{{url("lokasi/delete/{$data->id}")}}' method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-outline-danger" type="submit">Hapus</button>
+                                            <button class="btn btn-outline-danger" type="submit"><i class="bi bi-trash"></i></button>
                                         </form>
                                     </td>
                                 </tr>

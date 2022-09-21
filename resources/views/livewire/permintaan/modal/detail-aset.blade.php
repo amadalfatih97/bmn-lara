@@ -27,13 +27,13 @@ aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-keyboard="false" 
                         </div>
 
                         <hr class="dropdown-divider" />
-                        <p class="fw-bolder">Riwayat Aset BMN</p>
+                        <p class="fw-bolder">Riwayat Aset</p>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
                                     <th scope="col">Tanggal</th>
-                                    <th scope="col">Jam</th>
+                                    <th scope="col">User</th>
                                     <th scope="col">Kegiatan</th>
                                 </tr>
                             </thead>

@@ -10,7 +10,7 @@ aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-keyboard="false" 
             <div class="modal-body">
                 <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
                     <div class="toast align-items-center text-bg-primary border-0" role="alert" 
-                    data-bs-delay="1000" aria-live="assertive" aria-atomic="true">
+                    data-bs-delay="5000" aria-live="assertive" aria-atomic="true">
                         <div class="d-flex">
                             <div class="toast-body">
                                 aset berhasil ditambahkan!
@@ -44,15 +44,15 @@ aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-keyboard="false" 
                                     <tbody>
                                         @foreach ($barangs as $index => $item)
                                         <tr>
-                                            <td>1</td>
+                                            <td>{{$index+1}}</td>
                                             <td>
                                                 {{$item->nama_barang}}
                                             </td>
                                             <td>
-                                                seadia
+                                                {{$item->status == 'true' ? 'Sedia' : 'Tidak Tersedia'}}
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-primary btn-sm" wire:click.prevent="onAdding({{$item->kode}}, '{{$item->nama_barang}}')" 
+                                                <button type="button" class="btn btn-primary btn-sm" {{$item->status == 'false' ? 'disabled' : ''}} wire:click.prevent="onAdding({{$item->kode}}, '{{$item->nama_barang}}')" 
                                                 data-bs-toggle="tooltip" data-bs-placement="left" title="request aset ini" >
                                                     <i class="bi bi-download"></i>
                                                 </button> |

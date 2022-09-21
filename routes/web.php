@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'BarangController@index')->name('home');
 Route::get('/barang/list', 'BarangController@index');
 Route::get('/barang/add', 'BarangController@input');
 Route::post('/barang/add', 'BarangController@prosesInput');

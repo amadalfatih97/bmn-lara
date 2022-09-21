@@ -38,7 +38,7 @@
             @endif
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card">
+                    <div class="card overflow-auto">
                         <table class="table table-striped table-hover">
                             <thead>
                                 <th class="no">No</th>
@@ -52,13 +52,13 @@
                                     <td>{{$no++}}</td>
                                     <td>{{$data->nama_satuan}}</td>
                                     <td>
-                                        <a class="btn btn-outline-primary" href="/setting/satuan/{{$data->id}}">Edit</button>
+                                        <a class="btn btn-outline-primary" href="/setting/satuan/{{$data->id}}"><i class="bi bi-pencil-square"></i></button>
                                     </td>
                                     <td>
                                         <form action='{{url("satuan/delete/{$data->id}")}}' method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-outline-danger" type="submit">Hapus</button>
+                                            <button class="btn btn-outline-danger" type="submit"><i class="bi bi-trash"></i></button>
                                         </form>
                                     </td>
                                 </tr>

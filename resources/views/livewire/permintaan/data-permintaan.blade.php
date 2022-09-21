@@ -8,7 +8,7 @@
                     <div class="col-md-6 col-sm-12">
                         <div class="form-group">
                             <label for="jadwalpakai" class="form-label">Jadwal Pakai</label>
-                            <input type="text" id="picker" name="jadwalpakai"
+                            <input type="text" id="picker" name="jadwalpakai" wire:model="jadwalpakai"
                                 value="{{date('Y-m-d')}}" class="form-control" required onchange="this.dispatchEvent(new InputEvent('input'))">
                         </div>
                     </div>
@@ -29,7 +29,7 @@
             <button type="button" class="btn btn-primary" wire:click.prevent="addProduct"
             data-bs-toggle="tooltip" data-bs-placement="left" title="Tambah Data Request Peminjaman" >Tambah</button>
             <button type="button" class='btn btn-warning ml-3'
-            data-bs-toggle="tooltip" data-bs-placement="right" title="ke halamam sebelumnya" >Cancel</button>
+            data-bs-toggle="tooltip" data-bs-placement="right" title="ke halamam sebelumnya" >Batal</button>
             {{-- end add item --}}
         
             <div class="my-3" id=" show-items">
@@ -50,7 +50,7 @@
                                     class="form-control"
                                     name="requestAsets[{{$index}}][productid]"
                                     wire:model="requestAsets.{{$index}}.productid"/>
-                                <input type="text" readonly style="border:none;"
+                                <input type="text" readonly style="border:none; width:-webkit-fill-available;"
                                     name="requestAsets[{{$index}}][nameitem]"
                                     wire:model="requestAsets.{{$index}}.nameitem"/>
                             </td>

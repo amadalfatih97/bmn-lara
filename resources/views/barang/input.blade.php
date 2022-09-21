@@ -50,7 +50,7 @@
                         </div>
                         <label for="kode" class="form-label">Kode Aset</label>
                         <div class="mb-3 input-group has-validation">
-                            <input type="text" value="{{old('kode')}}" class="form-control 
+                            <input type="text" value="{{old('kode')}}" autocomplete="false" class="form-control 
                             {{ $errors->get('kode') ? 'is-invalid'  : ''}}" id="exampleInputbarang" 
                             id="exampleInputbarang" name="kode" required>
                         </div>

@@ -32,7 +32,7 @@
         </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card overflow-auto">
                 <table class="table table-striped table-hover">
                     <thead>
                         <th class="no">No</th>

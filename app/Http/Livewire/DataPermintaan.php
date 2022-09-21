@@ -22,7 +22,7 @@ class DataPermintaan extends Component
             ->orWhere('nama_lokasi', 'LIKE', '%'.$this->search.'%');
         })
         ->orderBy('barangs.nama_barang','asc')
-        ->limit(10)->get();
+        ->limit(50)->get();
         info($this->requestAsets);
         return view('livewire.permintaan.data-permintaan', compact('barangs'));
     }
