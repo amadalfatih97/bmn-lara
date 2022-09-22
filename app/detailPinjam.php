@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class detailPinjam extends Model
 {
     // public $timestamps = false;
-    protected $fillable = ['kode','user_fk','waktu_req','waktu_proses','status','ket' ];//field table database
+    protected $fillable = ['pinjam_fk','aset_fk','waktu_pakai','waktu_kembali' ];//field table database
 }

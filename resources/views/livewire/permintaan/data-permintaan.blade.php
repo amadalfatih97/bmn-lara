@@ -8,14 +8,14 @@
                     <div class="col-md-6 col-sm-12">
                         <div class="form-group">
                             <label for="jadwalpakai" class="form-label">Jadwal Pakai</label>
-                            <input type="text" id="picker" name="jadwalpakai" wire:model="jadwalpakai"
+                            <input type="text" id="picker-start" name="jadwalpakai" wire:model="jadwalpakai" autocomplete="off"
                                 value="{{date('Y-m-d')}}" class="form-control" required onchange="this.dispatchEvent(new InputEvent('input'))">
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <div class="form-group">
                             <label for="jadwallkembali" class="form-label">Jadwal Pengembalian</label>
-                            <input type="text" id="picker" name="jadwalkembali" wire:model="jadwalkembali"
+                            <input type="text" id="picker-end" name="jadwalkembali" wire:model="jadwalkembali" autocomplete="off"
                                 value="{{date('Y-m-d')}}" class="form-control" required onchange="this.dispatchEvent(new InputEvent('input'))">
                         </div>
                     </div>
@@ -23,7 +23,7 @@
             </div>
             <div class="form-group mb-3">
                 <label for="keperluan" class="form-label">Keperluan</label>
-                <textarea name="keperluan" wire:model="keperluan" class="form-control text-capitalize"> </textarea>
+                <textarea name="keperluan" wire:model="keperluan" required class="form-control text-capitalize"> </textarea>
             </div>
             {{-- <button type="button" disabled class="btn btn-primary" id="add">Tambah</button> --}}
             <button type="button" class="btn btn-primary" wire:click.prevent="addProduct"
@@ -47,7 +47,6 @@
                             <td>{{$index+1}}</td>
                             <td>
                                 <input type="hidden"
-                                    class="form-control"
                                     name="requestAsets[{{$index}}][productid]"
                                     wire:model="requestAsets.{{$index}}.productid"/>
                                 <input type="text" readonly style="border:none; width:-webkit-fill-available;"
@@ -69,12 +68,24 @@
                     @endif
                 </table>
             </div>
+            
             <button type="submit" 
-            class='btn btn-success ml-3' id='submit' >Submit</button>
+            class='btn btn-success ml-3' id='submit' {{count($requestAsets) <= 0 ? 'disabled' : ''}} >Submit</button>
             {{-- <button type="button" class='btn btn-danger ml-3' id="clear-storage">Clear</button> --}}
         </form>
-
         
-    @include('livewire.permintaan.modal.find-modal')
-    @include('livewire.permintaan.modal.detail-aset')
+        @include('livewire.permintaan.modal.find-modal')
+        @include('livewire.permintaan.modal.detail-aset')
+    
+    <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3">
+        <div class="toast align-items-center text-bg-primary border-2" role="alert" 
+        data-bs-delay="1000" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Aset berhasil ditambahkan!
+                </div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
 </div>

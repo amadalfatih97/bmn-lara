@@ -8,17 +8,6 @@ aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-keyboard="false" 
                 </button>
             </div> 
             <div class="modal-body">
-                <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
-                    <div class="toast align-items-center text-bg-primary border-0" role="alert" 
-                    data-bs-delay="5000" aria-live="assertive" aria-atomic="true">
-                        <div class="d-flex">
-                            <div class="toast-body">
-                                aset berhasil ditambahkan!
-                            </div>
-                            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="row">
                     <div class="col-md-12">
@@ -26,9 +15,9 @@ aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-keyboard="false" 
                             <div class="card-body">
                             
                                     <div class="input-group mb-3">
-                                        <input name="key" type="text" class="form-control" placeholder="Search" aria-label="Search"
-                                            aria-describedby="button-addon2" wire:model="search" >
-                                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                                        <input type="text" class="form-control" placeholder="Search" aria-label="Search"
+                                        autocomplete="off" aria-describedby="button-addon2" wire:model="search" >
+                                        <button class="btn btn-outline-secondary" type="button">
                                             <i class="bi bi-search"></i>
                                         </button>
                                     </div>
@@ -67,6 +56,19 @@ aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-keyboard="false" 
                                 </table>
                             </div>
             
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3">
+                    <div class="toast align-items-center text-bg-primary border-2" role="alert" 
+                    data-bs-delay="1000" aria-live="assertive" aria-atomic="true">
+                        <div class="d-flex">
+                            <div class="toast-body">
+                                Aset berhasil ditambahkan!
+                            </div>
+                            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
                         </div>
                     </div>
                 </div>

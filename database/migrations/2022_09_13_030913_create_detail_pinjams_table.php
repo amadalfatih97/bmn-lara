@@ -15,11 +15,10 @@ class CreateDetailPinjamsTable extends Migration
     {
         Schema::create('detail_pinjams', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('user_fk',12);
-            $table->string('pinjam_fk',12);
+            $table->string('pinjam_fk',50);
             $table->string('aset_fk',12);
-            $table->date('waktu_pakai');
-            $table->date('waktu_kembali');
+            $table->date('waktu_pakai')->nullable();
+            $table->date('waktu_kembali')->nullable();
             $table->timestamps();
         });
     }

@@ -50,6 +50,7 @@ Route::delete('/kategori/delete/{id}', 'KategoriController@prosesDelete');
 
 Route::get('/permintaan/list', 'PermintaanController@index');
 Route::get('/permintaan/input', 'PermintaanController@input');
+Route::get('/permintaan/detail/{id}', 'PermintaanController@requestdetail');
 Route::resource('permintaan', PermintaanController::class);
 
 

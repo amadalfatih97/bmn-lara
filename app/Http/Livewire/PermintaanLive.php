@@ -10,6 +10,7 @@ use Livewire\Component;
 class PermintaanLive extends Component
 {
     public $kodebrg, $namabrg, $qty, $stok, $tglkeluar, $orderProducts=[];
+    
     // public function mount(){
     //     $this->orderProducts = [
     //         ['product_id' => '', 'quantity' =>0]
@@ -17,19 +18,14 @@ class PermintaanLive extends Component
     // }
     public function render()
     {
-        $permintaans    =   detailPinjam::select('detail_pinjams.pinjam_fk','users.name','permintaans.waktu_req','permintaans.status')
+        $permintaans    =   detailPinjam::select('detail_pinjams.pinjam_fk','users.name','permintaans.created_at','permintaans.status')
                             ->selectRaw('COUNT(detail_pinjams.pinjam_fk) AS jumlah')
                             ->leftJoin('permintaans', 'detail_pinjams.pinjam_fk', '=', 'permintaans.kode')
                             ->leftJoin('users', 'permintaans.user_fk', '=', 'users.id')
                             // ->whereBetween('transaksis.tanggal_trans', [$this->date1, $this->date2])
                             ->groupBy('detail_pinjams.pinjam_fk')
-                            ->orderBy('waktu_req','DESC')
+                            ->orderBy('created_at','DESC')
                             ->get();
-        // $barangs     = Barang::select('*')
-        //              ->where('aktif', '=', '1')
-        //              ->orderBy('namabarang', 'ASC')->get();
-        // info($this->orderProducts);
-        // return view('livewire.permintaan.permintaan-live',compact('barangs'));
         return view('livewire.permintaan.permintaan-live', compact('permintaans'));
     }
 

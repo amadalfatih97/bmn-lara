@@ -43,6 +43,11 @@ img,svg{
     vertical-align: middle;
 }
 
+.toast{
+    background-color: #198754;
+    color: #FAFAFA;
+}
+
 @media (max-width:991px) {
     :root{
         --topNavbarHeight:56px;

@@ -11,7 +11,8 @@
                         <div class="input-group mb-2">
                             <input name="startdate" id="picker-start" placeholder="tanggal awal" type="text"
                                 class="form-control" onchange="this.dispatchEvent(new InputEvent('input'))">
-                            <button class="btn btn-outline-secondary">
+                            <button class="btn btn-outline-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            title="Jadwal Pemakaian">
                                 <i class="bi bi-calendar-event"></i>
                             </button>
                         </div>
@@ -21,7 +22,7 @@
                             <input name="enddate" id="picker-end" placeholder="tanggal akhir" type="text" class="form-control"
                                 onchange="this.dispatchEvent(new InputEvent('input'))">
                             <button class="btn btn-outline-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                title="Filter">
+                                title="Jadwal Pengembalian">
                                 <i class="bi bi-calendar-event"></i>
                             </button>
                         </div>
@@ -49,12 +50,12 @@
                         <tr>
                             <td>{{$no++}}</td>
                             <td>{{$data->pinjam_fk}}</td>
-                            <td>{{$data->user_fk}}</td>
+                            <td>{{$data->name}}</td>
                             <td>{{$data->jumlah}} item</td>
-                            <td>{{$data->waktu_req}}</td>
+                            <td>{{$data->created_at}}</td>
                             <td>{{$data->status}}</td>
                             <td><a class="btn btn-outline-primary " data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                    title="Lihat Detail" href='{{url("barang-keluar/detail/{$data->trans_fk}")}}'>
+                                    title="Lihat Detail" href='{{url("permintaan/detail/{$data->pinjam_fk}")}}'>
                                     <span class="hide-to-mobile">-<<</span> <i class="bi bi-eye-fill"></i><span
                                     class="hide-to-mobile">>>-</span>
                                 </a>
