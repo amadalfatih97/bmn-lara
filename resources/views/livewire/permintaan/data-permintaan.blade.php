@@ -28,8 +28,8 @@
             {{-- <button type="button" disabled class="btn btn-primary" id="add">Tambah</button> --}}
             <button type="button" class="btn btn-primary" wire:click.prevent="addProduct"
             data-bs-toggle="tooltip" data-bs-placement="left" title="Tambah Data Request Peminjaman" >Tambah</button>
-            <button type="button" class='btn btn-warning ml-3'
-            data-bs-toggle="tooltip" data-bs-placement="right" title="ke halamam sebelumnya" >Batal</button>
+            <a type="button" class='btn btn-warning ml-3' href='{{url("permintaan/list")}}'
+            data-bs-toggle="tooltip" data-bs-placement="right" title="ke halamam sebelumnya" >Batal</a>
             {{-- end add item --}}
         
             <div class="my-3" id=" show-items">

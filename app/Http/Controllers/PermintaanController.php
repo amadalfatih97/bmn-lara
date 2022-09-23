@@ -61,11 +61,11 @@ class PermintaanController extends Controller
 
     public function requestdetail($id){
         $kode = $id;
-        $pinjam = permintaan::where('kode', $kode)->firstOrFail();
-        // permintaan::select('permintaans.*','users.name')
-        //             ->leftJoin('users', 'permintaans.user_fk', '=', 'users.id')
-        //             ->where('permintaans.kode', $kode)->get();
-        // // ->get();
+        $pinjam = //permintaan::where('kode', $kode)->firstOrFail();
+        permintaan::select('permintaans.*','users.name')
+                    ->leftJoin('users', 'permintaans.user_fk', '=', 'users.id')
+                    ->where('permintaans.kode', $kode)->first();
+        // ->get();
         
         $detail = DB::table('detail_pinjams')
         ->select('detail_pinjams.pinjam_fk','detail_pinjams.aset_fk',
@@ -77,5 +77,13 @@ class PermintaanController extends Controller
         ->get();
         // dd($pinjam);
         return view('permintaan.detail', compact('pinjam','detail'));
+    }
+
+    public function approve($id){
+        $permintaan = permintaan::where('kode', $id)->firstOrFail();
+        $permintaan->status = 'approved';
+        $permintaan->save();
+        // $satuan->delete();
+        return redirect('/permintaan/list')->with('success','permintaan disetujui!');;
     }
 }

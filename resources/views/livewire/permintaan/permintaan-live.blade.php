@@ -6,7 +6,7 @@
         </div>
         <div class="col-md-6 col-sm-12 col-12">
             <form action='{{url("report/out")}}' method="POST">
-            <div class="row">
+                <div class="row">
                     <div class="col-md-6 col-sm-12  col-12">
                         <div class="input-group mb-2">
                             <input name="startdate" id="picker-start" placeholder="tanggal awal" type="text"
@@ -39,8 +39,8 @@
                         <th class="no">No</th>
                         <th>Kode</th>
                         <th>User</th>
-                        <th>Jumlah Item</th>
-                        <th>Tanggal</th>
+                        <th>Qty</th>
+                        <th>Tanggal Request</th>
                         <th>status</th>
                         <th>#</th>
                     </thead>
@@ -52,7 +52,7 @@
                             <td>{{$data->pinjam_fk}}</td>
                             <td>{{$data->name}}</td>
                             <td>{{$data->jumlah}} item</td>
-                            <td>{{$data->created_at}}</td>
+                            <td>{{date('d M Y  H:i', strtotime($data->created_at))}} </td>
                             <td>{{$data->status}}</td>
                             <td><a class="btn btn-outline-primary " data-bs-toggle="tooltip" data-bs-placement="bottom"
                                     title="Lihat Detail" href='{{url("permintaan/detail/{$data->pinjam_fk}")}}'>
