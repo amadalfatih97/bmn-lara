@@ -29,12 +29,16 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
-                <li>
-                    <a href='{{url("barang/list")}}' class="nav-link px-3 {{ Request::segment(1) == 'barang' ? 'active' : null }}">
-                        <span class="me-2"><i class="bi bi-files"></i></span>
-                        <span>Data Barang</span>
-                    </a>
-                </li>
+                
+                @if (auth()->user()->role=='admin')
+                    <li>
+                        <a href='{{url("barang/list")}}' class="nav-link px-3 {{ Request::segment(1) == 'barang' ? 'active' : null }}">
+                            <span class="me-2"><i class="bi bi-files"></i></span>
+                            <span>Data Barang</span>
+                        </a>
+                    </li>
+                @endif
+
                 <li>
                     <a href='{{url("permintaan/list")}}' class="nav-link px-3 {{ Request::segment(1) == 'permintaan' ? 'active' : null }}">
                         <span class="me-2"><i class="bi bi-files"></i></span>
@@ -44,71 +48,76 @@
                 <li class="mt-4">
                     <hr class="dropdown-divider" />
                 </li>
-                <li>
-                    <div class="text-muted small fw-bold-text-uppercase px-3">
-                        Other
-                    </div>
-                </li>
-                <li>
-                    <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#collapseExample"
-                        role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <span class="me-2"><i class="bi bi-files"></i></span>
-                        <span>Setting</span>
-                        <span class="right-icon ms-auto">
-                            <i class="bi bi-chevron-down"></i>
-                        </span>
-                    </a>
-                    <div class="collapse {{ Request::segment(1) == 'setting' ? 'show' : null }}" id="collapseExample">
-                        <div>
-                            <ul class="navbar-nav ps-3">
+                {{-- tampilkan hanya user login dengan role user --}}
+                @if (auth()->user()->role=='admin')
+                    <li>
+                        <div class="text-muted small fw-bold-text-uppercase px-3">
+                            Other
+                        </div>
+                    </li>
+                    <li>
+                        <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#collapseExample"
+                            role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <span class="me-2"><i class="bi bi-files"></i></span>
+                            <span>Setting</span>
+                            <span class="right-icon ms-auto">
+                                <i class="bi bi-chevron-down"></i>
+                            </span>
+                        </a>
+                        <div class="collapse {{ Request::segment(1) == 'setting' ? 'show' : null }}" id="collapseExample">
+                            <div>
+                                <ul class="navbar-nav ps-3">
+                                    <li>
+                                        <a href='{{url("setting/satuan/list")}}' class="nav-link px-3 {{ Request::segment(2) == 'satuan' ? 'active' : null }}">
+                                            <span class="me-2"><i class="bi bi-files"></i></span>
+                                            <span>Data Satuan</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href='{{url("setting/kategori/list")}}' class="nav-link px-3 {{ Request::segment(2) == 'kategori' ? 'active' : null }}">
+                                            <span class="me-2"><i class="bi bi-files"></i></span>
+                                            <span>Data Kategori</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href='{{url("setting/lokasi/list")}}' class="nav-link px-3 {{ Request::segment(2) == 'lokasi' ? 'active' : null }}">
+                                            <span class="me-2"><i class="bi bi-files"></i></span>
+                                            <span>Data Lokasi</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#collapseExample2"
+                            role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <span class="me-2"><i class="bi bi-files"></i></span>
+                            <span>Report</span>
+                            <span class="right-icon ms-auto">
+                                <i class="bi bi-chevron-down"></i>
+                            </span>
+                        </a>
+                        <div class="collapse" id="collapseExample2">
+                            <ul class="navbar-nav ps-3"> 
                                 <li>
-                                    <a href='{{url("setting/satuan/list")}}' class="nav-link px-3 {{ Request::segment(2) == 'satuan' ? 'active' : null }}">
+                                    <a href="" class="nav-link px-3">
                                         <span class="me-2"><i class="bi bi-files"></i></span>
-                                        <span>Data Satuan</span>
+                                        <span>Data 1</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href='{{url("setting/kategori/list")}}' class="nav-link px-3 {{ Request::segment(2) == 'kategori' ? 'active' : null }}">
+                                    <a href="" class="nav-link px-3">
                                         <span class="me-2"><i class="bi bi-files"></i></span>
-                                        <span>Data Kategori</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href='{{url("setting/lokasi/list")}}' class="nav-link px-3 {{ Request::segment(2) == 'lokasi' ? 'active' : null }}">
-                                        <span class="me-2"><i class="bi bi-files"></i></span>
-                                        <span>Data Lokasi</span>
+                                        <span>Data 1</span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
-                    </div>
-                </li>
-                <li>
-                    <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#collapseExample2"
-                        role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <span class="me-2"><i class="bi bi-files"></i></span>
-                        <span>Report</span>
-                        <span class="right-icon ms-auto">
-                            <i class="bi bi-chevron-down"></i>
-                        </span>
-                    </a>
-                    <div class="collapse" id="collapseExample2">
-                        <ul class="navbar-nav ps-3"> 
-                            <li>
-                                <a href="" class="nav-link px-3">
-                                    <span class="me-2"><i class="bi bi-files"></i></span>
-                                    <span>Data 1</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="" class="nav-link px-3">
-                                    <span class="me-2"><i class="bi bi-files"></i></span>
-                                    <span>Data 1</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+                    </li>
+                    
+                @endif
+                {{-- end if --}}
             </ul>
         </nav>
     </div>
