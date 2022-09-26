@@ -20,11 +20,15 @@ class PermintaanController extends Controller
         return view('Permintaan.list');
     }
 
-    public function input(Request $request){
+    // public function byUser(Request $request, $id){
         
+    // }
+
+    public function input(Request $request){
         return view('Permintaan.input');
     }
 
+    // input permintaan
     public function store(Request $request)
     {
         date_default_timezone_set('Asia/Jakarta');
@@ -56,9 +60,9 @@ class PermintaanController extends Controller
             }
         // }
         return redirect('/permintaan')->with('success','data berhasil diinput!');
-        // return 'Order stored successfully!';
     }
 
+    // show detail permintaan by id permintaan
     public function requestdetail($id){
         $kode = $id;
         $pinjam = //permintaan::where('kode', $kode)->firstOrFail();
@@ -79,6 +83,7 @@ class PermintaanController extends Controller
         return view('permintaan.detail', compact('pinjam','detail'));
     }
 
+    // approve permintaan
     public function approve($id){
         $permintaan = permintaan::where('kode', $id)->firstOrFail();
         $permintaan->status = 'approved';

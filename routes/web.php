@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/login', 'UserController@login')->name('login');
 Route::post('/proseslogin', 'UserController@prosesLogin')->name('proseslogin');
 Route::post('/logout', 'UserController@prosesLogot')->name('logout');
+
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['middleware'=>['auth','cekRole:admin']], function(){
@@ -52,11 +53,13 @@ Route::group(['middleware'=>['auth','cekRole:admin']], function(){
     Route::get('/setting/kategori/{id}', 'KategoriController@dataById');
     Route::patch('/kategori/update/{id}', 'KategoriController@prosesUpdate');
     Route::delete('/kategori/delete/{id}', 'KategoriController@prosesDelete');
-    
+
     Route::get('/permintaan/list', 'PermintaanController@index');
 });
 
 Route::group(['middleware'=>['auth','cekRole:admin,pegawai']], function(){
+
+    // Route::get('/permintaan/list/{id}', 'PermintaanController@byUser');
     Route::get('/permintaan/input', 'PermintaanController@input');
     Route::get('/permintaan/detail/{id}', 'PermintaanController@requestdetail');
     Route::put('/permintaan/approve/{id}', 'PermintaanController@approve');

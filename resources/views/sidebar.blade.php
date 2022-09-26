@@ -37,14 +37,21 @@
                             <span>Data Barang</span>
                         </a>
                     </li>
+                    
+                    <li>
+                        <a href='{{url("permintaan/list")}}' class="nav-link px-3 {{ Request::segment(1) == 'permintaan' ? 'active' : null }}">
+                            <span class="me-2"><i class="bi bi-files"></i></span>
+                            <span>Permintaan</span>
+                        </a>
+                    </li>
+                @else
+                    <li>
+                        <a href='{{url("permintaan/list/".Auth::user()->id)}}' class="nav-link px-3 {{ Request::segment(1) == 'permintaan' ? 'active' : null }}">
+                            <span class="me-2"><i class="bi bi-files"></i></span>
+                            <span>Permintaan</span>
+                        </a>
+                    </li>
                 @endif
-
-                <li>
-                    <a href='{{url("permintaan/list")}}' class="nav-link px-3 {{ Request::segment(1) == 'permintaan' ? 'active' : null }}">
-                        <span class="me-2"><i class="bi bi-files"></i></span>
-                        <span>Permintaan</span>
-                    </a>
-                </li>
                 <li class="mt-4">
                     <hr class="dropdown-divider" />
                 </li>
