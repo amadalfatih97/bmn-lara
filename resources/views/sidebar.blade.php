@@ -46,9 +46,9 @@
                     </li>
                 @else
                     <li>
-                        <a href='{{url("permintaan/list/".Auth::user()->id)}}' class="nav-link px-3 {{ Request::segment(1) == 'permintaan' ? 'active' : null }}">
+                        <a href='{{url("permintaan/list")}}' class="nav-link px-3 {{ Request::segment(1) == 'permintaan' ? 'active' : null }}">
                             <span class="me-2"><i class="bi bi-files"></i></span>
-                            <span>Permintaan</span>
+                            <span>Permintaan Saya</span>
                         </a>
                     </li>
                 @endif

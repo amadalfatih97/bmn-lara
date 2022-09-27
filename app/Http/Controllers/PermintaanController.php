@@ -20,8 +20,10 @@ class PermintaanController extends Controller
         return view('Permintaan.list');
     }
 
-    // public function byUser(Request $request, $id){
-        
+    // public function byUser($id){
+        // $userId = $id; 
+        // dd($userId);
+        // return view('Permintaan.list', compact('userId'));
     // }
 
     public function input(Request $request){
@@ -59,7 +61,7 @@ class PermintaanController extends Controller
                 detailPinjam::create($datas);
             }
         // }
-        return redirect('/permintaan')->with('success','data berhasil diinput!');
+        return redirect('/permintaan/list')->with('success','data berhasil diinput!');
     }
 
     // show detail permintaan by id permintaan

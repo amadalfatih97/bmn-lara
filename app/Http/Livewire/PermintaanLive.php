@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Support\Facades\Auth;
 use App\Barang;
 use App\detailPinjam;
 use App\permintaan;
@@ -22,20 +23,34 @@ class PermintaanLive extends Component
     // show all permintaan
     public function render()
     {
+        $id = Auth::user()->id;
         $datenow = date('Y-m-d', strtotime('+1 day'));
         $month1ago = date('Y-m-d', strtotime('-1 month', strtotime( $datenow ))); 
 
         $this->date1 = $this->date1 ? $this->date1 : $month1ago;
         $this->date2 = $this->date2 ? $this->date2 : $datenow;
 
-        $permintaans    =   detailPinjam::select('detail_pinjams.pinjam_fk','users.name','permintaans.created_at','permintaans.status')
-                            ->selectRaw('COUNT(detail_pinjams.pinjam_fk) AS jumlah')
-                            ->leftJoin('permintaans', 'detail_pinjams.pinjam_fk', '=', 'permintaans.kode')
-                            ->leftJoin('users', 'permintaans.user_fk', '=', 'users.id')
-                            ->whereBetween('permintaans.created_at', [$this->date1, $this->date2])
-                            ->groupBy('detail_pinjams.pinjam_fk')
-                            ->orderBy('created_at','DESC')
-                            ->get();
+        if(Auth::user()->role == 'admin'){
+            $permintaans    =   detailPinjam::select('detail_pinjams.pinjam_fk','users.name','users.id as userId','permintaans.created_at','permintaans.status')
+                                ->selectRaw('COUNT(detail_pinjams.pinjam_fk) AS jumlah')
+                                ->leftJoin('permintaans', 'detail_pinjams.pinjam_fk', '=', 'permintaans.kode')
+                                ->leftJoin('users', 'permintaans.user_fk', '=', 'users.id')
+                                // ->where('users.id','=',$id)
+                                ->whereBetween('permintaans.created_at', [$this->date1, $this->date2])
+                                ->groupBy('detail_pinjams.pinjam_fk')
+                                ->orderBy('created_at','DESC')
+                                ->get();
+        }else{
+            $permintaans    =   detailPinjam::select('detail_pinjams.pinjam_fk','users.name','users.id as userId','permintaans.created_at','permintaans.status')
+                                ->selectRaw('COUNT(detail_pinjams.pinjam_fk) AS jumlah')
+                                ->leftJoin('permintaans', 'detail_pinjams.pinjam_fk', '=', 'permintaans.kode')
+                                ->leftJoin('users', 'permintaans.user_fk', '=', 'users.id')
+                                ->where('users.id','=',$id)
+                                // ->whereBetween('permintaans.created_at', [$this->date1, $this->date2])
+                                ->groupBy('detail_pinjams.pinjam_fk')
+                                ->orderBy('created_at','DESC')
+                                ->get();
+        }
         return view('livewire.permintaan.permintaan-live', compact('permintaans'));
     }
 

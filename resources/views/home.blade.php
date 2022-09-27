@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    Selamat Datang {{Auth::user()->name}}
+                    Selamat Datang {{Auth::user()->name}} {{Auth::user()->role}}
                 </div>
             </div>
         </div>

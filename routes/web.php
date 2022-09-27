@@ -55,10 +55,10 @@ Route::group(['middleware'=>['auth','cekRole:admin']], function(){
     Route::patch('/kategori/update/{id}', 'KategoriController@prosesUpdate');
     Route::delete('/kategori/delete/{id}', 'KategoriController@prosesDelete');
 
-    Route::get('/permintaan/list', 'PermintaanController@index');
 });
 
 Route::group(['middleware'=>['auth','cekRole:admin,pegawai']], function(){
+    Route::get('/permintaan/list', 'PermintaanController@index');
 
     // Route::get('/permintaan/list/{id}', 'PermintaanController@byUser');
     Route::get('/permintaan/input', 'PermintaanController@input');
