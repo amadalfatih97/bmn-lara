@@ -29,7 +29,8 @@ Route::group(['middleware'=>['auth','cekRole:admin']], function(){
     Route::post('/barang/add', 'BarangController@prosesInput');
     Route::get('/barang/{id}', 'BarangController@dataById');
     Route::patch('/barang/update/{id}', 'BarangController@prosesUpdate');
-    Route::delete('/barang/delete/{id}', 'BarangController@prosesDelete');
+    Route::get('/barang/riwayat/{id}', 'BarangController@riwayat');
+    Route::delete('/barang/delete/{kode}', 'BarangController@prosesDelete');
 
     Route::get('/join', 'BarangController@join');
 

@@ -9,6 +9,8 @@ use Livewire\Component;
 
 class PermintaanLive extends Component
 {
+    public $date1 = '' ;
+    public $date2 = '';
     public $kodebrg, $namabrg, $qty, $stok, $tglkeluar, $orderProducts=[];
     
     // public function mount(){
@@ -20,11 +22,17 @@ class PermintaanLive extends Component
     // show all permintaan
     public function render()
     {
+        $datenow = date('Y-m-d', strtotime('+1 day'));
+        $month1ago = date('Y-m-d', strtotime('-1 month', strtotime( $datenow ))); 
+
+        $this->date1 = $this->date1 ? $this->date1 : $month1ago;
+        $this->date2 = $this->date2 ? $this->date2 : $datenow;
+
         $permintaans    =   detailPinjam::select('detail_pinjams.pinjam_fk','users.name','permintaans.created_at','permintaans.status')
                             ->selectRaw('COUNT(detail_pinjams.pinjam_fk) AS jumlah')
                             ->leftJoin('permintaans', 'detail_pinjams.pinjam_fk', '=', 'permintaans.kode')
                             ->leftJoin('users', 'permintaans.user_fk', '=', 'users.id')
-                            // ->whereBetween('transaksis.tanggal_trans', [$this->date1, $this->date2])
+                            ->whereBetween('permintaans.created_at', [$this->date1, $this->date2])
                             ->groupBy('detail_pinjams.pinjam_fk')
                             ->orderBy('created_at','DESC')
                             ->get();

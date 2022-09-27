@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Barang;
 use App\satuan;
 use App\lokasi;
+use App\permintaan;
 class BarangController extends Controller
 {
 
@@ -120,6 +121,20 @@ class BarangController extends Controller
         $barang->ket = $request->input('ket');
         $barang->save();
         return redirect('/barang/list')->with('success','data berhasil diupdate!');;
+    }
+
+    public function riwayat($kode){
+        $riwayat = DB::table('detail_pinjams')
+        ->select('permintaans.perihal', 'permintaans.user_fk', 'permintaans.waktu_pakai', 'permintaans.waktu_kembali', 'permintaans.ket'
+                ,'users.name','detail_pinjams.aset_fk'
+                )
+        ->leftJoin('permintaans', 'detail_pinjams.pinjam_fk' , '=', 'permintaans.kode')
+        ->leftJoin('users', 'permintaans.user_fk', '=', 'users.id')
+        ->where('detail_pinjams.aset_fk', '=', $kode)
+        ->orderBy('permintaans.waktu_pakai','DESC')
+        ->get();
+        // dd($riwayat);
+        return view('barang.riwayat',compact('riwayat'));
     }
 
     public function prosesDelete($id){

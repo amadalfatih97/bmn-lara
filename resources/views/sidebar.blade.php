@@ -34,14 +34,14 @@
                     <li>
                         <a href='{{url("barang/list")}}' class="nav-link px-3 {{ Request::segment(1) == 'barang' ? 'active' : null }}">
                             <span class="me-2"><i class="bi bi-files"></i></span>
-                            <span>Data Barang</span>
+                            <span>Master Aset BMN</span>
                         </a>
                     </li>
                     
                     <li>
                         <a href='{{url("permintaan/list")}}' class="nav-link px-3 {{ Request::segment(1) == 'permintaan' ? 'active' : null }}">
                             <span class="me-2"><i class="bi bi-files"></i></span>
-                            <span>Permintaan</span>
+                            <span>Semua Permintaan</span>
                         </a>
                     </li>
                 @else

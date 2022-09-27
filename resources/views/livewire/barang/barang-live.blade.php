@@ -43,18 +43,21 @@
                             <td>{{$data->status == 'true' ? 'tersedia' : 'tidak tersedia'}}</td>
                             <td>
                                 <a class="btn btn-outline-primary"  data-bs-toggle="tooltip"
-                                    data-bs-placement="bottom" title="lihat / edit data" href="/barang/{{$data->id}}"><i class="bi bi-pencil-square"></i></a>
-                            <span class="hide-to-mobile">|</span>
-                                {{-- <form > --}}
-                                    {{-- @csrf --}}
-                                    {{-- @method('DELETE') --}}
-                                    <button class="btn btn-outline-danger"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="bottom" title="hapus data" 
-                                    wire:click="confirmDelete({{$data->id}},'Delete','kamu yakin akan menghapus barang ini?')">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-                                {{-- </form> --}}
+                                    data-bs-placement="bottom" title="edit data" href="/barang/{{$data->id}}"><i class="bi bi-pencil-square"></i></a>
+                                <span class="hide-to-mobile">|</span>
+                                    {{-- <form > --}}
+                                        {{-- @csrf --}}
+                                        {{-- @method('DELETE') --}}
+                                        <button class="btn btn-outline-danger"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom" title="hapus data" 
+                                        wire:click="confirmDelete({{$data->id}},'Delete','kamu yakin akan menghapus barang ini?')">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                    {{-- </form> --}}
+                                <span class="hide-to-mobile">|</span>
+                                <a class="btn btn-outline-warning"  data-bs-toggle="tooltip"
+                                    data-bs-placement="bottom" title="lihat riwayat" href="/barang/riwayat/{{$data->kode}}"><i class="bi bi-clock-history"></i></a>
                             </td>
                         </tr>
                         @endforeach

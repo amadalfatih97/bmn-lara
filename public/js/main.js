@@ -44,7 +44,7 @@ $( function() {
     changeMonth: true,
     changeYear: true,
     // minDate: -20,
-    maxDate: "0D",
+    // maxDate: "0D",
     showAnim:'slideDown'
   });
   $( "#picker2" ).datepicker({
@@ -52,7 +52,7 @@ $( function() {
     changeMonth: true,
     changeYear: true,
     // minDate: -20,
-    maxDate: "0D",
+    // maxDate: "0D",
     showAnim:'slideDown'
   });
 } );
