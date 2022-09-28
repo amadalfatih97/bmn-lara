@@ -31,17 +31,31 @@
                                 <p> {{$pinjam->kode}}</p>
                             </div>
                         {{-- </div> --}}
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <p class="mb-0 text-muted">Nama Peminjam: </p>
                             <p class="text-capitalize">{{$pinjam->name}}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="mb-0 text-muted">Status: </p>
+                            <span class="badge text-capitalize
+                                {{$pinjam->status == 'pending' ? 'bg-warning' : 
+                                ($pinjam->status == 'approved' ? 'bg-info' : 
+                                ($pinjam->status == 'applied' ? 'bg-primary' : 'bg-success'))}}">
+                                {{$pinjam->status}}
+                            </span>
                         </div>
                         <div class="col-md-12">
                             <p class="mb-0 text-muted">Keperluan: </p>
                             <div class="card">
-                                <div class="card-body text-capitalize">
+                                <div class="card-body text-capitalize p-2">
                                     {{$pinjam->perihal}}
                                 </div>
-                              </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-2">
+                            <p class="mb-0 text-muted">Keterangan Tambahan</p>
+                            <textarea class="form-control bg-light" name="ket" {{Auth::user()->role == 'admin' ? '' : 'readonly'}}
+                                id="exampleFormControlTextarea1" rows="3">{{$pinjam->ket}}</textarea>
                         </div>
                     </div>
                     <hr>
@@ -66,15 +80,42 @@
                     </div>
                     <hr>
                     <div class="action d-grid gap-3 d-md-flex justify-content-md-end px-3">
+                        @if (Auth::user()->role == 'admin' && $pinjam->status == 'pending')
                         <form action='{{url("permintaan/approve/{$pinjam->kode}")}}' method="post">
                             @csrf
                             @method('PUT')
-                            <button class='btn btn-success' style="width: -webkit-fill-available">
+                            <button class='btn btn-info' style="width: -webkit-fill-available" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            title="Setujui permintaan">
                                 <i class="bi bi-check2-square"></i> Approve
                             </button>
                         </form>
-                        <a href='{{url("report/out-detail/{$pinjam->kode}")}}' target="_blank" class="btn btn-outline-primary me-md-2"><i class="bi bi-printer"></i> Print</a>
-                        <a href='{{url("permintaan/list")}}' class='btn btn-outline-warning' href='{{url("permintaan/list")}}'><i class="bi bi-x-circle"></i> Close</a>
+                        @endif
+
+                        @if (Auth::user()->role == 'admin' && $pinjam->status == 'approved')
+                        <form action='{{url("permintaan/applied/{$pinjam->kode}")}}' method="post">
+                            @csrf
+                            @method('PUT')
+                            <button class='btn btn-primary' style="width: -webkit-fill-available" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            title="barang diterima pegawai">
+                                <i class="bi bi-check2-square"></i> Apply
+                            </button>
+                        </form>
+                        @endif
+
+                        @if (Auth::user()->role == 'admin' && $pinjam->status == 'applied')
+                        <form action='{{url("permintaan/finished/{$pinjam->kode}")}}' method="post">
+                            @csrf
+                            @method('PUT')
+                            <button class='btn btn-success' style="width: -webkit-fill-available" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            title="barang diterima pegawai">
+                                <i class="bi bi-check2-square"></i> Finish
+                            </button>
+                        </form>
+                        @endif
+                            
+                        <a href='{{url("report/out-detail/{$pinjam->kode}")}}' target="_blank" class="btn btn-outline-warning me-md-2"><i class="bi bi-printer"></i> Print</a>
+                        <a href='{{url("permintaan/list")}}' class='btn btn-outline-danger' href='{{url("permintaan/list")}}' data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="tutup halaman detail"><i class="bi bi-x-circle"></i> Close</a>
                     </div>
                     <hr>
                 </div>

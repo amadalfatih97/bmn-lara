@@ -38,7 +38,9 @@
                     <thead>
                         <th class="no">No</th>
                         <th>Kode</th>
-                        <th>User</th>
+                        @if (Auth::user()->role == 'admin')
+                            <th>User</th>
+                        @endif
                         <th>Qty</th>
                         <th>Tanggal Request</th>
                         <th>status</th>
@@ -50,10 +52,12 @@
                         <tr>
                             <td>{{$no++}}</td>
                             <td>{{$data->pinjam_fk}}</td>
-                            <td>{{$data->name}}</td>
+                            @if (Auth::user()->role == 'admin')
+                                <td>{{$data->name}}</td>
+                            @endif
                             <td>{{$data->jumlah}} Barang</td>
                             <td>{{date('d M Y  H:i', strtotime($data->created_at))}} </td>
-                            <td><span class="badge {{$data->status == 'request' ? 'bg-warning' : ($data->status == 'pending' ? 'bg-info' : 'bg-success')}}">
+                            <td><span class="badge {{$data->status == 'request' ? 'bg-warning' : ($data->status == 'pending' ? 'bg-info' : ($data->status == 'applied' ? 'bg-primary' : 'bg-success'))}}">
                                 {{$data->status}}</span>
                             </td>
                             <td><a class="btn btn-outline-primary " data-bs-toggle="tooltip" data-bs-placement="bottom"

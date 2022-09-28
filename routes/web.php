@@ -55,6 +55,8 @@ Route::group(['middleware'=>['auth','cekRole:admin']], function(){
     Route::patch('/kategori/update/{id}', 'KategoriController@prosesUpdate');
     Route::delete('/kategori/delete/{id}', 'KategoriController@prosesDelete');
 
+    Route::put('/permintaan/approve/{id}', 'PermintaanController@approve');
+    Route::put('/permintaan/applied/{id}', 'PermintaanController@applied');
 });
 
 Route::group(['middleware'=>['auth','cekRole:admin,pegawai']], function(){
@@ -63,6 +65,5 @@ Route::group(['middleware'=>['auth','cekRole:admin,pegawai']], function(){
     // Route::get('/permintaan/list/{id}', 'PermintaanController@byUser');
     Route::get('/permintaan/input', 'PermintaanController@input');
     Route::get('/permintaan/detail/{id}', 'PermintaanController@requestdetail');
-    Route::put('/permintaan/approve/{id}', 'PermintaanController@approve');
     Route::resource('permintaan', PermintaanController::class);
 });

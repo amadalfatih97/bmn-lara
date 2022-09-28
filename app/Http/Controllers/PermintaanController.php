@@ -93,4 +93,13 @@ class PermintaanController extends Controller
         // $satuan->delete();
         return redirect('/permintaan/list')->with('success','permintaan disetujui!');;
     }
+
+    // applied permintaan
+    public function applied($id){
+        $permintaan = permintaan::where('kode', $id)->firstOrFail();
+        $permintaan->status = 'applied';
+        $permintaan->save();
+        // $satuan->delete();
+        return redirect('/permintaan/list')->with('success','Barang diterima bersangkutan!');;
+    }
 }
