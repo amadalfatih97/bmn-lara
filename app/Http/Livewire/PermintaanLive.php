@@ -7,9 +7,11 @@ use App\Barang;
 use App\detailPinjam;
 use App\permintaan;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class PermintaanLive extends Component
 {
+    use WithPagination;
     public $date1 = '' ;
     public $date2 = '';
     public $kodebrg, $namabrg, $qty, $stok, $tglkeluar, $orderProducts=[];
@@ -39,7 +41,7 @@ class PermintaanLive extends Component
                                 ->whereBetween('permintaans.created_at', [$this->date1, $this->date2])
                                 ->groupBy('detail_pinjams.pinjam_fk')
                                 ->orderBy('created_at','DESC')
-                                ->get();
+                                ->paginate(5);
         }else{
             $permintaans    =   detailPinjam::select('detail_pinjams.pinjam_fk','users.name','users.id as userId','permintaans.created_at','permintaans.status')
                                 ->selectRaw('COUNT(detail_pinjams.pinjam_fk) AS jumlah')
@@ -49,7 +51,7 @@ class PermintaanLive extends Component
                                 // ->whereBetween('permintaans.created_at', [$this->date1, $this->date2])
                                 ->groupBy('detail_pinjams.pinjam_fk')
                                 ->orderBy('created_at','DESC')
-                                ->get();
+                                ->paginate(5);
         }
         return view('livewire.permintaan.permintaan-live', compact('permintaans'));
     }

@@ -48,9 +48,9 @@
                     </thead>
                     <tbody>
                         <?php $no=1 ?>
-                        @forelse($permintaans as $data)
+                        @forelse($permintaans as $key=> $data)
                         <tr>
-                            <td>{{$no++}}</td>
+                            <td>{{$permintaans->firstItem() + $key  }}</td>
                             <td>{{$data->pinjam_fk}}</td>
                             @if (Auth::user()->role == 'admin')
                                 <td>{{$data->name}}</td>
@@ -83,6 +83,9 @@
 
                     </tbody>
                 </table>
+                @if (count($permintaans))
+                    {{$permintaans->links('livewire/paginate-live')}}
+                @endif
             </div>
         </div>
     </div>
