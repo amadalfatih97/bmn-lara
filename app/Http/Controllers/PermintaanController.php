@@ -94,7 +94,7 @@ class PermintaanController extends Controller
         $permintaan->status = 'approved';
         $permintaan->ket = $request->ket;
         $permintaan->save();
-        //update status barang tidak tersedia
+        //update status barang jadi tidak tersedia
         foreach ($detail as $item => $value) {
             DB::table('barangs')->where('kode',$value['aset_fk'])
                                 ->update(['status'=>'false','ket'=>'terpakai']);
@@ -115,10 +115,15 @@ class PermintaanController extends Controller
     // selesaikan permintaan
     public function finished(Request $request, $id){
         $permintaan = permintaan::where('kode', $id)->firstOrFail();
+        $detail = detailPinjam::where('pinjam_fk', $id)->get();
         $permintaan->status = 'finished';
         $permintaan->ket = $request->ket;
         $permintaan->save();
-        // $satuan->delete();
+        //update status barang jadi tersedia
+        foreach ($detail as $item => $value) {
+            DB::table('barangs')->where('kode',$value['aset_fk'])
+                                ->update(['status'=>'true','ket'=>'sedia']);
+        }
         return redirect('/permintaan/list')->with('success','Peminjaman selesai!');;
     }
 }
