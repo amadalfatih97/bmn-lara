@@ -58,6 +58,13 @@ Route::group(['middleware'=>['auth','cekRole:admin']], function(){
     Route::put('/permintaan/approve/{id}', 'PermintaanController@approve');
     Route::put('/permintaan/applied/{id}', 'PermintaanController@applied');
     Route::put('/permintaan/finished/{id}', 'PermintaanController@finished');
+
+    Route::get('/pengguna/list', 'PenggunaController@index');
+    Route::get('/pengguna/add', 'PenggunaController@input');
+    Route::post('/pengguna/add', 'PenggunaController@prosesInput');
+    Route::get('/pengguna/{id}', 'PenggunaController@dataById');
+    Route::patch('/pengguna/update/{id}', 'PenggunaController@prosesUpdate');
+    Route::delete('/pengguna/delete/{id}', 'PenggunaController@prosesDelete');
 });
 
 Route::group(['middleware'=>['auth','cekRole:admin,pegawai']], function(){

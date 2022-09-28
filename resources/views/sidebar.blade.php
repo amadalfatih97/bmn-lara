@@ -44,6 +44,13 @@
                             <span>Semua Permintaan</span>
                         </a>
                     </li>
+
+                    <li>
+                        <a href='{{url("pengguna/list")}}' class="nav-link px-3 {{ Request::segment(1) == 'pengguna' ? 'active' : null }}">
+                            <span class="me-2"><i class="bi bi-files"></i></span>
+                            <span>Pengguna Tetap</span>
+                        </a>
+                    </li>
                 @else
                     <li>
                         <a href='{{url("permintaan/list")}}' class="nav-link px-3 {{ Request::segment(1) == 'permintaan' ? 'active' : null }}">
