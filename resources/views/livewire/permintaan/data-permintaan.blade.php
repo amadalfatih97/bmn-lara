@@ -23,7 +23,11 @@
             </div>
             <div class="form-group mb-3">
                 <label for="keperluan" class="form-label">Keperluan</label>
-                <textarea name="keperluan" wire:model="keperluan" required class="form-control text-capitalize"> </textarea>
+                <input type="text" name="keperluan" wire:model="keperluan" required class="form-control text-capitalize">
+            </div>
+            <div class="form-group mb-3">
+                <label for="ket" class="form-label">Catatan</label>
+                <textarea name="ket"required class="form-control text-capitalize"> </textarea>
             </div>
             {{-- <button type="button" disabled class="btn btn-primary" id="add">Tambah</button> --}}
             <button type="button" class="btn btn-primary" wire:click.prevent="addProduct"

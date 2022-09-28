@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\permintaan;
 use App\detailPinjam;
+use App\Barang;
 
 class PermintaanController extends Controller
 {
@@ -49,7 +50,7 @@ class PermintaanController extends Controller
             'waktu_pakai'=> $request->input('jadwalpakai'),
             'waktu_kembali'=> $request->input('jadwalkembali'),
             'status'=> 'pending',
-            'ket' => 'pinjam'
+            'ket' => $request->input('ket'),
         ]);
         $trans->save();
         // if ($proses) {
@@ -88,10 +89,16 @@ class PermintaanController extends Controller
     // approve permintaan
     public function approve(Request $request, $id){
         $permintaan = permintaan::where('kode', $id)->firstOrFail();
+        $detail = detailPinjam::where('pinjam_fk', $id)->get();
+        // dd($detail);
         $permintaan->status = 'approved';
         $permintaan->ket = $request->ket;
         $permintaan->save();
-        // $satuan->delete();
+        //update status barang tidak tersedia
+        foreach ($detail as $item => $value) {
+            DB::table('barangs')->where('kode',$value['aset_fk'])
+                                ->update(['status'=>'false','ket'=>'terpakai']);
+        }
         return redirect('/permintaan/list')->with('success','permintaan disetujui!');;
     }
 

@@ -55,7 +55,7 @@
                 <li class="mt-4">
                     <hr class="dropdown-divider" />
                 </li>
-                {{-- tampilkan hanya user login dengan role user --}}
+                {{-- tampilkan hanya user login dengan role admin --}}
                 @if (auth()->user()->role=='admin')
                     <li>
                         <div class="text-muted small fw-bold-text-uppercase px-3">
@@ -125,6 +125,18 @@
                     
                 @endif
                 {{-- end if --}}
+                <li>
+                    <a href="{{ route('logout') }}" class="nav-link px-3"
+                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                        <span class="me-2"><i class="bi bi-box-arrow-left"></i></span>
+                        <span> {{ __('Logout') }}</span>
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </li>
             </ul>
         </nav>
     </div>
