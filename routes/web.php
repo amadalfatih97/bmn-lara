@@ -57,6 +57,7 @@ Route::group(['middleware'=>['auth','cekRole:admin']], function(){
 
     Route::put('/permintaan/approve/{id}', 'PermintaanController@approve');
     Route::put('/permintaan/applied/{id}', 'PermintaanController@applied');
+    Route::put('/permintaan/finished/{id}', 'PermintaanController@finished');
 });
 
 Route::group(['middleware'=>['auth','cekRole:admin,pegawai']], function(){

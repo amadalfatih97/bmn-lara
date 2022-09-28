@@ -57,8 +57,16 @@
                             @endif
                             <td>{{$data->jumlah}} Barang</td>
                             <td>{{date('d M Y  H:i', strtotime($data->created_at))}} </td>
-                            <td><span class="badge {{$data->status == 'request' ? 'bg-warning' : ($data->status == 'pending' ? 'bg-info' : ($data->status == 'applied' ? 'bg-primary' : 'bg-success'))}}">
-                                {{$data->status}}</span>
+                            <td><span role="button" class="badge 
+                                    {{$data->status == 'pending' ? 'bg-warning' : 
+                                    ($data->status == 'approved' ? 'bg-info' : 
+                                    ($data->status == 'applied' ? 'bg-primary' : 'bg-success'))}}"
+                                    data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                    title="{{$data->status == 'pending' ? 'menunggu persetujuan' : 
+                                    ($data->status == 'approved' ? 'permintaan disetujui' : 
+                                    ($data->status == 'applied' ? 'barang digunakan' : 'barang dikembalikan'))}}">
+                                    {{$data->status}}
+                                </span>
                             </td>
                             <td><a class="btn btn-outline-primary " data-bs-toggle="tooltip" data-bs-placement="bottom"
                                     title="Lihat Detail" href='{{url("permintaan/detail/{$data->pinjam_fk}")}}'>

@@ -86,20 +86,32 @@ class PermintaanController extends Controller
     }
 
     // approve permintaan
-    public function approve($id){
+    public function approve(Request $request, $id){
         $permintaan = permintaan::where('kode', $id)->firstOrFail();
         $permintaan->status = 'approved';
+        $permintaan->ket = $request->ket;
         $permintaan->save();
         // $satuan->delete();
         return redirect('/permintaan/list')->with('success','permintaan disetujui!');;
     }
 
     // applied permintaan
-    public function applied($id){
+    public function applied(Request $request, $id){
         $permintaan = permintaan::where('kode', $id)->firstOrFail();
         $permintaan->status = 'applied';
+        $permintaan->ket = $request->ket;
         $permintaan->save();
         // $satuan->delete();
         return redirect('/permintaan/list')->with('success','Barang diterima bersangkutan!');;
+    }
+
+    // selesaikan permintaan
+    public function finished(Request $request, $id){
+        $permintaan = permintaan::where('kode', $id)->firstOrFail();
+        $permintaan->status = 'finished';
+        $permintaan->ket = $request->ket;
+        $permintaan->save();
+        // $satuan->delete();
+        return redirect('/permintaan/list')->with('success','Peminjaman selesai!');;
     }
 }
