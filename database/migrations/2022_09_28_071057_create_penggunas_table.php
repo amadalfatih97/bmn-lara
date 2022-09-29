@@ -16,7 +16,8 @@ class CreatePenggunasTable extends Migration
         Schema::create('penggunas', function (Blueprint $table) {
             $table->id();
             $table->string('user_fk',50);
-            $table->string('aset_fk',50);
+            $table->string('aset_fk',50)->unique();;
+            $table->string('permintaan_fk',50);
             $table->text('perihal')->nullable();
             $table->date('waktu_mulai');
             $table->date('waktu_selesai')->nullable();

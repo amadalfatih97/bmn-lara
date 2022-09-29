@@ -39,7 +39,7 @@
                                 <td>{{$data->perihal}}</td>
                                 <td>{{$data->name}}</td>
                                 <td>{{date('d M Y', strtotime($data->waktu_pakai))}} </td>
-                                <td>{{date('d M Y', strtotime($data->waktu_kembali))}}</td>
+                                <td>{{$data->waktu_kembali ? date('d M Y', strtotime($data->waktu_kembali)) : '-- -- --'}}</td>
                                 <td>{{$data->ket}}</td>
                             </tr>
                             @empty

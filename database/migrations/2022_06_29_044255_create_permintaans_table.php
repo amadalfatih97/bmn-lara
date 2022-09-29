@@ -20,7 +20,7 @@ class CreatePermintaansTable extends Migration
             $table->text('perihal');
             $table->date('waktu_proses');
             $table->date('waktu_pakai');
-            $table->date('waktu_kembali');
+            $table->date('waktu_kembali')->nullable();
             $table->string('status',20);
             $table->text('ket');
             $table->timestamps();

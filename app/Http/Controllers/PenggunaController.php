@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\pengguna;
 use App\user;
 use App\Barang;
+use App\permintaan;
+use App\detailPinjam;
 class PenggunaController extends Controller
 {
     public function index(Request $request){
@@ -37,6 +39,10 @@ class PenggunaController extends Controller
     
 
     public function prosesInput(Request $request){
+        date_default_timezone_set('Asia/Jakarta');
+        $notrans = 'req'.date('ymd-His');
+        $status = 'finished';
+        
         /* validation */
         $request->validate([
             'user' => 'required',
@@ -45,23 +51,47 @@ class PenggunaController extends Controller
             'mulai' => 'required',
         ]);
         
-        /* proses input */
+        /* proses input pengguna */
         $pengguna = new pengguna([
             /* database                      namefield */
             'aset_fk'=> $request->input('aset')
             , 'user_fk'=> $request->input('user')
+            , 'permintaan_fk'=> $notrans
             , 'perihal'=> $request->input('perihal')
             , 'ket'=> $request->input('ket')
             , 'waktu_mulai'=> $request->input('mulai')
             , 'waktu_selesai'=> $request->input('kembali')
         ]);
         $pengguna->save();
+        
+////update data barang
         if ($request->input('finish') != 'true') {
             // update status data aset
             DB::table('barangs')->where('kode',$request->input('aset'))
                                 ->update(['status'=>'false','ket'=>'terpakai']);
             // end update
+            $status = 'applied';
         }
+////input data permintaan
+        $trans = new permintaan([
+            'kode'=> $notrans,
+            'user_fk'=> $request->input('user'),
+            'perihal'=> $request->input('perihal'),
+            'waktu_proses'=> date('Y-m-d H:i:s'),
+            'waktu_pakai'=> $request->input('mulai'),
+            'waktu_kembali'=> $request->input('kembali'),
+            'status'=> $status,
+            'ket' => 'penggunaan tidak berjangka',
+        ]);
+        $trans->save();
+        // if ($trans) {
+            $detailTrans = new detailPinjam([
+                'pinjam_fk' =>$trans->kode,
+                'aset_fk' => $request->input('aset'),
+            ]);
+            $detailTrans->save();
+        // }
+/////end permintaan
         return redirect('/pengguna/list')->with('success','data berhasil disimpan!');
     }
 
@@ -100,8 +130,16 @@ class PenggunaController extends Controller
         $pengguna->waktu_selesai = $request->input('kembali');
         $pengguna->ket = $request->input('ket');
         $pengguna->save();
-        // rubah status data barang
+
         if ($request->input('finish') == 'true') {
+            //ubah status permintaan
+            $permintaan = permintaan::where('kode', $pengguna->permintaan_fk)->firstOrFail();
+            $permintaan->status = 'finished';
+            $permintaan->ket = 'pemakaian berjangka, dikembalikan';
+            $permintaan->waktu_kembali = $request->input('kembali');
+            $permintaan->save();
+
+            // rubah status data barang
             DB::table('barangs')->where('kode',$request->input('aset'))
                                 ->update(['status'=>'true','ket'=>'sedia']);
         };

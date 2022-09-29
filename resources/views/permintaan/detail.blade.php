@@ -23,7 +23,7 @@
                                 <p class="mb-0 text-muted">Waktu Pemakaian:</p>
                                 <p> 
                                     {{date('d M Y', strtotime($pinjam->waktu_pakai))}} 
-                                    s/d  {{date('d M Y', strtotime($pinjam->waktu_kembali))}}
+                                    s/d  {{$pinjam->waktu_kembali ? date('d M Y', strtotime($pinjam->waktu_kembali)) : '-- -- ----'}}
                                 </p>
                             </div>
                             <div class="col-md-6">
@@ -101,7 +101,7 @@
                                     class="btn 
                                         {{$pinjam->status == 'pending' ? 'btn-info' : 
                                         ($pinjam->status == 'approved' ? 'btn-primary' :'btn-success')}}"
-                                    title="Setujui permintaan">
+                                    title="Setujui permintaan" {{$pinjam->status == 'finished' ? 'disabled' : ''}}>
                                         <i class="bi bi-check2-square"></i>
                                         {{$pinjam->status == 'pending' ? 'Approve' : 
                                         ($pinjam->status == 'approved' ? 'Apply' : 'Finish')}}
