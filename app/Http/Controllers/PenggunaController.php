@@ -56,34 +56,57 @@ class PenggunaController extends Controller
             , 'waktu_selesai'=> $request->input('kembali')
         ]);
         $pengguna->save();
-        // ini dipindah ke update
+        if ($request->input('finish') != 'true') {
+            // update status data aset
+            DB::table('barangs')->where('kode',$request->input('aset'))
+                                ->update(['status'=>'false','ket'=>'terpakai']);
+            // end update
+        }
+        return redirect('/pengguna/list')->with('success','data berhasil disimpan!');
+    }
+
+    public function dataById($id){
+        $barangs = DB::table('barangs')
+                    ->orderBy('nama_barang','asc')
+                    ->get();
+        $users = DB::table('users')
+                    ->orderBy('name','asc')
+                    ->get();
+        $pengguna = DB::table('penggunas')
+        ->select('penggunas.*','barangs.nama_barang', 'users.name')
+        ->leftJoin('barangs', 'penggunas.aset_fk', '=', 'barangs.kode')
+        ->leftJoin('users', 'penggunas.user_fk', '=', 'users.id')
+        ->where('penggunas.id', '=', $id)
+        ->first();
+        // dd($pengguna);
+        return view('pengguna.edit',compact('pengguna','barangs','users'));
+    }
+
+    public function prosesUpdate(Request $request, $id){
+        /* validation */
+        $request->validate([
+            'user' => 'required',
+            'aset' => 'required',
+            'perihal' => 'required',
+            'mulai' => 'required',
+        ]);
+        
+        $pengguna = pengguna::find($id);
+        /* proses update */
+        $pengguna->user_fk = $request->input('user');
+        $pengguna->aset_fk = $request->input('aset');
+        $pengguna->perihal = $request->input('perihal');
+        $pengguna->waktu_mulai = $request->input('mulai');
+        $pengguna->waktu_selesai = $request->input('kembali');
+        $pengguna->ket = $request->input('ket');
+        $pengguna->save();
+        // rubah status data barang
         if ($request->input('finish') == 'true') {
             DB::table('barangs')->where('kode',$request->input('aset'))
                                 ->update(['status'=>'true','ket'=>'sedia']);
         };
         // end update
-        return redirect('/pengguna/list')->with('success','data berhasil disimpan!');
-    }
-
-    public function dataById($id){
-        $lokasi = lokasi::find($id);
-        return view('lokasi.edit',compact('lokasi'));
-        // return $id;
-    }
-
-    public function prosesUpdate(Request $request, $id){
-        $lokasi = lokasi::find($id);
-        /* validation */
-        $request->validate([
-            'nama_lokasi' => 'required|max:30'
-            //,other
-        ]);
-        
-        /* proses update */
-        // echo var_dump($request->input());
-        $lokasi->nama_lokasi = $request->input('nama_lokasi');
-        $lokasi->save();
-        return redirect('/setting/lokasi/list')->with('success','data berhasil diupdate!');;
+        return redirect('/pengguna/list')->with('success','data berhasil di Update!');
     }
 
     public function prosesDelete($id){
