@@ -110,11 +110,10 @@ class PenggunaController extends Controller
     }
 
     public function prosesDelete($id){
-        // return $id;
-        $lokasi = lokasi::find($id);
-        $lokasi->aktif = 0;
-        $lokasi->save();
-        // $lokasi->delete();
-        return redirect('/setting/lokasi/list')->with('success','data berhasil dihapus!');;
+        $pengguna = pengguna::find($id);
+        // $pengguna->aktif = 0;
+        // $pengguna->save();
+        $pengguna->delete();
+        return redirect('/pengguna/list')->with('success','data berhasil dihapus!');;
     }
 }
