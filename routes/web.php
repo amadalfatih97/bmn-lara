@@ -65,6 +65,13 @@ Route::group(['middleware'=>['auth','cekRole:admin']], function(){
     Route::get('/pengguna/{id}', 'PenggunaController@dataById');
     Route::patch('/pengguna/update/{id}', 'PenggunaController@prosesUpdate');
     Route::delete('/pengguna/delete/{id}', 'PenggunaController@prosesDelete');
+
+    Route::get('/pemeliharaan/list', 'PemeliharaanController@index');
+    Route::get('/pemeliharaan/add', 'PemeliharaanController@input');
+    Route::post('/pemeliharaan/add', 'PemeliharaanController@prosesInput');
+    Route::get('/pemeliharaan/{id}', 'PemeliharaanController@dataById');
+    Route::patch('/pemeliharaan/update/{id}', 'PemeliharaanController@prosesUpdate');
+    Route::delete('/pemeliharaan/delete/{id}', 'PemeliharaanController@prosesDelete');
 });
 
 Route::group(['middleware'=>['auth','cekRole:admin,pegawai']], function(){

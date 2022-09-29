@@ -33,22 +33,29 @@
                 @if (auth()->user()->role=='admin')
                     <li>
                         <a href='{{url("barang/list")}}' class="nav-link px-3 {{ Request::segment(1) == 'barang' ? 'active' : null }}">
-                            <span class="me-2"><i class="bi bi-files"></i></span>
+                            <span class="me-2"><i class="bi bi-archive"></i></span>
                             <span>Master Aset BMN</span>
                         </a>
                     </li>
                     
                     <li>
                         <a href='{{url("permintaan/list")}}' class="nav-link px-3 {{ Request::segment(1) == 'permintaan' ? 'active' : null }}">
-                            <span class="me-2"><i class="bi bi-files"></i></span>
+                            <span class="me-2"><i class="bi bi-clipboard2-check"></i></span>
                             <span>Semua Permintaan</span>
                         </a>
                     </li>
 
                     <li>
                         <a href='{{url("pengguna/list")}}' class="nav-link px-3 {{ Request::segment(1) == 'pengguna' ? 'active' : null }}">
-                            <span class="me-2"><i class="bi bi-files"></i></span>
+                            <span class="me-2"><i class="bi bi-person-workspace"></i></span>
                             <span>Pengguna Tetap</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href='{{url("pemeliharaan/list")}}' class="nav-link px-3 {{ Request::segment(1) == 'pemeliharaan' ? 'active' : null }}">
+                            <span class="me-2"><i class="bi bi-tools"></i></span>
+                            <span>Data Pemeliharaan </span>
                         </a>
                     </li>
                 @else
@@ -72,7 +79,7 @@
                     <li>
                         <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#collapseExample"
                             role="button" aria-expanded="false" aria-controls="collapseExample">
-                            <span class="me-2"><i class="bi bi-files"></i></span>
+                            <span class="me-2"><i class="bi bi-gear"></i></span>
                             <span>Setting</span>
                             <span class="right-icon ms-auto">
                                 <i class="bi bi-chevron-down"></i>
@@ -106,7 +113,7 @@
                     <li>
                         <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#collapseExample2"
                             role="button" aria-expanded="false" aria-controls="collapseExample">
-                            <span class="me-2"><i class="bi bi-files"></i></span>
+                            <span class="me-2"><i class="bi bi-file-earmark"></i></span>
                             <span>Report</span>
                             <span class="right-icon ms-auto">
                                 <i class="bi bi-chevron-down"></i>
