@@ -41,6 +41,8 @@
     {{-- <script src="{{asset('js')}}/main.js" ></script> --}}
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
     @livewireScripts
     @stack('scripts')

@@ -65,6 +65,12 @@
                             <span>Permintaan Saya</span>
                         </a>
                     </li>
+                    <li>
+                        <a href='{{url("lapor/list")}}' class="nav-link px-3 {{ Request::segment(1) == 'permintaan' ? 'active' : null }}">
+                            <span class="me-2"><i class="bi bi-tools"></i></span>
+                            <span>Laporkan Aset</span>
+                        </a>
+                    </li>
                 @endif
                 <li class="mt-4">
                     <hr class="dropdown-divider" />
@@ -124,13 +130,13 @@
                                 <li>
                                     <a href="" class="nav-link px-3">
                                         <span class="me-2"><i class="bi bi-files"></i></span>
-                                        <span>Data 1</span>
+                                        <span>Report 1</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="" class="nav-link px-3">
                                         <span class="me-2"><i class="bi bi-files"></i></span>
-                                        <span>Data 1</span>
+                                        <span>Report 1</span>
                                     </a>
                                 </li>
                             </ul>
