@@ -15,11 +15,11 @@
         <div class="card px-3 py-3">
             <div class="row">
                 <div class="col-md-8 ">
-                    <a href="{{url('satuan/add')}}" class="btn btn-success mb-2">input</a>
+                    <a href="{{url('setting/satuan/add')}}" class="btn btn-success mb-2">input</a>
                 </div>
             
                 <div class="col-md-4 ">
-                    <form action='{{url("satuan/list")}}' method="GET">
+                    <form action='{{url("setting/satuan/list")}}' method="GET">
                         <div class="input-group mb-3">
                             <input name="key" type="text" class="form-control" placeholder="Search" aria-label="Search"
                                 aria-describedby="button-addon2" value="{{Request::get('key')}}">
@@ -38,7 +38,7 @@
             @endif
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card">
+                    <div class="card overflow-auto">
                         <table class="table table-striped table-hover">
                             <thead>
                                 <th class="no">No</th>
@@ -52,13 +52,13 @@
                                     <td>{{$no++}}</td>
                                     <td>{{$data->nama_satuan}}</td>
                                     <td>
-                                        <a class="btn btn-outline-primary" href="/satuan/{{$data->id}}">Edit</button>
+                                        <a class="btn btn-outline-primary" href="/setting/satuan/{{$data->id}}"><i class="bi bi-pencil-square"></i></button>
                                     </td>
                                     <td>
                                         <form action='{{url("satuan/delete/{$data->id}")}}' method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-outline-danger" type="submit">Hapus</button>
+                                            <button class="btn btn-outline-danger" type="submit"><i class="bi bi-trash"></i></button>
                                         </form>
                                     </td>
                                 </tr>

@@ -17,8 +17,10 @@ class CreatePermintaansTable extends Migration
             $table->increments('id');
             $table->string('kode',50);
             $table->string('user_fk',12);
-            $table->date('waktu_req');
+            $table->text('perihal');
             $table->date('waktu_proses');
+            $table->date('waktu_pakai');
+            $table->date('waktu_kembali')->nullable();
             $table->string('status',20);
             $table->text('ket');
             $table->timestamps();

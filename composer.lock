@@ -4,8 +4,70 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "13a54eab57a410b7b9aa09b2df9971b2",
+    "content-hash": "4dfe92e924da0a2d4630eeda1306ee52",
     "packages": [
+        {
+            "name": "asantibanez/livewire-charts",
+            "version": "v2.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/asantibanez/livewire-charts.git",
+                "reference": "072a98da5ce2be3895c344806296dce8eb2a4edd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/asantibanez/livewire-charts/zipball/072a98da5ce2be3895c344806296dce8eb2a4edd",
+                "reference": "072a98da5ce2be3895c344806296dce8eb2a4edd",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^7.0|^8.0|^9.0",
+                "livewire/livewire": "^2.3",
+                "php": "^7.2|^7.3|^7.4|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^5.0|^6.0|^7.0",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Asantibanez\\LivewireCharts\\LivewireChartsServiceProvider"
+                    ],
+                    "aliases": {
+                        "LivewireCharts": "Asantibanez\\LivewireCharts\\LivewireChartsFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Asantibanez\\LivewireCharts\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andrés Santibáñez",
+                    "email": "santibanez.andres@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Livewire Charts",
+            "homepage": "https://github.com/asantibanez/livewire-charts",
+            "keywords": [
+                "asantibanez",
+                "livewire-charts"
+            ],
+            "support": {
+                "issues": "https://github.com/asantibanez/livewire-charts/issues",
+                "source": "https://github.com/asantibanez/livewire-charts/tree/v2.4.1"
+            },
+            "time": "2022-02-18T21:47:04+00:00"
+        },
         {
             "name": "asm89/stack-cors",
             "version": "v2.1.1",
@@ -1255,6 +1317,65 @@
                 "source": "https://github.com/laravel/tinker/tree/v2.7.2"
             },
             "time": "2022-03-23T12:38:24+00:00"
+        },
+        {
+            "name": "laravel/ui",
+            "version": "v2.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/ui.git",
+                "reference": "f5398544a9cd4804a42d09ce51735e37cd51ea2d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/ui/zipball/f5398544a9cd4804a42d09ce51735e37cd51ea2d",
+                "reference": "f5398544a9cd4804a42d09ce51735e37cd51ea2d",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^7.0",
+                "illuminate/filesystem": "^7.0",
+                "illuminate/support": "^7.0",
+                "php": "^7.2.5"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Ui\\UiServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Ui\\": "src/",
+                    "Illuminate\\Foundation\\Auth\\": "auth-backend/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Laravel UI utilities and presets.",
+            "keywords": [
+                "laravel",
+                "ui"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/ui/issues",
+                "source": "https://github.com/laravel/ui/tree/v2.4.0"
+            },
+            "time": "2020-09-11T15:31:52+00:00"
         },
         {
             "name": "league/commonmark",

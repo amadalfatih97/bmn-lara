@@ -36,7 +36,7 @@
                                 id="exampleInputSatuan" name="nama_satuan">
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
-                        <a class='btn btn-warning ml-3' href='{{url("satuan/list")}}'>Cancel</a>
+                        <a class='btn btn-warning ml-3' href='{{url("setting/satuan/list")}}'>Cancel</a>
                     </form>
                 </div>
             </div>

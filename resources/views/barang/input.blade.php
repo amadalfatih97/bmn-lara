@@ -17,10 +17,16 @@
 
         <?php
             $getSelect = '';
+            $getLokasi = '';
+            $getStatus = '';
+            $getKondisi = '';
         ?>
         @if ($errors->any())
         <?php
             $getSelect = old('satuan');
+            $getLokasi = old('lokasi');
+            $getStatus = old('status');
+            $getKondisi = old('kondisi');
         ?>
         <div class="alert alert-danger">
             <ul>
@@ -44,13 +50,13 @@
                         </div>
                         <label for="kode" class="form-label">Kode Aset</label>
                         <div class="mb-3 input-group has-validation">
-                            <input type="text" class="form-control
+                            <input type="text" value="{{old('kode')}}" autocomplete="false" class="form-control 
                             {{ $errors->get('kode') ? 'is-invalid'  : ''}}" id="exampleInputbarang" 
-                            id="exampleInputbarang" name="kode" required>
+                            id="exampleInputbarang" name="kode" required autocomplete="off">
                         </div>
                         <div class="mb-3">
                             <label for="stok" class="form-label">Stok</label>
-                            <input type="number" value="{{old('stok')}}" class="form-control  
+                            <input type="number" value="{{old('stok')}}"  autocomplete="off" class="form-control  
                             {{ $errors->get('stok') ? 'is-invalid'  : ''}}" id="exampleInputstok" name="stok" required>
                         </div>
                         <div class="mb-3">
@@ -82,7 +88,7 @@
                                 name="lokasi" aria-label="Default select example" required>
                                 <option>Pilih Lokasi</option>
                                 @foreach ($lokasis as $item)
-                                <option value="{{$item->id}}" >
+                                <option value="{{$item->id}}" {{$item->id == $getLokasi ? 'selected' : ''}}>
                                     {{$item->nama_lokasi}}
                                 </option>
                                 @endforeach
@@ -93,9 +99,9 @@
                             <select class="form-select  {{ $errors->get('kondisi') ? 'is-invalid'  : ''}}"
                                 name="kondisi" aria-label="Default select example" required>
                                 <option>Pilih Kondisi</option>
-                                <option value="b">Baik</option>
-                                <option value="rr">Rusak Ringan</option>
-                                <option value="rb">Rusak Berat</option>
+                                <option value="b" {{$getKondisi == 'b' ? 'selected' : ''}}>Baik</option>
+                                <option value="rr" {{$getKondisi == 'rr' ? 'selected' : ''}}>Rusak Ringan</option>
+                                <option value="rb" {{$getKondisi == 'rb' ? 'selected' : ''}}>Rusak Berat</option>
                             </select>
                         </div>
                         <div class="mb-3">
@@ -103,8 +109,8 @@
                             <select class="form-select  {{ $errors->get('status') ? 'is-invalid'  : ''}}"
                                 name="status" aria-label="Default select example" required>
                                 <option>Pilih Status</option>
-                                <option value="true">sedia</option>
-                                <option value="false">tidak Tersedia</option>
+                                <option value="true" {{$getStatus == 'true' ? 'selected' : ''}}>sedia</option>
+                                <option value="false" {{$getStatus == 'false' ? 'selected' : ''}}>tidak Tersedia</option>
                             </select>
                         </div>
                         <div class="mb-3">

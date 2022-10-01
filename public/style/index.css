@@ -1,6 +1,6 @@
 
 :root{
-    --offcanvas-width:240px;
+    --offcanvas-width:220px;
     --topNavbarHeight:65px;
 }
 
@@ -41,6 +41,11 @@ main{
 
 img,svg{
     vertical-align: middle;
+}
+
+.toast{
+    background-color: #198754;
+    color: #FAFAFA;
 }
 
 @media (max-width:991px) {
@@ -86,8 +91,9 @@ img,svg{
     .sidebar-nav{
         transform: none;
         visibility: visible !important;
-        top: var(--topNavbarHeight);
-        height: calc(100% - var(--topNavbarHeight));
+        /* top: var(--topNavbarHeight); */
+        /* height: calc(100% - var(--topNavbarHeight)); */
+        height: calc(100% );
     }
 
     .sidebar-nav li:hover{

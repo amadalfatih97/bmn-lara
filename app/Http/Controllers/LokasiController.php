@@ -37,7 +37,7 @@ class LokasiController extends Controller
             /* , 'nama_lokasi'=> $request->input('nama_lokasi') */
         ]);
         $lokasi->save();
-        return redirect('/lokasi/list')->with('success','data berhasil disimpan!');
+        return redirect('/setting/lokasi/list')->with('success','data berhasil disimpan!');
     }
 
     public function dataById($id){
@@ -58,7 +58,7 @@ class LokasiController extends Controller
         // echo var_dump($request->input());
         $lokasi->nama_lokasi = $request->input('nama_lokasi');
         $lokasi->save();
-        return redirect('/lokasi/list')->with('success','data berhasil diupdate!');;
+        return redirect('/setting/lokasi/list')->with('success','data berhasil diupdate!');;
     }
 
     public function prosesDelete($id){
@@ -67,6 +67,6 @@ class LokasiController extends Controller
         $lokasi->aktif = 0;
         $lokasi->save();
         // $lokasi->delete();
-        return redirect('/lokasi/list')->with('success','data berhasil dihapus!');;
+        return redirect('/setting/lokasi/list')->with('success','data berhasil dihapus!');;
     }
 }

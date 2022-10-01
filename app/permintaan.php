@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class permintaan extends Model
 {
-    protected $fillable = ['user_fk','pinjam_fk','aset_fk','waktu_pakai','waktu_kembali' ];//field table database
+    protected $fillable = ['kode','user_fk','perihal','waktu_proses','waktu_pakai','waktu_kembali','status','ket' ];//field table database
     //
 }

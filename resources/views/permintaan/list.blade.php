@@ -17,7 +17,11 @@
         @endif
         <div class="card">
             <div class="card-body">
-                @livewire('permintaan-live')
+                {{-- @if (Auth::user()->role == 'admin') --}}
+                    @livewire('permintaan-live')
+                {{-- @else
+                    @livewire('permintaan-live',['userId'=>$userId]);
+                @endif --}}
             </div>
             
         </div>

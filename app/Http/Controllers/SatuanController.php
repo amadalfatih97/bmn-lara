@@ -40,7 +40,7 @@ class SatuanController extends Controller
             /* , 'nama_satuan'=> $request->input('nama_satuan') */
         ]);
         $satuan->save();
-        return redirect('/satuan/list')->with('success','data berhasil disimpan!');
+        return redirect('/setting/satuan/list')->with('success','data berhasil disimpan!');
     }
 
     public function dataById($id){
@@ -61,7 +61,7 @@ class SatuanController extends Controller
         // echo var_dump($request->input());
         $satuan->nama_satuan = $request->input('nama_satuan');
         $satuan->save();
-        return redirect('/satuan/list')->with('success','data berhasil diupdate!');;
+        return redirect('/setting/satuan/list')->with('success','data berhasil diupdate!');;
     }
 
     public function prosesDelete($id){
@@ -70,6 +70,6 @@ class SatuanController extends Controller
         $satuan->aktif = 0;
         $satuan->save();
         // $satuan->delete();
-        return redirect('/satuan/list')->with('success','data berhasil dihapus!');;
+        return redirect('/setting/satuan/list')->with('success','data berhasil dihapus!');;
     }
 }
