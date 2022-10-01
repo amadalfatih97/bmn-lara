@@ -52,7 +52,7 @@ class BarangController extends Controller
     public function prosesInput(Request $request){
         /* validation */
         $request->validate([
-            'namabarang' => 'required|max:30',
+            'namabarang' => 'required|max:100',
             'kode' => 'required|max:30',
             'stok' => 'required|max:4',
             'satuan' => 'required|max:3',

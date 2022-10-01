@@ -52,11 +52,11 @@
                         <div class="mb-3 input-group has-validation">
                             <input type="text" value="{{old('kode')}}" autocomplete="false" class="form-control 
                             {{ $errors->get('kode') ? 'is-invalid'  : ''}}" id="exampleInputbarang" 
-                            id="exampleInputbarang" name="kode" required>
+                            id="exampleInputbarang" name="kode" required autocomplete="off">
                         </div>
                         <div class="mb-3">
                             <label for="stok" class="form-label">Stok</label>
-                            <input type="number" value="{{old('stok')}}" class="form-control  
+                            <input type="number" value="{{old('stok')}}"  autocomplete="off" class="form-control  
                             {{ $errors->get('stok') ? 'is-invalid'  : ''}}" id="exampleInputstok" name="stok" required>
                         </div>
                         <div class="mb-3">

@@ -27,6 +27,7 @@ class BarangLive extends Component
         ->where(function ($query) {
             $query->where('nama_barang', 'LIKE', '%'.$this->keyword.'%')
             ->orWhere('nama_satuan', 'LIKE', '%'.$this->keyword.'%')
+            ->orWhere('kode', 'LIKE', '%'.$this->keyword.'%')
             ->orWhere('nama_lokasi', 'LIKE', '%'.$this->keyword.'%');
         })
         ->orderBy('barangs.nama_barang','asc')

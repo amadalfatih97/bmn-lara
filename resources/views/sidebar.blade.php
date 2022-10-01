@@ -82,6 +82,13 @@
                             Other
                         </div>
                     </li>
+                    
+                    <li>
+                        <a href='{{url("pengguna/list")}}' class="nav-link px-3 {{ Request::segment(1) == 'pengguna' ? 'active' : null }}">
+                            <span class="me-2"><i class="bi bi-person-workspace"></i></span>
+                            <span>Kelola User</span>
+                        </a>
+                    </li>
                     <li>
                         <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#collapseExample"
                             role="button" aria-expanded="false" aria-controls="collapseExample">
