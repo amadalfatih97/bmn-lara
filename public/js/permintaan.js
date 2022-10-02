@@ -25,6 +25,23 @@ window.addEventListener('saveSuccessed', function(event){
   console.log(event.detail.brg);
 })
 
+$('#selectitem').on('change', function() {
+  // console.log($(this).find("option:selected").text());
+  let a = $(this).find("option:selected").text()
+  // $("#inputname").val(a);
+  // $.ajax({
+  //     method: 'GET',
+  //     url: '/stok/Brother',
+  //     data: {},
+  //     success: function( response ){
+  //         console.log( response );
+  //     },
+  //     error: function( e ) {
+  //         console.log(e);
+  //     }
+  // });
+});
+
 $(function () {
   $( "#picker-start" ).datepicker({
     dateFormat:'yy-m-dd',

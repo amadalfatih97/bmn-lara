@@ -206,5 +206,14 @@ class BarangController extends Controller
         return redirect('/barang/view/'.$key)->with('success','data berhasil dihapus!');;
     }
 
+    public function stok($key){
+        $stok = DB::table('barangs')
+        ->select(DB::raw('count(nama_barang) as stok'))
+        ->where('barangs.nama_barang', '=', $key)
+        ->where('barangs.aktif', '=', '1')->first();
+        dd($stok);
+        // return $stok;
+    }
+
     
 }

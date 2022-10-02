@@ -8,6 +8,7 @@ use Livewire\Component;
 class DataPermintaan extends Component
 {
     public $jadwalpakai, $jadwalkembali, $keperluan, $search='', $requestAsets=[], $searchAsets=[];
+    public $productId, $qty, $stok, $nameitem;
 
 
     public function render()
@@ -21,6 +22,7 @@ class DataPermintaan extends Component
             ->orWhere('nama_satuan', 'LIKE', '%'.$this->search.'%')
             ->orWhere('nama_lokasi', 'LIKE', '%'.$this->search.'%');
         })
+        ->groupBy('barangs.nama_barang')
         ->orderBy('barangs.nama_barang','asc')
         ->limit(50)->get();
         info($this->requestAsets);
@@ -50,7 +52,32 @@ class DataPermintaan extends Component
         $this->dispatchBrowserEvent('openAsetModal');
     }
 
-    public function onAdding($kode, $name){
+    public function onAdding(){
+        $exist=0;
+        // if (count($this->orderProducts) > 0 ) {
+            foreach ($this->requestAsets as $key => $requestItem) {
+                if ($this->requestAsets[$key]['nameitem'] == $this->productId) {
+                    $this->requestAsets[$key] = [
+                        // 'productid' => $this->productId, 
+                        'nameitem' => $this->productId,//$this->nameitem, 
+                        'qty' => $this->qty
+                    ];
+                    $exist= 1;
+                }
+            }
+            if($exist == 0){
+                $this->requestAsets[] =     [//'productid' => $this->productId, 
+                                            'nameitem' =>$this->productId,// $this->nameitem, 
+                                            'qty'=>$this->qty];
+            }
+        $this->dispatchBrowserEvent('openToast',[
+            'type'=>'success',
+            'title'=>'berhasil',
+            'msg'=>'aset berhasil ditambahkan!'
+        ]);
+    }
+
+    public function onAdding0($kode, $name){
         $exist=0;
         // if (count($this->orderProducts) > 0 ) {
             foreach ($this->requestAsets as $key => $requestItem) {
@@ -70,7 +97,7 @@ class DataPermintaan extends Component
             'title'=>'berhasil',
             'msg'=>'aset berhasil ditambahkan!'
         ]);
-        }
+    }
 
     public function removeItem($index){
         unset($this->requestAsets[$index]);

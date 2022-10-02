@@ -38,9 +38,36 @@
                 <label for="ket" class="form-label">Catatan</label>
                 <textarea name="ket" required class="form-control text-capitalize" > </textarea>
             </div>
-            {{-- <button type="button" disabled class="btn btn-primary" id="add">Tambah</button> --}}
-            <button type="button" class="btn btn-primary" wire:click.prevent="addProduct"
-            data-bs-toggle="tooltip" data-bs-placement="left" title="Tambah Data Request Peminjaman" >Tambah</button>
+
+            <div class="mb-3">
+                <div class="row">
+                    <div class="col-md-8 col-sm-12">
+                        <label for="kodebarang" class="form-label">Nama Barang</label>
+                        <select class="form-select" wire:model="productId" id="selectitem"
+                            name="kodebarang" aria-label="Default select example" required>
+                            <option>Pilih Barang</option>
+                            @foreach ($barangs as $item)
+                            <option value="{{$item->nama_barang}}">{{$item->nama_barang}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <!-- <input type="text" id="inputname" /> -->
+                                
+                    <div class="col-md-4 col-sm-12">
+                        <label for="stock" class="form-label">Ready</label>
+                        <input type="text" name="stock" readonly class="form-control" id="inputstok">
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="qty" class="form-label">Quantity</label>
+                <input type="number" wire:model="qty" class="form-control"  name="qty">
+            </div>
+
+            <button type="button" class="btn btn-primary" id="add" 
+            wire:click.prevent="onAdding">Tambah</button>
+            <!-- <button type="button" class="btn btn-primary" wire:click.prevent="addProduct"
+            data-bs-toggle="tooltip" data-bs-placement="left" title="Tambah Data Request Peminjaman" >Tambah</button> -->
             <a type="button" class='btn btn-warning ml-3' href='{{url("permintaan/list")}}'
             data-bs-toggle="tooltip" data-bs-placement="right" title="ke halamam sebelumnya" >Batal</a>
             {{-- end add item --}}
@@ -51,6 +78,7 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Nama Aset</th>
+                            <th scope="col">Quantitas</th>
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
@@ -59,12 +87,18 @@
                         <tr>
                             <td>{{$index+1}}</td>
                             <td>
-                                <input type="hidden"
+                                <!-- <input type="hidden"
                                     name="requestAsets[{{$index}}][productid]"
-                                    wire:model="requestAsets.{{$index}}.productid"/>
+                                    wire:model="requestAsets.{{$index}}.productid"/> -->
+                                
                                 <input type="text" readonly style="border:none; width:-webkit-fill-available;"
                                     name="requestAsets[{{$index}}][nameitem]"
                                     wire:model="requestAsets.{{$index}}.nameitem"/>
+                            </td>
+                            <td>
+                            <input type="text" readonly style="border:none; width:-webkit-fill-available;"
+                                name="requestAsets[{{$index}}][qty]"
+                                wire:model="requestAsets.{{$index}}.qty"/>
                             </td>
                             <td><a type="button" class="btn btn-outline-danger btn-sm" wire:click.prevent="removeItem({{$index}})"
                                 data-bs-toggle="tooltip" data-bs-placement="bottom" title="hapus dari list" ><i class="bi bi-trash"></i></a></td>
