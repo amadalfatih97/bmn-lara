@@ -24,10 +24,10 @@
                     <thead>
                         <th class="no">No</th>
                         <th>Nama</th>
-                        <th>Kode</th>
-                        <th class="hide-to-mobile">Lokasi</th>
-                        <th class="hide-to-mobile">Kondisi</th>
-                        <th>Status</th>
+                        <!-- <th>Kode</th> -->
+                        <th class="hide-to-mobile">Kuantitas</th>
+                        <th class="hide-to-mobile">Satuan</th>
+                        <!-- <th>Status</th> -->
                         <th class="action" colspan=2>Aksi</th>
                     </thead>
                     <tbody>
@@ -36,28 +36,27 @@
                         <tr>
                             <td>{{$barangs->firstItem() + $key  }}</td>
                             <td>{{$data->nama_barang}}</td>
-                            <td>{{$data->kode}}</td>
-                            {{-- <td>{{$data->nama_satuan}}</td> --}}
-                            <td class="hide-to-mobile">{{$data->nama_lokasi}}</td>
-                            <td class="hide-to-mobile">{{$data->kondisi == 'b' ? 'baik' : ($data->kondisi == 'rr' ? 'rusak ringan' : 'rusak berat')}}</td>
-                            <td>{{$data->status == 'true' ? 'tersedia' : 'tidak tersedia'}}</td>
+                            <td>{{$data->qty}}</td>
+                            <td>{{$data->nama_satuan}}</td>
                             <td>
+                                <!-- <a class="btn btn-outline-primary"  data-bs-toggle="tooltip"
+                                    data-bs-placement="bottom" title="edit data" href="/barang/{{$data->id}}"><i class="bi bi-pencil-square"></i></a> -->
                                 <a class="btn btn-outline-primary"  data-bs-toggle="tooltip"
-                                    data-bs-placement="bottom" title="edit data" href="/barang/{{$data->id}}"><i class="bi bi-pencil-square"></i></a>
-                                <span class="hide-to-mobile">|</span>
-                                    {{-- <form > --}}
-                                        {{-- @csrf --}}
-                                        {{-- @method('DELETE') --}}
+                                data-bs-placement="bottom" title="lihat daftar" href="/barang/view/{{$data->nama_barang}}"><i class="bi bi-list"></i></a>
+                                <!-- <span class="hide-to-mobile">|</span>
+                                    <form >
+                                        @csrf 
+                                        @method('DELETE')
                                         <button class="btn btn-outline-danger"
                                         data-bs-toggle="tooltip"
                                         data-bs-placement="bottom" title="hapus data" 
-                                        wire:click="confirmDelete({{$data->id}},'Delete','kamu yakin akan menghapus barang ini?')">
+                                        >
                                         <i class="bi bi-trash"></i>
                                     </button>
-                                    {{-- </form> --}}
-                                <span class="hide-to-mobile">|</span>
+                                    </form> -->
+                                <!-- <span class="hide-to-mobile">|</span>
                                 <a class="btn btn-outline-warning"  data-bs-toggle="tooltip"
-                                    data-bs-placement="bottom" title="lihat riwayat" href="/barang/riwayat/{{$data->kode}}"><i class="bi bi-clock-history"></i></a>
+                                    data-bs-placement="bottom" title="lihat riwayat" href="/barang/riwayat/{{$data->nama_barang}}"><i class="bi bi-clock-history"></i></a> -->
                             </td>
                         </tr>
                         @endforeach

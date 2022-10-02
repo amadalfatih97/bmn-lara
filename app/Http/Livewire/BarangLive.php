@@ -20,22 +20,22 @@ class BarangLive extends Component
         // $barangs = Barang::all();
         // $barangs = Barang::paginate(2);
         $barangs = DB::table('barangs')
-        ->select('barangs.id','kode','nama_barang', 'nama_satuan', 'stok', 'nama_lokasi', 'kondisi', 'status')
+        ->select('barangs.nama_barang','barangs.id', 'satuans.nama_satuan'/* , 'nama_lokasi' */, DB::raw('count(nama_barang) as qty'))
         ->leftJoin('satuans', 'barangs.satuan_fk', '=', 'satuans.id')
-        ->leftJoin('lokasis', 'barangs.lokasi_fk', '=', 'lokasis.id')
+        // ->leftJoin('lokasis', 'barangs.lokasi_fk', '=', 'lokasis.id')
         ->where('barangs.aktif', '=', '1')
+        // ->where('barangs.status', '=', 'true')
         ->where(function ($query) {
             $query->where('nama_barang', 'LIKE', '%'.$this->keyword.'%')
-            ->orWhere('nama_satuan', 'LIKE', '%'.$this->keyword.'%')
-            ->orWhere('kode', 'LIKE', '%'.$this->keyword.'%')
-            ->orWhere('nama_lokasi', 'LIKE', '%'.$this->keyword.'%');
+            ->orWhere('nama_satuan', 'LIKE', '%'.$this->keyword.'%');
+            // ->orWhere('kode', 'LIKE', '%'.$this->keyword.'%')
+            // ->orWhere('nama_lokasi', 'LIKE', '%'.$this->keyword.'%');
         })
+        ->groupBy('nama_Barang')
         ->orderBy('barangs.nama_barang','asc')
         ->paginate(5);
-
-        // if ($keyword) {
-        //     $barangs = Barang::where("nama_barang","LIKE","%$keyword%")->get();
-        // }
+        // ->get();
+        // dd($barangs);
         return view('livewire.barang.barang-live',compact('barangs'));
     }
 

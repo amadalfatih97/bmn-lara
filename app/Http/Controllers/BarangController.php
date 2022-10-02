@@ -37,7 +37,26 @@ class BarangController extends Controller
         // dd($data);
     }
 
+    public function byItem($key){
+        $barangs = DB::table('barangs')
+        ->select('barangs.id','barangs.nama_barang','barangs.kode','barangs.kondisi','barangs.status',
+                'barangs.ket','lokasis.nama_lokasi')
+        ->leftJoin('lokasis', 'barangs.lokasi_fk', '=', 'lokasis.id')
+        ->where('barangs.nama_barang', '=', $key)
+        ->where('barangs.aktif', '=', '1')
+        ->orderBy('barangs.nama_barang','asc')
+        ->get();
+        // dd($barangs);
+        return view('barang.view',compact('barangs'));
+    }
+
     public function input(Request $request){
+        $barangs = DB::table('barangs')
+                    ->select('nama_barang')
+                    ->where('aktif', '=', '1')
+                    ->groupBy('nama_Barang')
+                    ->orderBy('nama_barang','asc')
+                    ->get();
         $satuans = DB::table('satuans')
                     ->orderBy('nama_satuan','asc')
                     ->get();
@@ -46,7 +65,7 @@ class BarangController extends Controller
         ->get();
         // $data = DB::table('barangs')->latest('id')->first();
         // $last = isset($data->id) ? $data->id : 0;
-        return view('barang.input', compact('satuans','lokasis'/* ,'last' */));
+        return view('barang.input', compact('barangs','satuans','lokasis'/* ,'last' */));
     }
 
     public function prosesInput(Request $request){
@@ -54,7 +73,7 @@ class BarangController extends Controller
         $request->validate([
             'namabarang' => 'required|max:100',
             'kode' => 'required|max:30',
-            'stok' => 'required|max:4',
+            // 'stok' => 'required|max:4',
             'satuan' => 'required|max:3',
             'lokasi' => 'required|max:3',
             'kondisi' => 'required|max:30',
@@ -69,7 +88,46 @@ class BarangController extends Controller
             'kode'=> $request->input('kode'),
             'satuan_fk'=> $request->input('satuan'),
             'lokasi_fk'=> $request->input('lokasi'),
-            'stok'=> $request->input('stok'),
+            'stok'=> 1,
+            'kondisi'=> $request->input('kondisi'),
+            'status'=> $request->input('status'),
+        ]);
+        // $masuk = new masuk([
+        //     'kodebarang' => $request->input('kode'),
+        //     'qty'=> $request->input('stok'),
+        //     'tanggalmasuk'=>$request->input('tanggalmasuk'),
+        // ]);
+        $savebarang = $barang->save();
+        if ($savebarang) {
+            # code...
+            // $masuk->save();
+            return redirect('/barang/list')->with('success','data berhasil disimpan!');
+        }
+    }
+
+    public function barangMasuk(Request $request){
+        /* validation */
+        $request->validate([
+            'namabarang' => 'required|max:100',
+            'kode' => 'required|max:30',
+            // 'satuan' => 'required|max:3',
+            'lokasi' => 'required|max:3',
+            'kondisi' => 'required|max:30',
+            'status' => 'required|max:30',
+        ]);
+        $satuan = DB::table('barangs')
+                    ->select('satuan_fk')
+                    ->where('nama_barang', '=', $request->input('namabarang'))
+                    ->first();
+        // dd($satuan);
+        /* proses input */
+        $barang = new Barang([
+            /* database                      namefield */
+            'nama_barang'=> $request->input('namabarang'),
+            'kode'=> $request->input('kode'),
+            'satuan_fk'=> $satuan->satuan_fk,
+            'lokasi_fk'=> $request->input('lokasi'),
+            'stok'=> 1,
             'kondisi'=> $request->input('kondisi'),
             'status'=> $request->input('status'),
             'ket'=> $request->input('ket'),
@@ -102,7 +160,6 @@ class BarangController extends Controller
         $request->validate([
             'namabarang' => 'required|max:30',
             'kode' => 'required|max:30',
-            'stok' => 'required|max:4',
             'satuan' => 'required|max:3',
             'lokasi' => 'required|max:3',
             'kondisi' => 'required|max:30',
@@ -113,7 +170,7 @@ class BarangController extends Controller
         /* proses update */
         $barang->nama_barang = $request->input('namabarang');
         $barang->kode = $request->input('kode');
-        $barang->stok = $request->input('stok');
+        $barang->stok = 1;
         $barang->satuan_fk = $request->input('satuan');
         $barang->lokasi_fk = $request->input('lokasi');
         $barang->kondisi = $request->input('kondisi');
@@ -137,14 +194,15 @@ class BarangController extends Controller
         return view('barang.riwayat',compact('riwayat'));
     }
 
-    public function prosesDelete($id){
+    public function prosesDelete($id,$key){
         // return $id;
+        // dd($key);
         $barang = Barang::find($id);
         // $barang->delete();
         $barang->aktif = 0;
         $barang->stok = 0;
         $barang->save();
-        return redirect('/barang/list')->with('success','data berhasil dihapus!');;
+        return redirect('/barang/view/'.$key)->with('success','data berhasil dihapus!');;
     }
 
     

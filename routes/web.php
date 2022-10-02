@@ -27,10 +27,12 @@ Route::group(['middleware'=>['auth','cekRole:admin']], function(){
     Route::get('/barang/list', 'BarangController@index');
     Route::get('/barang/add', 'BarangController@input');
     Route::post('/barang/add', 'BarangController@prosesInput');
+    Route::post('/barang/masuk', 'BarangController@barangMasuk');
     Route::get('/barang/{id}', 'BarangController@dataById');
+    Route::get('/barang/view/{key}', 'BarangController@byItem');
     Route::patch('/barang/update/{id}', 'BarangController@prosesUpdate');
     Route::get('/barang/riwayat/{id}', 'BarangController@riwayat');
-    Route::delete('/barang/delete/{kode}', 'BarangController@prosesDelete');
+    Route::delete('/barang/delete/{id}/{key}', 'BarangController@prosesDelete');
 
     Route::get('/join', 'BarangController@join');
 

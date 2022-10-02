@@ -54,12 +54,6 @@
                             id="exampleInputbarang" name="kode" required>
                         </div>
                         <div class="mb-3 text-capitalize">
-                            <label for="stok" class="form-label">stok</label>
-                            <input type="number" value="{{old('stok',$barang->stok)}}" class="form-control  
-                                {{ $errors->get('stok') ? 'is-invalid'  : ''}}"
-                                id="exampleInputstok" name="stok" required>
-                        </div>
-                        <div class="mb-3 text-capitalize">
                             <label for="idsatuan" class="form-label">satuan</label>
                             <select class="form-select  {{ $errors->get('satuan') ? 'is-invalid'  : ''}}" name="satuan" aria-label="Default select example" required>
                                 <option>Pilih Satuan</option>
@@ -95,7 +89,7 @@
                             <select class="form-select  {{ $errors->get('status') ? 'is-invalid'  : ''}}"
                                 name="status" aria-label="Default select example" required>
                                 <option>pilih status</option>
-                                <option value="true" {{$barang->status == "true" ? 'selected' : ''}}>sedia</option>
+                                <option value="true" {{$barang->status == "true" ? 'selected' : ($barang->status == "TRUE" ? 'selected' : '')}}>sedia</option>
                                 <option value="false" {{$barang->status == "false" ? 'selected' : ''}}>tidak Tersedia</option>
                             </select>
                         </div>
