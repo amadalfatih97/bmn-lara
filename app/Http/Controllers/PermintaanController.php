@@ -40,6 +40,7 @@ class PermintaanController extends Controller
             'jadwalpakai' => 'required',
             'jadwalkembali' => 'required',
             'keperluan' => 'required',
+            'ket' => 'required',
         ]);
         $trans = new permintaan([
             /* database                      namefield */
@@ -76,7 +77,7 @@ class PermintaanController extends Controller
         
         $detail = DB::table('detail_pinjams')
         ->select('detail_pinjams.pinjam_fk','detail_pinjams.aset_fk',
-                    'barangs.nama_barang','satuans.nama_satuan')
+                    'barangs.nama_barang','barangs.kode','satuans.nama_satuan')
         // ->selectRaw('COUNT(barangs.nama_barang) AS qty')
         ->leftJoin('barangs','detail_pinjams.aset_fk','=','barangs.kode')
         ->leftJoin('satuans','barangs.satuan_fk','=','satuans.id')

@@ -38,7 +38,7 @@ class PermintaanLive extends Component
                                 ->leftJoin('permintaans', 'detail_pinjams.pinjam_fk', '=', 'permintaans.kode')
                                 ->leftJoin('users', 'permintaans.user_fk', '=', 'users.id')
                                 // ->where('users.id','=',$id)
-                                ->whereBetween('permintaans.created_at', [$this->date1, $this->date2])
+                                // ->whereBetween('permintaans.created_at', [$this->date1, $this->date2])
                                 ->groupBy('detail_pinjams.pinjam_fk')
                                 ->orderBy('created_at','DESC')
                                 ->paginate(5);

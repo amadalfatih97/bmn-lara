@@ -54,9 +54,9 @@
                                         <i class="bi bi-trash"></i>
                                     </button>
                                     </form> -->
-                                <!-- <span class="hide-to-mobile">|</span>
+                                <span class="hide-to-mobile">|</span>
                                 <a class="btn btn-outline-warning"  data-bs-toggle="tooltip"
-                                    data-bs-placement="bottom" title="lihat riwayat" href="/barang/riwayat/{{$data->nama_barang}}"><i class="bi bi-clock-history"></i></a> -->
+                                    data-bs-placement="bottom" title="lihat riwayat" href="/barang/riwayat/{{$data->nama_barang}}"><i class="bi bi-clock-history"></i></a>
                             </td>
                         </tr>
                         @endforeach

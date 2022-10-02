@@ -21,7 +21,7 @@
         <div class="card px-3 py-3">
             <div class="row">
                 <div class="col-md-8 ">
-                    <!-- <a href="{{url('barang/add')}}" class="btn btn-success mb-2">input</a> -->
+                    <a href="{{url('barang/list')}}" class="btn btn-warning mb-2">tutup</a>
                 </div>
 
                 <div class="col-md-4 ">
@@ -47,7 +47,7 @@
                                 <th class="">Lokasi</th>
                                 <th class="hide-to-mobile">Kondisi</th>
                                 <th class="hide-to-mobile">Ket</th>
-                                <th class="action" colspan="3">Aksi</th>
+                                <th class="action" colspan=3>Aksi</th>
                             </thead>
                             <tbody>
                                 <?php $no=1; ?>
@@ -63,6 +63,8 @@
                                         <a class="btn btn-outline-primary" data-bs-toggle="tooltip"
                                             data-bs-placement="bottom" title="edit data" href="/barang/{{$data->id}}"><i
                                                 class="bi bi-pencil-square"></i></a>
+                                    </td>
+                                    <td>
                                         <span class="hide-to-mobile">|</span>
                                     </td>
                                     <td>
@@ -71,13 +73,11 @@
                                             @method('DELETE')
                                             <button class="btn btn-outline-danger" type="submit"><i class="bi bi-trash"></i></button>
                                         </form>
-                                    </td>
-                                    <td>
-                                        <span class="hide-to-mobile">|</span>
+                                        <!-- <span class="hide-to-mobile">|</span>
                                         <a class="btn btn-outline-warning" data-bs-toggle="tooltip"
                                             data-bs-placement="bottom" title="lihat riwayat"
-                                            href="/barang/riwayat/{$data->kode}"><i
-                                                class="bi bi-clock-history"></i></a>
+                                            href='{{url("/barang/riwayat/{$data->kode}")}}'><i
+                                                class="bi bi-clock-history"></i></a> -->
                                     </td>
 
                                 </tr>

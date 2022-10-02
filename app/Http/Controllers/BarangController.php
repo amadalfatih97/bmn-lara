@@ -158,7 +158,7 @@ class BarangController extends Controller
         $barang = barang::find($id);
         /* validation */
         $request->validate([
-            'namabarang' => 'required|max:30',
+            'namabarang' => 'required|max:100',
             'kode' => 'required|max:30',
             'satuan' => 'required|max:3',
             'lokasi' => 'required|max:3',
@@ -183,11 +183,12 @@ class BarangController extends Controller
     public function riwayat($kode){
         $riwayat = DB::table('detail_pinjams')
         ->select('permintaans.perihal', 'permintaans.user_fk', 'permintaans.waktu_pakai', 'permintaans.waktu_kembali', 'permintaans.ket'
-                ,'users.name','detail_pinjams.aset_fk'
+                ,'users.name','detail_pinjams.aset_fk','barangs.nama_barang'
                 )
         ->leftJoin('permintaans', 'detail_pinjams.pinjam_fk' , '=', 'permintaans.kode')
         ->leftJoin('users', 'permintaans.user_fk', '=', 'users.id')
-        ->where('detail_pinjams.aset_fk', '=', $kode)
+        ->leftJoin('barangs', 'detail_pinjams.aset_fk', '=', 'barangs.kode')
+        ->where('nama_barang', '=', $kode)
         ->orderBy('permintaans.waktu_pakai','DESC')
         ->get();
         // dd($riwayat);

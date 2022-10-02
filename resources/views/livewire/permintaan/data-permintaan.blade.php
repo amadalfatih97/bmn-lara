@@ -4,12 +4,21 @@
             @csrf
             {{-- start add item --}}
             <div class="mb-3">
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <div class="form-group">
                             <label for="jadwalpakai" class="form-label">Jadwal Pakai</label>
                             <input type="text" id="picker-start" name="jadwalpakai" wire:model="jadwalpakai" autocomplete="off"
-                                value="{{date('Y-m-d')}}" class="form-control" required onchange="this.dispatchEvent(new InputEvent('input'))">
+                                value="{{old('jadwalpakai')}}" class="form-control" required onchange="this.dispatchEvent(new InputEvent('input'))">
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12">
@@ -27,7 +36,7 @@
             </div>
             <div class="form-group mb-3">
                 <label for="ket" class="form-label">Catatan</label>
-                <textarea name="ket"required class="form-control text-capitalize"> </textarea>
+                <textarea name="ket" required class="form-control text-capitalize" > </textarea>
             </div>
             {{-- <button type="button" disabled class="btn btn-primary" id="add">Tambah</button> --}}
             <button type="button" class="btn btn-primary" wire:click.prevent="addProduct"
