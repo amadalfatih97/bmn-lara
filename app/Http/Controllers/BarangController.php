@@ -215,5 +215,16 @@ class BarangController extends Controller
         // return $stok;
     }
 
+    /* find stok */
+    public function findstok(Request $request){
+        // $stok=Barang::select('stok')->where('kode', $request->id)->first();
+        $detail= DB::table('barangs')
+        ->select('barangs.nama_barang', DB::raw('count(nama_barang) as stok'))
+        ->where('barangs.nama_barang', '=', $request->name)
+        ->first();
+        // ->where('barangs.aktif', '=', '1')->first();
+        return response()->json($detail,200);
+    }
+
     
 }

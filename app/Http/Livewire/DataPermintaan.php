@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 use App\Barang;
+use Illuminate\Support\Facades\DB;
 
 use Livewire\Component;
 
@@ -54,20 +55,24 @@ class DataPermintaan extends Component
 
     public function onAdding(){
         $exist=0;
+        $barang = DB::table('barangs')
+        ->select('barangs.nama_barang')
+        ->where('barangs.kode', '=', $this->productId)->first();
+        // dd($barang);
         // if (count($this->orderProducts) > 0 ) {
             foreach ($this->requestAsets as $key => $requestItem) {
-                if ($this->requestAsets[$key]['nameitem'] == $this->productId) {
+                if ($this->requestAsets[$key]['productid'] == $this->productId) {
                     $this->requestAsets[$key] = [
                         // 'productid' => $this->productId, 
-                        'nameitem' => $this->productId,//$this->nameitem, 
+                        // 'nameitem' => $barang->nama_barang, 
                         'qty' => $this->qty
                     ];
                     $exist= 1;
                 }
             }
             if($exist == 0){
-                $this->requestAsets[] =     [//'productid' => $this->productId, 
-                                            'nameitem' =>$this->productId,// $this->nameitem, 
+                $this->requestAsets[] =     ['productid' => $this->productId, 
+                                            'nameitem' =>$barang->nama_barang,// $this->nameitem, 
                                             'qty'=>$this->qty];
             }
         $this->dispatchBrowserEvent('openToast',[

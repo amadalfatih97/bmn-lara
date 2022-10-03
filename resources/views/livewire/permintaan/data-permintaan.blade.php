@@ -47,11 +47,11 @@
                             name="kodebarang" aria-label="Default select example" required>
                             <option>Pilih Barang</option>
                             @foreach ($barangs as $item)
-                            <option value="{{$item->nama_barang}}">{{$item->nama_barang}}</option>
+                            <option value="{{$item->kode}}">{{$item->nama_barang}}</option>
                             @endforeach
                         </select>
                     </div>
-                    <!-- <input type="text" id="inputname" /> -->
+                    <input type="hidden" id="inputname" />
                                 
                     <div class="col-md-4 col-sm-12">
                         <label for="stock" class="form-label">Ready</label>
@@ -61,7 +61,7 @@
             </div>
             <div class="mb-3">
                 <label for="qty" class="form-label">Quantity</label>
-                <input type="number" wire:model="qty" class="form-control"  name="qty">
+                <input type="number" wire:model="qty" class="form-control" id="input-qty" name="qty">
             </div>
 
             <button type="button" class="btn btn-primary" id="add" 
@@ -87,9 +87,9 @@
                         <tr>
                             <td>{{$index+1}}</td>
                             <td>
-                                <!-- <input type="hidden"
+                                <input type="hidden"
                                     name="requestAsets[{{$index}}][productid]"
-                                    wire:model="requestAsets.{{$index}}.productid"/> -->
+                                    wire:model="requestAsets.{{$index}}.productid"/>
                                 
                                 <input type="text" readonly style="border:none; width:-webkit-fill-available;"
                                     name="requestAsets[{{$index}}][nameitem]"

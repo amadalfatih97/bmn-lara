@@ -59,6 +59,7 @@ class PermintaanController extends Controller
                 $datas = array(
                     'pinjam_fk' =>$trans->kode,
                     'aset_fk' => $value['productid'],
+                    'qty' => $value['qty'],
                 );
                 detailPinjam::create($datas);
             }
@@ -76,7 +77,7 @@ class PermintaanController extends Controller
         // ->get();
         
         $detail = DB::table('detail_pinjams')
-        ->select('detail_pinjams.pinjam_fk','detail_pinjams.aset_fk',
+        ->select('detail_pinjams.pinjam_fk','detail_pinjams.aset_fk','detail_pinjams.qty',
                     'barangs.nama_barang','barangs.kode','satuans.nama_satuan')
         // ->selectRaw('COUNT(barangs.nama_barang) AS qty')
         ->leftJoin('barangs','detail_pinjams.aset_fk','=','barangs.kode')
@@ -100,7 +101,7 @@ class PermintaanController extends Controller
             DB::table('barangs')->where('kode',$value['aset_fk'])
                                 ->update(['status'=>'false','ket'=>'terpakai']);
         }
-        return redirect('/permintaan/list')->with('success','permintaan disetujui!');;
+        return redirect()->back()->with('success','permintaan disetujui!');;
     }
 
     // applied permintaan
@@ -110,7 +111,9 @@ class PermintaanController extends Controller
         $permintaan->ket = $request->ket;
         $permintaan->save();
         // $satuan->delete();
-        return redirect('/permintaan/list')->with('success','Barang diterima bersangkutan!');;
+        // return redirect('/permintaan/list')->with('success','Barang diterima bersangkutan!');;
+        return redirect()->back()->with('success','Barang diterima bersangkutan!');;
+
     }
 
     // selesaikan permintaan
@@ -125,6 +128,6 @@ class PermintaanController extends Controller
             DB::table('barangs')->where('kode',$value['aset_fk'])
                                 ->update(['status'=>'true','ket'=>'sedia']);
         }
-        return redirect('/permintaan/list')->with('success','Peminjaman selesai!');;
+        return redirect()->back()->with('success','Peminjaman selesai Dikembalikan!');;
     }
 }
