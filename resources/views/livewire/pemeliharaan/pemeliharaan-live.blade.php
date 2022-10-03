@@ -41,7 +41,8 @@
                                 <form action='{{url("pemeliharaan/delete/{$data->id}")}}' method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <a class="btn btn-outline-primary" href="/pemeliharaan/{{$data->id}}"><i class="bi bi-pencil-square"></i></a>
+                                    <a class="btn btn-outline-primary" href="/pemeliharaan/{{$data->id}}"><i class="bi bi-info"
+                                        data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lihat detail"></i></a>
                                 |
                                     <button class="btn btn-outline-danger" type="submit"><i class="bi bi-trash"></i></button>
                                 </form>

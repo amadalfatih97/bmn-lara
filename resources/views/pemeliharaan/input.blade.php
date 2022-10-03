@@ -48,6 +48,14 @@
                             </select>
                         </div>
                         <div class="mb-3">
+                            <label for="kode" class="form-label">Serialnumber/ Kode</label>
+                            <div class="mb-3 input-group has-validation">
+                                <input type="text" value="{{old('kode')}}" class="form-control 
+                                {{ $errors->get('kode') ? 'is-invalid'  : ''}}" 
+                                    name="kode" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
                             <label for="tanggal" class="form-label">Tanggal</label>
                             <div class="mb-3 input-group has-validation">
                                 <input type="date" value="{{old('tanggal')}}" class="form-control 
@@ -56,19 +64,19 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="hasil" class="form-label">hasil</label>
+                            <label for="keluhan" class="form-label">Keadaan Sekarang:</label>
                             <div class="mb-3 input-group has-validation">
-                                <input type="text" value="{{old('hasil')}}" class="form-control 
-                                {{ $errors->get('hasil') ? 'is-invalid'  : ''}}" 
-                                    name="hasil" required>
+                                <textarea type="text" value="{{old('keluhan')}}" class="form-control 
+                                {{ $errors->get('keluhan') ? 'is-invalid'  : ''}}" 
+                                    name="keluhan" required> </textarea>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="tindaklanjut" class="form-label">Tindak Lanjut</label>
+                            <label for="tindaklanjut" class="form-label">Tindakan</label>
                             <div class="mb-3 input-group has-validation">
-                                <input type="text" value="{{old('tindaklanjut')}}" class="form-control 
+                                <textarea type="text" value="{{old('tindaklanjut')}}" class="form-control 
                                 {{ $errors->get('tindaklanjut') ? 'is-invalid'  : ''}}" 
-                                    name="tindaklanjut" >
+                                    name="tindaklanjut" > </textarea>
                             </div>
                         </div>
                         <div class="mb-3">

@@ -26,6 +26,7 @@ class PemeliharaanController extends Controller
 
     public function input(Request $request){
         $barangs = DB::table('barangs')
+                    ->groupBy('nama_barang')
                     ->orderBy('nama_barang','asc')
                     ->get();
         return view('pemeliharaan.input', compact('barangs'));
@@ -38,8 +39,8 @@ class PemeliharaanController extends Controller
         /* validation */
         $request->validate([
             'aset' => 'required',
+            'kode' => 'required',
             'tanggal' => 'required',
-            'hasil' => 'required',
         ]);
         
         /* proses input pengguna */
@@ -47,7 +48,9 @@ class PemeliharaanController extends Controller
             /* database                      namefield */
             'aset_fk'=> $request->input('aset')
             , 'waktu_pelaksanaan'=> $request->input('tanggal')
-            , 'hasil'=> $request->input('hasil')
+            , 'hasil'=> '-'
+            , 'keluhan'=> $request->input('keluhan')
+            , 'kode'=> $request->input('kode')
             , 'tindak_lanjut'=> $request->input('tindaklanjut')
             , 'ket'=> $request->input('ket')
             , 'img'=> $request->input('img')
@@ -74,13 +77,14 @@ class PemeliharaanController extends Controller
         $request->validate([
             'aset' => 'required',
             'tanggal' => 'required',
-            'hasil' => 'required',
+            'kode' => 'required',
         ]);
         
         $pemeliharaan = pemeliharaan::find($id);
         /* proses update */
         $pemeliharaan->aset_fk = $request->input('aset');
-        $pemeliharaan->hasil = $request->input('hasil');
+        $pemeliharaan->kode = $request->input('kode');
+        $pemeliharaan->keluhan = $request->input('keluhan');
         $pemeliharaan->waktu_pelaksanaan = $request->input('tanggal');
         $pemeliharaan->tindak_lanjut = $request->input('tindaklanjut');
         $pemeliharaan->ket = $request->input('ket');

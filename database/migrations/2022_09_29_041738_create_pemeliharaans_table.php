@@ -16,7 +16,9 @@ class CreatePemeliharaansTable extends Migration
         Schema::create('pemeliharaans', function (Blueprint $table) {
             $table->id();
             $table->string('aset_fk', 50);
+            $table->string('kode', 100)->nullable();
             $table->date('waktu_pelaksanaan');
+            $table->text('keluhan')->nullable();
             $table->string('hasil', 100);
             $table->text('tindak_lanjut')->nullable();
             $table->text('ket')->nullable();
