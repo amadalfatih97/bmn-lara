@@ -22,6 +22,12 @@ Route::post('/logout', 'UserController@prosesLogot')->name('logout');
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['middleware'=>['auth','cekRole:admin']], function(){
+    Route::get('/user/list', 'UserController@index');
+    Route::get('/user/add', 'UserController@input');
+    Route::post('/user/add', 'UserController@prosesInput');
+    Route::get('/user/{id}', 'UserController@dataById');
+    Route::patch('/user/update/{id}', 'UserController@prosesUpdate');
+    Route::delete('/user/delete/{id}', 'UserController@prosesDelete');
     
     // Route::get('/', 'BarangController@index')->name('home');
     Route::get('/barang/list', 'BarangController@index');
