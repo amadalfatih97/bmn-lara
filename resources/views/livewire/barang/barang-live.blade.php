@@ -55,8 +55,18 @@
                                     </button>
                                     </form> -->
                                 <span class="hide-to-mobile">|</span>
-                                <a class="btn btn-outline-warning"  data-bs-toggle="tooltip"
+                                {{-- <a class="btn btn-outline-warning"  data-bs-toggle="tooltip"
                                     data-bs-placement="bottom" title="lihat riwayat" href="/barang/riwayat/{{$data->nama_barang}}"><i class="bi bi-clock-history"></i></a>
+                                 --}}
+                                    
+                                <button type="button" class="btn btn-outline-warning " data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-clock-history"></i>
+                                </button>
+                                <ul class="dropdown-menu background-warning">
+                                <li><a class="dropdown-item" href="/barang/riwayat/{{$data->nama_barang}}">Peminjaman</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="/pemeliharaan/riwayat/{{$data->nama_barang}}">Pemeliharaan</a></li>
+                                </ul>
                             </td>
                         </tr>
                         @endforeach

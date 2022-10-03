@@ -195,6 +195,17 @@ class BarangController extends Controller
         return view('barang.riwayat',compact('riwayat'));
     }
 
+    public function pemeliharaan($kode){
+        $riwayat = DB::table('pemeliharaans')
+        ->select('pemeliharaans.*','barangs.nama_barang')
+        ->leftJoin('barangs', 'pemeliharaans.aset_fk', '=', 'barangs.kode')
+        ->where('nama_barang', '=', $kode)
+        ->orderBy('pemeliharaans.waktu_pelaksanaan','DESC')
+        ->get();
+        // dd($riwayat);
+        return view('pemeliharaan.riwayat',compact('riwayat'));
+    }
+
     public function prosesDelete($id,$key){
         // return $id;
         // dd($key);

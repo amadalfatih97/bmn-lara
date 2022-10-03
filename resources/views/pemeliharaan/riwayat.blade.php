@@ -7,7 +7,7 @@
             <strong>Data Aset BMN</strong>
         </div>
         <div class="col-md-6 col-sm-12 px-3 text-end align-middle align-self-center hide-to-mobile">
-            <span class="fst-italic fs-6">Dashboard > Riwayat Aset
+            <span class="fst-italic fs-6">Dashboard > Pemeliharaan Aset
             </span>
         </div>
     </div>
@@ -17,7 +17,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="d-grid gap-2 d-md-flex justify-content-md-between">
-                    <h4 style="margin: 0">Riwayat Perjalan Aset {{$riwayat->count() > 0 ? $riwayat[0]->nama_barang : ''}}</h4>
+                    <h4 style="margin: 0">Riwayat Pemeliharaan  Aset {{$riwayat->count() > 0 ? $riwayat[0]->nama_barang : ''}}</h4>
                     <a href='{{url("barang/list")}}' class="btn btn-warning me-2 ">kembali</a>
                 </div>
             </div>
@@ -26,20 +26,20 @@
                     <table class="table table-hover">
                         <thead>
                             <th class="no">No</th>
-                            <th>Kegiatan</th>
-                            <th>Penanggung Jawab</th>
-                            <th>Mulai</th>
-                            <th>Selesai</th>
-                            <th>Keterangan</th>
+                            <th>Tanggal</th>
+                            <th>Serial/Kode</th>
+                            <th>Keluhan</th>
+                            <th>Tindakan</th>
+                            <th>Catatan</th>
                         </thead>
                         <tbody>
                             @forelse($riwayat as $key=>$data)
                             <tr>
                                 <td>{{ $key+1  }}</td>
-                                <td>{{$data->perihal}}</td>
-                                <td>{{$data->name}}</td>
-                                <td>{{date('d M Y', strtotime($data->waktu_pakai))}} </td>
-                                <td>{{$data->waktu_kembali ? date('d M Y', strtotime($data->waktu_kembali)) : '-- -- --'}}</td>
+                                <td>{{date('d M Y', strtotime($data->waktu_pelaksanaan))}} </td>
+                                <td>{{$data->kode}}</td>
+                                <td>{{$data->keluhan ? $data->keluhan : '-'}}</td>
+                                <td>{{$data->tindak_lanjut}} </td>
                                 <td>{{$data->ket}}</td>
                             </tr>
                             @empty

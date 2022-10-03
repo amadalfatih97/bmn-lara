@@ -81,6 +81,7 @@ Route::group(['middleware'=>['auth','cekRole:admin']], function(){
     Route::get('/pemeliharaan/{id}', 'PemeliharaanController@dataById');
     Route::patch('/pemeliharaan/update/{id}', 'PemeliharaanController@prosesUpdate');
     Route::delete('/pemeliharaan/delete/{id}', 'PemeliharaanController@prosesDelete');
+    Route::get('/pemeliharaan/riwayat/{id}', 'BarangController@pemeliharaan');
 });
 
 Route::group(['middleware'=>['auth','cekRole:admin,pegawai']], function(){
