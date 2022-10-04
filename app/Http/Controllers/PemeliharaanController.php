@@ -38,7 +38,7 @@ class PemeliharaanController extends Controller
         
         /* validation */
         $request->validate([
-            'aset' => 'required',
+            'sarana' => 'required',
             'kode' => 'required',
             'tanggal' => 'required',
         ]);
@@ -46,7 +46,7 @@ class PemeliharaanController extends Controller
         /* proses input pengguna */
         $datas = new pemeliharaan([
             /* database                      namefield */
-            'aset_fk'=> $request->input('aset')
+            'aset_fk'=> $request->input('kode')
             , 'waktu_pelaksanaan'=> $request->input('tanggal')
             , 'hasil'=> '-'
             , 'keluhan'=> $request->input('keluhan')
