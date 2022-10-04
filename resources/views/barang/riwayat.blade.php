@@ -36,7 +36,7 @@
                             @forelse($riwayat as $key=>$data)
                             <tr>
                                 <td>{{ $key+1  }}</td>
-                                <td>{{$data->perihal}}</td>
+                                <td><a href="/permintaan/detail/{{$data->kode}}">{{$data->perihal}}</a> </td>
                                 <td>{{$data->name}}</td>
                                 <td>{{date('d M Y', strtotime($data->waktu_pakai))}} </td>
                                 <td>{{$data->waktu_kembali ? date('d M Y', strtotime($data->waktu_kembali)) : '-- -- --'}}</td>

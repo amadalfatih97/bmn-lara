@@ -27,7 +27,7 @@
                         <thead>
                             <th class="no">No</th>
                             <th>Tanggal</th>
-                            <th>Serial/Kode</th>
+                            <th>Serial/Kode Aset</th>
                             <th>Keluhan</th>
                             <th>Tindakan</th>
                             <th>Catatan</th>
@@ -37,7 +37,7 @@
                             <tr>
                                 <td>{{ $key+1  }}</td>
                                 <td>{{date('d M Y', strtotime($data->waktu_pelaksanaan))}} </td>
-                                <td>{{$data->kode}}</td>
+                                <td><a href="/pemeliharaan/{{$data->id}}">{{$data->kode}}</a></td>
                                 <td>{{$data->keluhan ? $data->keluhan : '-'}}</td>
                                 <td>{{$data->tindak_lanjut}} </td>
                                 <td>{{$data->ket}}</td>

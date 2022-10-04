@@ -24,7 +24,7 @@
                         <th class="no">No</th>
                         <th>Tanggal</th>
                         <th>Aset</th>
-                        <th>Hasil</th>
+                        {{-- <th>Hasil</th> --}}
                         <th>Tindak Lanjut</th>
                         <th class="action" colspan=2>Aksi</th>
                     </thead>
@@ -35,7 +35,7 @@
                             <td>{{$no++}}</td>
                             <td>{{date('d M Y', strtotime($data->waktu_pelaksanaan))}}</td>
                             <td>{{$data->nama_barang}}</td>
-                            <td>{{$data->hasil}}</td>
+                            {{-- <td>{{$data->hasil}}</td> --}}
                             <td>{{$data->tindak_lanjut}}</td>
                             <td>
                                 <form action='{{url("pemeliharaan/delete/{$data->id}")}}' method="post">

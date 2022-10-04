@@ -183,7 +183,7 @@ class BarangController extends Controller
     public function riwayat($kode){
         $riwayat = DB::table('detail_pinjams')
         ->select('permintaans.perihal', 'permintaans.user_fk', 'permintaans.waktu_pakai', 'permintaans.waktu_kembali', 'permintaans.ket'
-                ,'users.name','detail_pinjams.aset_fk','barangs.nama_barang'
+                ,'users.name','detail_pinjams.aset_fk','barangs.nama_barang','permintaans.kode'
                 )
         ->leftJoin('permintaans', 'detail_pinjams.pinjam_fk' , '=', 'permintaans.kode')
         ->leftJoin('users', 'permintaans.user_fk', '=', 'users.id')
@@ -232,6 +232,7 @@ class BarangController extends Controller
         $detail= DB::table('barangs')
         ->select('barangs.nama_barang', DB::raw('count(nama_barang) as stok'))
         ->where('barangs.nama_barang', '=', $request->name)
+        ->where('barangs.status', '=', 'true')
         ->first();
         // ->where('barangs.aktif', '=', '1')->first();
         return response()->json($detail,200);
