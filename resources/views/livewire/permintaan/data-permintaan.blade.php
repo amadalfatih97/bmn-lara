@@ -30,6 +30,19 @@
                     </div>
                 </div>
             </div>
+            @if (Auth::user()->role == 'admin')
+                <div class="form-group mb-3">
+                    <label for="user" class="form-label">Penanggung Jawab</label>
+                    <select class="form-select" wire:model="productId" id="selectitem"
+                        name="user" aria-label="Default select example" required>
+                        <option value="">Pilih Pegawai</option>
+                        @foreach ($users as $item)
+                        <option value="{{$item->id}}">{{$item->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            @endif
+                
             <div class="form-group mb-3">
                 <label for="keperluan" class="form-label">Keperluan</label>
                 <input type="text" name="keperluan" wire:model="keperluan" required class="form-control text-capitalize">

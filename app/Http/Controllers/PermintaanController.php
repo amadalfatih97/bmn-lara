@@ -18,7 +18,7 @@ class PermintaanController extends Controller
 
     public function index(Request $request){
         
-        return view('Permintaan.list');
+        return view('permintaan.list');
     }
 
     // public function byUser($id){
@@ -28,7 +28,7 @@ class PermintaanController extends Controller
     // }
 
     public function input(Request $request){
-        return view('Permintaan.input');
+        return view('permintaan.input');
     }
 
     // input permintaan
@@ -40,18 +40,19 @@ class PermintaanController extends Controller
             'jadwalpakai' => 'required',
             'jadwalkembali' => 'required',
             'keperluan' => 'required',
-            'ket' => 'required',
+            // 'ket' => 'required',
         ]);
+        $user = Auth::user()->role == 'pegawai' ? Auth::user()->id : $request->input('user');
         $trans = new permintaan([
             /* database                      namefield */
             'kode'=> $notrans,
-            'user_fk'=> Auth::user()->id,
+            'user_fk'=> $user,
             'perihal'=> $request->input('keperluan'),
             'waktu_proses'=> date('Y-m-d H:i:s'),
             'waktu_pakai'=> $request->input('jadwalpakai'),
             'waktu_kembali'=> $request->input('jadwalkembali'),
             'status'=> 'pending',
-            'ket' => $request->input('ket'),
+            'ket' => $request->input('ket') ? $request->input('ket') : '-',
         ]);
         $trans->save();
         // if ($proses) {

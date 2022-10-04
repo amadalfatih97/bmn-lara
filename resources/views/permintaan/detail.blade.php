@@ -109,7 +109,7 @@
                                     class="btn 
                                         {{$pinjam->status == 'pending' ? 'btn-info' : 
                                         ($pinjam->status == 'approved' ? 'btn-primary' :'btn-success')}}"
-                                    title="Setujui permintaan" {{$pinjam->status == 'finished' ? 'disabled' : ''}}>
+                                    title="Setujui permintaan" {{$pinjam->status == 'finish' ? 'disabled' : ''}}>
                                         <i class="bi bi-check2-square"></i>
                                         {{$pinjam->status == 'pending' ? 'Approve' : 
                                         ($pinjam->status == 'approved' ? 'Apply' : 'Finish')}}

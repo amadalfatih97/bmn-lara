@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 use App\Barang;
+use App\User;
 use Illuminate\Support\Facades\DB;
 
 use Livewire\Component;
@@ -14,6 +15,7 @@ class DataPermintaan extends Component
 
     public function render()
     {
+        $users = User::where("aktif","=","1")->get();
         $barangs = Barang::select('barangs.kode','nama_barang', 'nama_satuan', 'kondisi', 'status')
         ->leftJoin('satuans', 'barangs.satuan_fk', '=', 'satuans.id')
         ->leftJoin('lokasis', 'barangs.lokasi_fk', '=', 'lokasis.id')
@@ -27,7 +29,7 @@ class DataPermintaan extends Component
         ->orderBy('barangs.nama_barang','asc')
         ->limit(50)->get();
         info($this->requestAsets);
-        return view('livewire.permintaan.data-permintaan', compact('barangs'));
+        return view('livewire.permintaan.data-permintaan', compact('users','barangs'));
     }
 
     public function addProduct()
