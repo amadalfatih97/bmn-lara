@@ -18,3 +18,32 @@ $("#finishCheck").click(function() {
         $('#inputKembali').prop('required', false);
     }
 });
+
+
+
+// $(document).ready(function () {
+    $(document).on('change', '#selectname', function() {
+        let nameitem = $(this).val();
+        let div = $(this).parent();
+        let op = '<option value="">Pilih Serial</option>';
+        // console.log(nameitem);
+        $.ajax({
+            type: 'get',
+            url: '/findname',
+            data: {'key':nameitem},
+            // dataType: 'json',
+            cache: false,
+            success: function(data){
+                // for (let i = 0; i < data.length; i++){
+                //     // console.log(data[i].kode);
+                //     op += '<option value="'+data[i].kode+'">'+data[i].kode+'</option>';
+                // }
+                $('#selectsernum').html(data);
+                // $('#selectsernum').append(op);
+            },
+            error: function(){
+                console.log('err');
+            },
+        });
+    });
+//   });

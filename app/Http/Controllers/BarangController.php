@@ -238,5 +238,15 @@ class BarangController extends Controller
         return response()->json($detail,200);
     }
 
-    
+    public function findByName(Request $request)
+    {
+        $datas = Barang::select('id','nama_barang', 'kode')
+        ->where('nama_barang', $request->key)
+        ->where('status', 'true')
+        ->get();
+        // return response()->json($data);
+        foreach($datas as $data){
+            echo "<option value='$data->kode'>$data->kode</option>";
+        }
+    }
 }

@@ -16,7 +16,7 @@ class CreateDetailPinjamsTable extends Migration
         Schema::create('detail_pinjams', function (Blueprint $table) {
             $table->increments('id');
             $table->string('pinjam_fk',50);
-            $table->string('aset_fk',12);
+            $table->string('aset_fk',50);
             $table->integer('qty')->lenght(3)->unsigned();
             $table->date('waktu_pakai')->nullable();
             $table->date('waktu_kembali')->nullable();

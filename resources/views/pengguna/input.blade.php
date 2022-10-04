@@ -38,15 +38,28 @@
                     <form action="{{url('/pengguna/add')}}" method="post">
                         @csrf
                         <div class="mb-3">
-                            <label for="aset" class="form-label">Aset</label>
-                            <select class="form-select  {{ $errors->get('aset') ? 'is-invalid'  : ''}}"
-                                name="aset" aria-label="Default select example" required>
+                            <label for="sarana" class="form-label">Nama Sarana</label>
+                            <select class="form-select  {{ $errors->get('sarana') ? 'is-invalid'  : ''}}"
+                                name="sarana" aria-label="Default select example" required id="selectname">
                                 <option value="">Pilih Aset</option>
                                 @foreach ($barangs as $item)
-                                <option value="{{$item->kode}}" {{$item->kode == $getBarang ? 'selected' : ''}}>
+                                <option value="{{$item->nama_barang}}" {{$item->kode == $getBarang ? 'selected' : ''}}>
                                     {{$item->nama_barang}}
                                 </option>
                                 @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="aset" class="form-label">Serial / Kode Aset</label>
+                            <select class="form-select  {{ $errors->get('aset') ? 'is-invalid'  : ''}}"
+                                name="aset" aria-label="Default select example" required id="selectsernum">
+                                <option value="">Pilih Serial...</option>
+
+                                {{-- @foreach ($barangs as $item) --}}
+                                {{-- <option value="{{$item->kode}}" {{$item->kode == $getBarang ? 'selected' : ''}}> --}}
+                                    {{-- {{$item->nama_barang}} --}}
+                                {{-- </option> --}}
+                                {{-- @endforeach --}}
                             </select>
                         </div>
                         <div class="mb-3">

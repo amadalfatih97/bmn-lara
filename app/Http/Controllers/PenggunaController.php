@@ -28,6 +28,7 @@ class PenggunaController extends Controller
 
     public function input(Request $request){
         $barangs = DB::table('barangs')
+                    ->groupBy('barangs.nama_barang')
                     ->orderBy('nama_barang','asc')
                     ->get();
         $users = DB::table('users')
@@ -41,11 +42,12 @@ class PenggunaController extends Controller
     public function prosesInput(Request $request){
         date_default_timezone_set('Asia/Jakarta');
         $notrans = 'req'.date('ymd-His');
-        $status = 'finished';
+        $status = 'finish';
         
         /* validation */
         $request->validate([
             'user' => 'required',
+            'sarana' => 'required',
             'aset' => 'required',
             'perihal' => 'required',
             'mulai' => 'required',
@@ -88,6 +90,7 @@ class PenggunaController extends Controller
             $detailTrans = new detailPinjam([
                 'pinjam_fk' =>$trans->kode,
                 'aset_fk' => $request->input('aset'),
+                'qty' => 1,
             ]);
             $detailTrans->save();
         // }

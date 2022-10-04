@@ -39,6 +39,7 @@ Route::group(['middleware'=>['auth','cekRole:admin']], function(){
     Route::patch('/barang/update/{id}', 'BarangController@prosesUpdate');
     Route::get('/barang/riwayat/{id}', 'BarangController@riwayat');
     Route::get('/findstok', 'BarangController@findstok');
+    Route::get('/findname', 'BarangController@findByName');
     Route::delete('/barang/delete/{id}/{key}', 'BarangController@prosesDelete');
 
     Route::get('/join', 'BarangController@join');
