@@ -24,6 +24,10 @@ class PemeliharaanController extends Controller
 
     }
 
+    public function req(){
+        return view('pemeliharaan.request');
+    }
+
     public function input(Request $request){
         $barangs = DB::table('barangs')
                     ->groupBy('nama_barang')

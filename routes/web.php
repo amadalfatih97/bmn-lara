@@ -91,5 +91,7 @@ Route::group(['middleware'=>['auth','cekRole:admin,pegawai']], function(){
     // Route::get('/permintaan/list/{id}', 'PermintaanController@byUser');
     Route::get('/permintaan/input', 'PermintaanController@input');
     Route::get('/permintaan/detail/{id}', 'PermintaanController@requestdetail');
+
+    Route::get('/request/pemeliharaan', 'PemeliharaanController@req');
     Route::resource('permintaan', PermintaanController::class);
 });

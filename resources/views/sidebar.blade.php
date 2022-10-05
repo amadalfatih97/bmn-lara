@@ -66,9 +66,9 @@
                         </a>
                     </li>
                     <li>
-                        <a href='{{url("lapor/list")}}' class="nav-link px-3 {{ Request::segment(1) == 'permintaan' ? 'active' : null }}">
+                        <a href='{{url("request/pemeliharaan")}}' class="nav-link px-3 {{ Request::segment(1) == 'request' ? 'active' : null }}">
                             <span class="me-2"><i class="bi bi-tools"></i></span>
-                            <span>Laporkan Aset</span>
+                            <span>Laporkan Asset</span>
                         </a>
                     </li>
                 @endif
@@ -123,7 +123,7 @@
                             </div>
                         </div>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#collapseExample2"
                             role="button" aria-expanded="false" aria-controls="collapseExample">
                             <span class="me-2"><i class="bi bi-file-earmark"></i></span>
@@ -148,7 +148,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> --}}
                     
                 @endif
                 {{-- end if --}}
