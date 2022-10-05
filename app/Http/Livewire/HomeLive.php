@@ -27,11 +27,17 @@ class HomeLive extends Component
         ->where('barangs.aktif', '=', '1')
         // ->orderBy('barangs.nama_barang','asc')
         ->first();
-        $jenis = DB::table('barangs')
-        ->select(DB::raw('count(distinct nama_barang) as qty'))
-        ->where('barangs.aktif', '=', '1')
-        ->orderBy('barangs.nama_barang','asc')
-        ->first();
+        $data = DB::table('detail_pinjams')
+        ->select(DB::raw('sum(qty) as total'))
+        ->leftJoin('permintaans', 'detail_pinjams.pinjam_fk', '=', 'permintaans.kode')
+        ->where('permintaans.status', '=', 'pending')
+        ->first(); 
+        $antrian = $data->total ? $data->total : '0';
+        // DB::table('barangs')
+        // ->select(DB::raw('count(distinct nama_barang) as qty'))
+        // ->where('barangs.aktif', '=', '1')
+        // ->orderBy('barangs.nama_barang','asc')
+        // ->first();
         $pakai = DB::table('detail_pinjams')
         ->select(DB::raw('sum(qty) as total'))
         ->leftJoin('permintaans', 'detail_pinjams.pinjam_fk', '=', 'permintaans.kode')
@@ -42,7 +48,7 @@ class HomeLive extends Component
         ->whereIn('permintaans.status', ['approved','applied'])
         ->first();
         // dd($pakai);
-        return view('livewire.home-live', compact('barangs','jenis','pakai'));
+        return view('livewire.home-live', compact('barangs','antrian','pakai'));
         // ->with([
         //     'columnChartModel' => $columnChartModel
         //     // 'pieChartModel' => $pieChartModel,

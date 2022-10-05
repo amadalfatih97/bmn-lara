@@ -65,8 +65,8 @@ class DataPermintaan extends Component
             foreach ($this->requestAsets as $key => $requestItem) {
                 if ($this->requestAsets[$key]['productid'] == $this->productId) {
                     $this->requestAsets[$key] = [
-                        // 'productid' => $this->productId, 
-                        // 'nameitem' => $barang->nama_barang, 
+                        'productid' => $this->productId, 
+                        'nameitem' => $this->requestAsets[$key]['nameitem'], 
                         'qty' => $this->qty
                     ];
                     $exist= 1;

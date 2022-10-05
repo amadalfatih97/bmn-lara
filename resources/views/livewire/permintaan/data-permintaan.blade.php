@@ -33,7 +33,7 @@
             @if (Auth::user()->role == 'admin')
                 <div class="form-group mb-3">
                     <label for="user" class="form-label">Penanggung Jawab</label>
-                    <select class="form-select" wire:model="productId" id="selectitem"
+                    <select class="form-select" id="selectuser"
                         name="user" aria-label="Default select example" required>
                         <option value="">Pilih Pegawai</option>
                         @foreach ($users as $item)

@@ -23,7 +23,7 @@
                     <div class="card mb-2">
                         <div class="card-body d-flex text-light align-items-end bg-success">
                             <i class="bi bi-inboxes-fill " style="font-size:50px;"></i>
-                            <span class="fs-1 mx-2 align-self-end">{{$jenis->qty}}</span>
+                            <span class="fs-1 mx-2 align-self-end">{{$antrian}}</span>
                             <p class="align"> Antrian Permintaan</p>
                         </div>
                         <hr class="m-0"/>
