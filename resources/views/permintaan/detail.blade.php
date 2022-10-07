@@ -96,6 +96,7 @@
                                         {{-- <td>{{++$no}}</td> --}}
                                         <td>{{$items->qty}}</td>
                                         <td>{{$items->nama_satuan}}</td>
+                                        <td>{{$items->jenis}}</td>
                                         <td>{{$items->nama_barang}}</td>
                                     </tr>
                                     @endforeach
@@ -109,7 +110,7 @@
                                     class="btn 
                                         {{$pinjam->status == 'pending' ? 'btn-info' : 
                                         ($pinjam->status == 'approved' ? 'btn-primary' :'btn-success')}}"
-                                    title="Setujui permintaan" {{$pinjam->status == 'finish' ? 'disabled' : ''}}>
+                                    title="lanjutkan proses" {{$pinjam->status == 'finish' ? 'disabled' : ''}}>
                                         <i class="bi bi-check2-square"></i>
                                         {{$pinjam->status == 'pending' ? 'Approve' : 
                                         ($pinjam->status == 'approved' ? 'Apply' : 'Finish')}}

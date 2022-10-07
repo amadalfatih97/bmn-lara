@@ -14,7 +14,7 @@
                         </div>
                         <hr class="m-0"/>
                         <div class="card-footer d-flex">
-                            <em class="me-auto text-muted">view detail</em>
+                            <em class="me-auto text-muted">detail</em>
                             <i class="bi bi-arrow-right-circle"></i>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                         </div>
                         <hr class="m-0"/>
                         <div class="card-footer d-flex">
-                            <em class="me-auto text-muted">view detail</em>
+                            <em class="me-auto text-muted">detail</em>
                             <i class="bi bi-arrow-right-circle"></i>
                         </div>
                     </div>
@@ -42,7 +42,7 @@
                         </div>
                         <hr class="m-0"/>
                         <div class="card-footer d-flex">
-                            <em class="me-auto text-muted">view detail</em>
+                            <em class="me-auto text-muted">detail</em>
                             <i class="bi bi-arrow-right-circle"></i>
                         </div>
                     </div>

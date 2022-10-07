@@ -46,7 +46,7 @@
                                 <th>User Pengguna</th>
                                 <th>Perihal</th>
                                 <th>Awal Pemakaian</th>
-                                <th>Waktu Kembali</th>
+                                <th>Waktu Pengembalian</th>
                                 <th class="action" colspan=2>Aksi</th>
                             </thead>
                             <tbody>
@@ -58,7 +58,7 @@
                                     <td>{{$data->name}}</td>
                                     <td>{{$data->perihal}}</td>
                                     <td>{{$data->waktu_mulai}}</td>
-                                    <td>{{$data->waktu_selesai ? $data->waktu_selesai :'--'}}</td>
+                                    <td>{{$data->waktu_selesai ? $data->waktu_selesai : date('Y-m-d', strtotime('+1 year', strtotime( $data->waktu_mulai )))}}</td>
                                     <td>
                                         <form action='{{url("pengguna/delete/{$data->id}")}}' method="post">
                                             @csrf

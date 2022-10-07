@@ -34,7 +34,10 @@ class PenggunaController extends Controller
         $users = DB::table('users')
                     ->orderBy('name','asc')
                     ->get();
-        return view('pengguna.input', compact('barangs','users'));
+        $lokasis = DB::table('lokasis')
+        ->orderBy('nama_lokasi','asc')
+        ->get();
+        return view('pengguna.input', compact('barangs','users','lokasis'));
     }
 
     
@@ -70,7 +73,7 @@ class PenggunaController extends Controller
         if ($request->input('finish') != 'true') {
             // update status data aset
             DB::table('barangs')->where('kode',$request->input('aset'))
-                                ->update(['status'=>'false','ket'=>'terpakai']);
+                                ->update(['status'=>'false','ket'=>'ditempatkan','lokasi_fk'=>$request->input('lokasi')]);
             // end update
             $status = 'applied';
         }
@@ -83,7 +86,7 @@ class PenggunaController extends Controller
             'waktu_pakai'=> $request->input('mulai'),
             'waktu_kembali'=> $request->input('kembali'),
             'status'=> $status,
-            'ket' => 'penggunaan tidak berjangka',
+            'ket' => 'ditempatkan',
         ]);
         $trans->save();
         // if ($trans) {
@@ -105,6 +108,9 @@ class PenggunaController extends Controller
         $users = DB::table('users')
                     ->orderBy('name','asc')
                     ->get();
+        $lokasis = DB::table('lokasis')
+                    ->orderBy('nama_lokasi','asc')
+                    ->get();
         $pengguna = DB::table('penggunas')
         ->select('penggunas.*','barangs.nama_barang', 'users.name')
         ->leftJoin('barangs', 'penggunas.aset_fk', '=', 'barangs.kode')
@@ -112,7 +118,7 @@ class PenggunaController extends Controller
         ->where('penggunas.id', '=', $id)
         ->first();
         // dd($pengguna);
-        return view('pengguna.edit',compact('pengguna','barangs','users'));
+        return view('pengguna.edit',compact('pengguna','barangs','users','lokasis'));
     }
 
     public function prosesUpdate(Request $request, $id){
@@ -138,7 +144,7 @@ class PenggunaController extends Controller
             //ubah status permintaan
             $permintaan = permintaan::where('kode', $pengguna->permintaan_fk)->firstOrFail();
             $permintaan->status = 'finished';
-            $permintaan->ket = 'pemakaian berjangka, dikembalikan';
+            $permintaan->ket = 'penempatan aset, dikembalikan';
             $permintaan->waktu_kembali = $request->input('kembali');
             $permintaan->save();
 

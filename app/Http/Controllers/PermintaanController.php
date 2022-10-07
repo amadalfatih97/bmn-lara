@@ -79,7 +79,7 @@ class PermintaanController extends Controller
         
         $detail = DB::table('detail_pinjams')
         ->select('detail_pinjams.pinjam_fk','detail_pinjams.aset_fk','detail_pinjams.qty',
-                    'barangs.nama_barang','barangs.kode','satuans.nama_satuan')
+                    'barangs.nama_barang','barangs.jenis','barangs.kode','satuans.nama_satuan')
         // ->selectRaw('COUNT(barangs.nama_barang) AS qty')
         ->leftJoin('barangs','detail_pinjams.aset_fk','=','barangs.kode')
         ->leftJoin('satuans','barangs.satuan_fk','=','satuans.id')

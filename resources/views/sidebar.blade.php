@@ -48,7 +48,7 @@
                     <li>
                         <a href='{{url("pengguna/list")}}' class="nav-link px-3 {{ Request::segment(1) == 'pengguna' ? 'active' : null }}">
                             <span class="me-2"><i class="bi bi-person-workspace"></i></span>
-                            <span>Pengguna Tetap</span>
+                            <span>Penempatan</span>
                         </a>
                     </li>
 

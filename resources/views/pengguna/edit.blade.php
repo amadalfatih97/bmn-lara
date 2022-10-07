@@ -17,6 +17,7 @@
         <?php
             $getBarang = $pengguna->aset_fk;
             $getUser = $pengguna->user_fk;
+            $getLokasi = '';
         ?>
         @if ($errors->any())
         <?php
@@ -69,6 +70,18 @@
                                 {{ $errors->get('perihal') ? 'is-invalid'  : ''}}" 
                                     name="perihal" required>
                             </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="lokasi" class="form-label">Penempatan</label>
+                            <select class="form-select  {{ $errors->get('lokasi') ? 'is-invalid'  : ''}}"
+                                name="lokasi" aria-label="Default select example" required>
+                                <option value="">Pilih Lokasi</option>
+                                @foreach ($lokasis as $item)
+                                <option value="{{$item->id}}" {{$item->id == $getLokasi ? 'selected' : ''}}>
+                                    {{$item->nama_lokasi}}
+                                </option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="row">
                             <div class="col-md-6">

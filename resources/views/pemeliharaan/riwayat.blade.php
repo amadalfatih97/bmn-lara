@@ -17,7 +17,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="d-grid gap-2 d-md-flex justify-content-md-between">
-                    <h4 style="margin: 0">Riwayat Pemeliharaan  Aset {{$riwayat->count() > 0 ? $riwayat[0]->nama_barang : ''}}</h4>
+                    <h4 style="margin: 0">Riwayat Pemeliharaan  Aset [{{$riwayat->count() > 0 ? $riwayat[0]->nama_barang : ''}}]</h4>
                     <a href='{{url("barang/list")}}' class="btn btn-warning me-2 ">kembali</a>
                 </div>
             </div>
