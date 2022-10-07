@@ -17,7 +17,7 @@
         <?php
             $getBarang = $pengguna->aset_fk;
             $getUser = $pengguna->user_fk;
-            $getLokasi = '';
+            $getLokasi = $selectLokasi->lokasi_fk;
         ?>
         @if ($errors->any())
         <?php
@@ -62,6 +62,14 @@
                                 </option>
                                 @endforeach
                             </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="kode" class="form-label">Kode Aset</label>
+                            <div class="mb-3 input-group has-validation">
+                                <input type="text" value="{{old('kode',$pengguna->aset_fk)}}" class="form-control 
+                                {{ $errors->get('kode') ? 'is-invalid'  : ''}}" 
+                                    name="kode" required>
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label for="perihal" class="form-label">Perihal</label>

@@ -43,8 +43,8 @@
                             <thead>
                                 <th class="no">No</th>
                                 <th>Nama Aset</th>
-                                <th>User Pengguna</th>
-                                <th>Perihal</th>
+                                <th>Penempatan</th>
+                                <th>Pengguna</th>
                                 <th>Awal Pemakaian</th>
                                 <th>Waktu Pengembalian</th>
                                 <th class="action" colspan=2>Aksi</th>
@@ -55,8 +55,8 @@
                                 <tr>
                                     <td>{{$no++}}</td>
                                     <td>{{$data->nama_barang}}</td>
+                                    <td>{{$data->nama_lokasi}}</td>
                                     <td>{{$data->name}}</td>
-                                    <td>{{$data->perihal}}</td>
                                     <td>{{$data->waktu_mulai}}</td>
                                     <td>{{$data->waktu_selesai ? $data->waktu_selesai : date('Y-m-d', strtotime('+1 year', strtotime( $data->waktu_mulai )))}}</td>
                                     <td>

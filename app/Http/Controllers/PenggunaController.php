@@ -15,9 +15,10 @@ class PenggunaController extends Controller
     public function index(Request $request){
         $keyword = $request->get('key') ? $request->get('key') : '' ;
         $penggunas = DB::table('penggunas')
-        ->select('penggunas.*','barangs.nama_barang', 'users.name')
+        ->select('penggunas.*','barangs.nama_barang','lokasis.nama_lokasi', 'users.name')
         ->leftJoin('barangs', 'penggunas.aset_fk', '=', 'barangs.kode')
         ->leftJoin('users', 'penggunas.user_fk', '=', 'users.id')
+        ->leftJoin('lokasis', 'barangs.lokasi_fk', '=', 'lokasis.id')
         // ->where('barangs.aktif', '=', '1')
         ->where('nama_barang', 'LIKE', '%'.$keyword.'%')
         ->orderBy('nama_barang','asc')
@@ -111,6 +112,13 @@ class PenggunaController extends Controller
         $lokasis = DB::table('lokasis')
                     ->orderBy('nama_lokasi','asc')
                     ->get();
+        $selectLokasi = DB::table('penggunas')
+                    ->select('penggunas.aset_fk','barangs.lokasi_fk','lokasis.nama_lokasi')
+                    ->leftJoin('barangs', 'penggunas.aset_fk', '=', 'barangs.kode')
+                    ->leftJoin('lokasis', 'barangs.lokasi_fk' , '=', 'lokasis.id')
+                    ->where('penggunas.id', '=', $id)
+                    ->first();
+                    // dd($selectLokasi);
         $pengguna = DB::table('penggunas')
         ->select('penggunas.*','barangs.nama_barang', 'users.name')
         ->leftJoin('barangs', 'penggunas.aset_fk', '=', 'barangs.kode')
@@ -118,7 +126,7 @@ class PenggunaController extends Controller
         ->where('penggunas.id', '=', $id)
         ->first();
         // dd($pengguna);
-        return view('pengguna.edit',compact('pengguna','barangs','users','lokasis'));
+        return view('pengguna.edit',compact('pengguna','barangs','users','lokasis','selectLokasi'));
     }
 
     public function prosesUpdate(Request $request, $id){
@@ -150,7 +158,7 @@ class PenggunaController extends Controller
 
             // rubah status data barang
             DB::table('barangs')->where('kode',$request->input('aset'))
-                                ->update(['status'=>'true','ket'=>'sedia']);
+                                ->update(['status'=>'true','ket'=>'sedia','lokasi_fk'=>$request->input('lokasi')]);
         };
         // end update
         return redirect('/pengguna/list')->with('success','data berhasil di Update!');
