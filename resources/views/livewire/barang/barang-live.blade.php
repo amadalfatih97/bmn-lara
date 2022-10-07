@@ -35,7 +35,7 @@
                         @foreach($barangs as $key=>$data)
                         <tr>
                             <td>{{$barangs->firstItem() + $key  }}</td>
-                            <td>{{$data->nama_barang}}</td>
+                            <td>{{$data->jenis}} {{$data->nama_barang}}</td>
                             <td>{{$data->qty}}</td>
                             <td>{{$data->nama_satuan}}</td>
                             <td>
