@@ -72,8 +72,9 @@ class BarangController extends Controller
         /* validation */
         $request->validate([
             'namabarang' => 'required|max:100',
-            'kode' => 'required|max:30',
+            'kode' => 'required|max:50',
             // 'stok' => 'required|max:4',
+            'jenis' => 'required|max:100',
             'satuan' => 'required|max:3',
             'lokasi' => 'required|max:3',
             'kondisi' => 'required|max:30',
@@ -85,6 +86,7 @@ class BarangController extends Controller
         $barang = new Barang([
             /* database                      namefield */
             'nama_barang'=> $request->input('namabarang'),
+            'jenis'=> $request->input('jenis'),
             'kode'=> $request->input('kode'),
             'satuan_fk'=> $request->input('satuan'),
             'lokasi_fk'=> $request->input('lokasi'),
@@ -116,7 +118,7 @@ class BarangController extends Controller
             'status' => 'required|max:30',
         ]);
         $satuan = DB::table('barangs')
-                    ->select('satuan_fk')
+                    ->select('satuan_fk','jenis')
                     ->where('nama_barang', '=', $request->input('namabarang'))
                     ->first();
         // dd($satuan);
@@ -125,6 +127,7 @@ class BarangController extends Controller
             /* database                      namefield */
             'nama_barang'=> $request->input('namabarang'),
             'kode'=> $request->input('kode'),
+            'jenis'=> $satuan->jenis,
             'satuan_fk'=> $satuan->satuan_fk,
             'lokasi_fk'=> $request->input('lokasi'),
             'stok'=> 1,
@@ -159,7 +162,8 @@ class BarangController extends Controller
         /* validation */
         $request->validate([
             'namabarang' => 'required|max:100',
-            'kode' => 'required|max:30',
+            'jenis' => 'required|max:100',
+            'kode' => 'required|max:100',
             'satuan' => 'required|max:3',
             'lokasi' => 'required|max:3',
             'kondisi' => 'required|max:30',
@@ -168,6 +172,7 @@ class BarangController extends Controller
         ]);
         
         /* proses update */
+        $barang->jenis = $request->input('jenis');
         $barang->nama_barang = $request->input('namabarang');
         $barang->kode = $request->input('kode');
         $barang->stok = 1;

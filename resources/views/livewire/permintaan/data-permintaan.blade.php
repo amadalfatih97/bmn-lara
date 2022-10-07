@@ -47,9 +47,20 @@
                 <label for="keperluan" class="form-label">Keperluan</label>
                 <input type="text" name="keperluan" wire:model="keperluan" required class="form-control text-capitalize">
             </div>
-            <div class="form-group mb-3">
+            {{-- <div class="form-group mb-3">
                 <label for="ket" class="form-label">Catatan</label>
                 <textarea name="ket" required class="form-control text-capitalize" > </textarea>
+            </div> --}}
+
+            <div class="form-group mb-3">
+                <label for="jenis" class="form-label">Jenis Aset</label>
+                <select class="form-select"  id="selectjenis" wire:model='selectJenis'
+                    name="jenis" aria-label="Default select example" required>
+                    <option value="">Pilih jenis</option>
+                    @foreach ($jenis as $item)
+                    <option value="{{$item->jenis}}">{{$item->jenis}}</option>
+                    @endforeach
+                </select>
             </div>
 
             <div class="mb-3">

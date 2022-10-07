@@ -10,16 +10,23 @@ use Livewire\Component;
 class DataPermintaan extends Component
 {
     public $jadwalpakai, $jadwalkembali, $keperluan, $search='', $requestAsets=[], $searchAsets=[];
-    public $productId, $qty, $stok, $nameitem;
+    public $productId, $qty, $stok, $nameitem, $selectJenis='';
 
 
     public function render()
     {
         $users = User::where("aktif","=","1")->get();
+
+        $jenis = Barang::select('jenis')
+        ->where('barangs.aktif', '=', '1')
+        ->groupBy('barangs.jenis')
+        ->orderBy('barangs.jenis','asc')
+        ->limit(50)->get();
+
         $barangs = Barang::select('barangs.kode','nama_barang', 'nama_satuan', 'kondisi', 'status')
         ->leftJoin('satuans', 'barangs.satuan_fk', '=', 'satuans.id')
         ->leftJoin('lokasis', 'barangs.lokasi_fk', '=', 'lokasis.id')
-        ->where('barangs.aktif', '=', '1')
+        ->where('barangs.jenis', 'like', $this->selectJenis)
         ->where(function ($query) {
             $query->where('nama_barang', 'LIKE', '%'.$this->search.'%')
             ->orWhere('nama_satuan', 'LIKE', '%'.$this->search.'%')
@@ -28,8 +35,9 @@ class DataPermintaan extends Component
         ->groupBy('barangs.nama_barang')
         ->orderBy('barangs.nama_barang','asc')
         ->limit(50)->get();
+
         info($this->requestAsets);
-        return view('livewire.permintaan.data-permintaan', compact('users','barangs'));
+        return view('livewire.permintaan.data-permintaan', compact('jenis','users','barangs'));
     }
 
     public function addProduct()

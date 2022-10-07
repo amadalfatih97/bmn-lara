@@ -36,6 +36,15 @@
                     <form action="/barang/update/{{$barang->id}}" method="post">
                         @method('PATCH')
                         @csrf
+                        <label for="jenis" class="form-label">Jenis Aset</label>
+                        <div class="mb-3 input-group has-validation">
+                            <input type="text" 
+                            value="{{old('jenis',$barang->jenis)}}" 
+                            class="form-control 
+                            {{ $errors->get('jenis') ? 'is-invalid'  : ''}}"
+                            name="jenis"
+                            required>
+                        </div>
                         <label for="namabarang" class="form-label">Input Nama Aset</label>
                         <div class="mb-3 input-group has-validation">
                             <input type="text" 

@@ -59,6 +59,12 @@
                         <div class="radio_content radio_1" id="barang-baru">
                             <form action="{{url('/barang/add')}}" method="post">
                                 @csrf
+                                <label for="jenis" class="form-label">Jenis Aset</label>
+                                <div class="mb-3 input-group has-validation">
+                                    <input type="text" value="{{old('jenis')}}" class="form-control 
+                                    {{ $errors->get('jenis') ? 'is-invalid'  : ''}}" 
+                                        name="jenis" required>
+                                </div>
                                 <label for="namabarang" class="form-label">Input Nama Aset</label>
                                 <div class="mb-3 input-group has-validation">
                                     <input type="text" value="{{old('namabarang')}}" class="form-control 
@@ -131,7 +137,7 @@
                                 @csrf
                                 <label for="namabarang" class="form-label">Pilih Aset</label>
                                 <div class="mb-3 input-group has-validation">
-                                    <select class="form-select  {{ $errors->get('namabarang') ? 'is-invalid'  : ''}}" id="exampleInputbarang"
+                                    <select class="form-select  {{ $errors->get('namabarang') ? 'is-invalid'  : ''}}" 
                                         name="namabarang" required>
                                         <option>Pilih Satuan</option>
                                         @foreach ($barangs as $item)
