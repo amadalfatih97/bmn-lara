@@ -81,6 +81,7 @@ Route::group(['middleware'=>['auth','cekRole:admin']], function(){
     Route::patch('/pemeliharaan/update/{id}', 'PemeliharaanController@prosesUpdate');
     Route::delete('/pemeliharaan/delete/{id}', 'PemeliharaanController@prosesDelete');
     Route::get('/pemeliharaan/riwayat/{id}', 'BarangController@pemeliharaan');
+
 });
 
 Route::group(['middleware'=>['auth','cekRole:admin,pegawai']], function(){
@@ -92,6 +93,14 @@ Route::group(['middleware'=>['auth','cekRole:admin,pegawai']], function(){
     Route::get('/permintaan/input', 'PermintaanController@input');
     Route::get('/permintaan/detail/{id}', 'PermintaanController@requestdetail');
 
-    Route::get('/request/pemeliharaan', 'PemeliharaanController@req');
+    Route::get('/request/pemeliharaan', 'KeluhanController@input');
     Route::resource('permintaan', PermintaanController::class);
+    
+    Route::get('/keluhan/list', 'KeluhanController@index');
+    Route::get('/keluhan/add', 'KeluhanController@input');
+    Route::post('/keluhan/add', 'KeluhanController@prosesInput');
+    Route::get('/keluhan-detail/{id}', 'KeluhanController@dataById');
+    Route::put('/keluhan/accept/{id}', 'KeluhanController@accept');
+    Route::delete('/keluhan/delete/{id}', 'KeluhanController@prosesDelete');
+    Route::patch('/keluhan/proses/{id}', 'KeluhanController@proses');
 });

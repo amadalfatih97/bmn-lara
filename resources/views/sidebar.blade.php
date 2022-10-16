@@ -58,6 +58,12 @@
                             <span>Data Pemeliharaan </span>
                         </a>
                     </li>
+                    <li>
+                        <a href='{{url("keluhan/list")}}' class="nav-link px-3 {{ Request::segment(1) == 'keluhan' ? 'active' : null }}">
+                            <span class="me-2"><i class="bi bi-tools"></i></span>
+                            <span>Laporan Keluhan Aset</span>
+                        </a>
+                    </li>
                 @else
                     <li>
                         <a href='{{url("permintaan/list")}}' class="nav-link px-3 {{ Request::segment(1) == 'permintaan' ? 'active' : null }}">
