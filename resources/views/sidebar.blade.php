@@ -44,7 +44,7 @@
                             <span>Semua Permintaan</span>
                         </a>
                     </li>
-
+                    @if (auth()->user()->username!='hermawan')
                     <li>
                         <a href='{{url("pengguna/list")}}' class="nav-link px-3 {{ Request::segment(1) == 'pengguna' ? 'active' : null }}">
                             <span class="me-2"><i class="bi bi-person-workspace"></i></span>
@@ -64,6 +64,7 @@
                             <span>Laporan Keluhan Aset</span>
                         </a>
                     </li>
+                    @endif
                 @else
                     <li>
                         <a href='{{url("permintaan/list")}}' class="nav-link px-3 {{ Request::segment(1) == 'permintaan' ? 'active' : null }}">

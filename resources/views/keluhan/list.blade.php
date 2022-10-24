@@ -57,7 +57,7 @@
                                     <td>{{$data->name}}</td>
                                     <td>{{$data->nama_barang}}</td>
                                     <td>{{$data->nama_lokasi}}</td>
-                                    <td>{{$data->created_at ? date('d M Y', strtotime($data->created_at)) :'-' }} </td>
+                                    <td>{{$data->created_at ? date('d M Y', strtotime($data->created_at)) : date('d M Y') }} </td>
                                     <td> <span role="button" class="badge text-capitalize
                                             {{$data->status == '1' ? 'bg-warning' : 'bg-success'}}">
                                             {{$data->status == '1' ? 'pending' : 'received'}}

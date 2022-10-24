@@ -20,7 +20,7 @@ class KeluhanController extends Controller
         ->leftJoin('users', 'keluhans.user_fk', '=', 'users.id')
         // // ->where('barangs.aktif', '=', '1')
         // ->where('nama_barang', 'LIKE', '%'.$keyword.'%')
-        ->orderBy('created_at','asc')
+        ->orderBy('created_at','DESC')
         ->get();
         // dd($keluhans);
         return view('keluhan.list',compact('keluhans'));
@@ -48,6 +48,7 @@ class KeluhanController extends Controller
             'aset_fk'=> $request->input('kode')
             , 'user_fk'=> Auth::user()->id
             , 'ket'=> $request->input('desc')
+            , 'created_at'=> date('Y-m-d h:m:s')
             , 'status'=> 1
         ]);
         $keluhan->save();
