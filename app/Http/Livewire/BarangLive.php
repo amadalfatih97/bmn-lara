@@ -19,21 +19,23 @@ class BarangLive extends Component
     {
         // $barangs = Barang::all();
         // $barangs = Barang::paginate(2);
+
         $barangs = DB::table('barangs')
-        ->select('barangs.*', 'satuans.nama_satuan'/* , 'nama_lokasi' */, DB::raw('count(nama_barang) as qty'))
+        ->select('barangs.*', 'satuans.nama_satuan'/* , 'nama_lokasi' */, DB::raw('count(kategori_fk) as qty'))
         ->leftJoin('satuans', 'barangs.satuan_fk', '=', 'satuans.id')
         // ->leftJoin('lokasis', 'barangs.lokasi_fk', '=', 'lokasis.id')
         ->where('barangs.aktif', '=', '1')
-        // ->where('barangs.status', '=', 'true')
+        // // ->where('barangs.status', '=', 'true')
         ->where(function ($query) {
-            $query->where('nama_barang', 'LIKE', '%'.$this->keyword.'%')
+            $query->where('merek', 'LIKE', '%'.$this->keyword.'%')
             ->orWhere('nama_satuan', 'LIKE', '%'.$this->keyword.'%')
-            ->orWhere('jenis', 'LIKE', '%'.$this->keyword.'%');
+            ->orWhere('kategori_fk', 'LIKE', '%'.$this->keyword.'%');
             // ->orWhere('nama_lokasi', 'LIKE', '%'.$this->keyword.'%');
         })
-        ->groupBy('nama_Barang')
-        ->orderBy('barangs.jenis','asc')
+        ->groupBy('kategori_fk')
+        ->orderBy('barangs.kategori_fk','asc')
         ->paginate(5);
+
         // ->get();
         // dd($barangs);
         return view('livewire.barang.barang-live',compact('barangs'));

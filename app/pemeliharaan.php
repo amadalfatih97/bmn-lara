@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class pemeliharaan extends Model
 {
-    protected $fillable = ['aset_fk','kode','keluhan','hasil','waktu_pelaksanaan','tindak_lanjut','ket','img' ];//field table database
-
+    protected $fillable = [
+        'barang_fk','tgl_pemeliharaan','kondisi_sebelum','tindakan',
+        'pelaksana','src_bukti'
+    ];
 }

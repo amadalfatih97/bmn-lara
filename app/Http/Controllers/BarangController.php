@@ -39,30 +39,29 @@ class BarangController extends Controller
 
     public function byItem($key){
         $barangs = DB::table('barangs')
-        ->select('barangs.id','barangs.nama_barang','barangs.kode','barangs.kondisi','barangs.status',
-                'barangs.ket','lokasis.nama_lokasi')
+        ->select('barangs.*','lokasis.nama_lokasi')
         ->leftJoin('lokasis', 'barangs.lokasi_fk', '=', 'lokasis.id')
-        ->where('barangs.nama_barang', '=', $key)
+        ->where('barangs.kategori_fk', '=', $key)
         ->where('barangs.aktif', '=', '1')
-        ->orderBy('barangs.nama_barang','asc')
+        ->orderBy('barangs.merek','asc')
         ->get();
         // dd($barangs);
         return view('barang.view',compact('barangs'));
     }
 
     public function input(Request $request){
-        $barangs = DB::table('barangs')
-                    ->select('nama_barang')
+        $barangs = DB::table('kategoris')
                     ->where('aktif', '=', '1')
-                    ->groupBy('nama_Barang')
-                    ->orderBy('nama_barang','asc')
+                    ->orderBy('nama_kategori','asc')
                     ->get();
         $satuans = DB::table('satuans')
+                    ->where('aktif', '=', '1')
                     ->orderBy('nama_satuan','asc')
                     ->get();
         $lokasis = DB::table('lokasis')
-        ->orderBy('nama_lokasi','asc')
-        ->get();
+                    ->where('aktif', '=', '1')
+                    ->orderBy('nama_lokasi','asc')
+                    ->get();
         // $data = DB::table('barangs')->latest('id')->first();
         // $last = isset($data->id) ? $data->id : 0;
         return view('barang.input', compact('barangs','satuans','lokasis'/* ,'last' */));
@@ -71,40 +70,49 @@ class BarangController extends Controller
     public function prosesInput(Request $request){
         /* validation */
         $request->validate([
-            'namabarang' => 'required|max:100',
-            'kode' => 'required|max:50',
-            // 'stok' => 'required|max:4',
-            'jenis' => 'required|max:100',
-            'satuan' => 'required|max:3',
-            'lokasi' => 'required|max:3',
-            'kondisi' => 'required|max:30',
+            'tglperolehan' => 'required',
+            'kategori' => 'required',
+            'kodebmn' => 'required|max:50',
+            'merek' => 'required|max:100',
+            'kodeitem' => 'required|max:50',
+            'lokasi' => 'required',
+            'satuan' => 'required',
+            'kondisi' => 'required|max:3',
             'status' => 'required|max:30',
+            'tag' => 'max:250',
             'ket' => 'max:250',
         ]);
         
         /* proses input */
         $barang = new Barang([
             /* database                      namefield */
-            'nama_barang'=> $request->input('namabarang'),
-            'jenis'=> $request->input('jenis'),
-            'kode'=> $request->input('kode'),
+            'merek'=> $request->input('merek'),
+            'kode_bmn'=> $request->input('kodebmn'),
+            'kode_item'=> $request->input('kodeitem'),
+            'kategori_fk'=> $request->input('kategori'),
+            'keyword'=> $request->input('tag'),
             'satuan_fk'=> $request->input('satuan'),
             'lokasi_fk'=> $request->input('lokasi'),
-            'stok'=> 1,
+            'tgl_perolehan'=> $request->input('tglperolehan'),
             'kondisi'=> $request->input('kondisi'),
             'status'=> $request->input('status'),
+            'type'=> $request->input('switchservice') ? $request->input('switchservice') : 0,
+            'pemeliharaan_terakhir'=> $request->input('terakhircek'),
+            'jadwal_service'=> $request->input('waktupemeliharaan'),
+            'ket'=> $request->input('ket'),
         ]);
         // $masuk = new masuk([
         //     'kodebarang' => $request->input('kode'),
         //     'qty'=> $request->input('stok'),
         //     'tanggalmasuk'=>$request->input('tanggalmasuk'),
         // ]);
-        $savebarang = $barang->save();
-        if ($savebarang) {
+        // $savebarang = 
+        $barang->save();
+        // if ($savebarang) {
             # code...
             // $masuk->save();
             return redirect('/barang/list')->with('success','data berhasil disimpan!');
-        }
+        // }
     }
 
     public function barangMasuk(Request $request){

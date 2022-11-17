@@ -9,6 +9,15 @@ $(document).ready(function(){
       $(".content .radio_content").hide();
       $("."+current_raido).show();
     })
+
+    console.log($('#mySwitch').val());
+    
+    $('#mySwitch').on('change',(res)=>{
+      // function (res) {
+        console.log(res);
+        
+      // }
+    })
 });
 
 function deleteConfirmation(id) {
@@ -45,3 +54,14 @@ function deleteConfirmation(id) {
       return false;
     })
   }
+
+  // tag list
+  // $(function() {
+	// 	// If using Bootstrap 2, be sure to include:
+	// 	// Tags.bootstrapVersion = "2";
+	// 	$('#my-tag-list').tags({
+	// 		tagData:["boilerplate", "tags"],
+	// 		suggestions:["basic", "suggestions"],
+	// 		excludeList:["not", "these", "words"]
+	// 	});
+	// });

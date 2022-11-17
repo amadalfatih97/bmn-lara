@@ -14,15 +14,13 @@ class CreatePemeliharaansTable extends Migration
     public function up()
     {
         Schema::create('pemeliharaans', function (Blueprint $table) {
-            $table->id();
-            $table->string('aset_fk', 50);
-            $table->string('kode', 100)->nullable();
-            $table->date('waktu_pelaksanaan');
-            $table->text('keluhan')->nullable();
-            $table->string('hasil', 100);
-            $table->text('tindak_lanjut')->nullable();
-            $table->text('ket')->nullable();
-            $table->text('img')->nullable();
+            $table->increments('id');
+            $table->string('barang_fk');
+            $table->date('tgl_pemeliharaan');
+            $table->text('kondisi_sebelum')->nullable();
+            $table->text('tindakan');
+            $table->string('pelaksana');
+            $table->text('src_bukti')->nullable();
             $table->timestamps();
         });
     }

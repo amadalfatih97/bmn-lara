@@ -63,39 +63,14 @@ Route::group(['middleware'=>['auth','cekRole:admin']], function(){
     Route::patch('/kategori/update/{id}', 'KategoriController@prosesUpdate');
     Route::delete('/kategori/delete/{id}', 'KategoriController@prosesDelete');
 
-    Route::put('/permintaan/approve/{id}', 'PermintaanController@approve');
-    Route::put('/permintaan/applied/{id}', 'PermintaanController@applied');
-    Route::put('/permintaan/finished/{id}', 'PermintaanController@finished');
-
-    Route::get('/pengguna/list', 'PenggunaController@index');
-    Route::get('/pengguna/add', 'PenggunaController@input');
-    Route::post('/pengguna/add', 'PenggunaController@prosesInput');
-    Route::get('/pengguna/{id}', 'PenggunaController@dataById');
-    Route::patch('/pengguna/update/{id}', 'PenggunaController@prosesUpdate');
-    Route::delete('/pengguna/delete/{id}', 'PenggunaController@prosesDelete');
-
     Route::get('/pemeliharaan/list', 'PemeliharaanController@index');
     Route::get('/pemeliharaan/add', 'PemeliharaanController@input');
-    Route::post('/pemeliharaan/add', 'PemeliharaanController@prosesInput');
-    Route::get('/pemeliharaan/{id}', 'PemeliharaanController@dataById');
-    Route::patch('/pemeliharaan/update/{id}', 'PemeliharaanController@prosesUpdate');
-    Route::delete('/pemeliharaan/delete/{id}', 'PemeliharaanController@prosesDelete');
-    Route::get('/pemeliharaan/riwayat/{id}', 'BarangController@pemeliharaan');
-
+    Route::post('/pemelihraan/add', 'PemeliharaanController@prosesInput');
 });
 
 Route::group(['middleware'=>['auth','cekRole:admin,pegawai']], function(){
-    Route::get('/permintaan/list', 'PermintaanController@index');
-
     Route::get('/findstok', 'BarangController@findstok');
     Route::get('/findname', 'BarangController@findByName');
-    // Route::get('/permintaan/list/{id}', 'PermintaanController@byUser');
-    Route::get('/permintaan/input', 'PermintaanController@input');
-    Route::get('/permintaan/detail/{id}', 'PermintaanController@requestdetail');
-
-    Route::get('/request/pemeliharaan', 'KeluhanController@input');
-    Route::resource('permintaan', PermintaanController::class);
-    
     Route::get('/keluhan/list', 'KeluhanController@index');
     Route::get('/keluhan/add', 'KeluhanController@input');
     Route::post('/keluhan/add', 'KeluhanController@prosesInput');

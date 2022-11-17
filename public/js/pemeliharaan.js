@@ -1,4 +1,6 @@
-
+window.addEventListener('openAddModal',function() {
+  $('.addPemeliharaan').modal('show');  
+})
 window.addEventListener('confirmperubahan',function(event){
     // $('.confirm-modal').find('#confirm-title').html(event.detail.title);
     // $('.confirm-modal').find('#msg-modal').html(event.detail.msg);

@@ -42,42 +42,44 @@
                         <table class="table table-striped table-hover">
                             <thead>
                                 <th class="no">No</th>
-                                <th>Nama</th>
+                                <th>Merek</th>
                                 <th>Kode</th>
                                 <th class="">Lokasi</th>
                                 <th class="hide-to-mobile">Kondisi</th>
                                 <th class="hide-to-mobile">Ket</th>
-                                <th class="action" colspan=3>Aksi</th>
+                                <th class="action" colspan=2>Aksi</th>
                             </thead>
                             <tbody>
                                 <?php $no=1; ?>
                                 @foreach($barangs as $key=>$data)
                                 <tr>
                                     <td>{{$no++ }}</td>
-                                    <td>{{$data->nama_barang}}</td>
-                                    <td>{{$data->kode}}</td>
+                                    <td>{{$data->merek}}</td>
+                                    <td>{{$data->kode_item}}</td>
                                     <td>{{$data->nama_lokasi}}</td>
                                     <td class="hide-to-mobile">{{$data->kondisi == 'b' ? 'Baik' : 'rusak' }}</td>
                                     <td class="hide-to-mobile">{{$data->ket ? $data->ket : '-'}}</td>
                                     <td>
                                         <a class="btn btn-outline-primary" data-bs-toggle="tooltip"
                                             data-bs-placement="bottom" title="edit data" href="/barang/{{$data->id}}"><i
-                                                class="bi bi-pencil-square"></i></a>
-                                    </td>
-                                    <td>
+                                                class="bi bi-pencil-square"></i>
+                                        </a> 
+                                        <span class="hide-to-mobile">|</span>
+                                        <a class="btn btn-outline-warning"  data-bs-toggle="tooltip"
+                                            data-bs-placement="bottom" title="lihat riwayat penggunaan" href="/barang/riwayat/{{$data->kategori_fk}}"><i class="bi bi-clock-history"></i>
+                                        </a>
+                                        <span class="hide-to-mobile">|</span>
+                                        <a class="btn btn-outline-danger" data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom" title="lihat riwayat Pemeliharaan"
+                                        href="/pemeliharaan/riwayat/{{$data->kategori_fk}}"><i class="bi bi-clock-history"></i></a>
                                         <span class="hide-to-mobile">|</span>
                                     </td>
                                     <td>
-                                        <form action='{{url("barang/delete/{$data->id}/{$data->nama_barang}")}}' method="post">
+                                        <form action='{{url("barang/delete/{$data->id}/{$data->kode_item}")}}' method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-outline-danger" type="submit"><i class="bi bi-trash"></i></button>
                                         </form>
-                                        <!-- <span class="hide-to-mobile">|</span>
-                                        <a class="btn btn-outline-warning" data-bs-toggle="tooltip"
-                                            data-bs-placement="bottom" title="lihat riwayat"
-                                            href='{{url("/barang/riwayat/{$data->kode}")}}'><i
-                                                class="bi bi-clock-history"></i></a> -->
                                     </td>
 
                                 </tr>
