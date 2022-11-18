@@ -10,14 +10,14 @@ $(document).ready(function(){
       $("."+current_raido).show();
     })
 
-    console.log($('#mySwitch').val());
+    // console.log($('#mySwitch').val());
     
-    $('#mySwitch').on('change',(res)=>{
-      // function (res) {
-        console.log(res);
+    // $('#mySwitch').on('change',(res)=>{
+    //   // function (res) {
+    //     console.log(res);
         
-      // }
-    })
+    //   // }
+    // })
 });
 
 function deleteConfirmation(id) {
@@ -65,3 +65,7 @@ function deleteConfirmation(id) {
 	// 		excludeList:["not", "these", "words"]
 	// 	});
 	// });
+
+  window.addEventListener('openAddModal',function() {
+    $('.addPemeliharaan').modal('show');  
+  })

@@ -38,15 +38,8 @@ class BarangController extends Controller
     }
 
     public function byItem($key){
-        $barangs = DB::table('barangs')
-        ->select('barangs.*','lokasis.nama_lokasi')
-        ->leftJoin('lokasis', 'barangs.lokasi_fk', '=', 'lokasis.id')
-        ->where('barangs.kategori_fk', '=', $key)
-        ->where('barangs.aktif', '=', '1')
-        ->orderBy('barangs.merek','asc')
-        ->get();
-        // dd($barangs);
-        return view('barang.view',compact('barangs'));
+        
+        return view('barang.view',compact('key'));
     }
 
     public function input(Request $request){

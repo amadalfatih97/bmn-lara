@@ -95,14 +95,14 @@
                                                     name="merek"  required autocomplete="off" placeholder="Asus, Epson, Cannon, . .">
                                             </div>
                                         </div>
-                                        {{-- <div class="col-md-6  mb-2">
+                                        <div class="col-md-6  mb-2">
                                             <label for="kodeitem" class="form-label">Kode Aset</label>
                                             <div class="input-group has-validation">
                                                 <input type="text" value="{{old('kodeitem')}}" autocomplete="false" class="form-control 
                                                 {{ $errors->get('kodeitem') ? 'is-invalid'  : ''}}" 
                                                 name="kodeitem" required autocomplete="off">
                                             </div>
-                                        </div> --}}
+                                        </div>
                                     </div>
                                     <div class="mb-2">
                                         <label for="lokasi" class="form-label">Ruang / Lokasi Alat</label>

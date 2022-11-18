@@ -2,7 +2,7 @@
     <div class="card px-3 py-3">
         <div class="row">
             <div class="col-md-8 ">
-                <button wire:click="openInputModal()" class="btn btn-success mb-2">input</button>
+                <button class="btn btn-success mb-2">input</button>
             </div>
         
             <div class="col-md-4 ">
@@ -59,5 +59,5 @@
             </div>
         </div>
     </div>
-    @include('pemeliharaan.input')
+    {{-- @include('pemeliharaan.input') --}}
 </div>
