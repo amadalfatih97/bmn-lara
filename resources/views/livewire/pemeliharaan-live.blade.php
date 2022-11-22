@@ -23,7 +23,7 @@
         @endif
         <div class="row">
             <div class="col-md-12">
-                <div class="card overflow-auto">
+                <div class="card">
                     <table class="table table-striped table-hover">
                         <thead>
                             <th class="no">No</th>

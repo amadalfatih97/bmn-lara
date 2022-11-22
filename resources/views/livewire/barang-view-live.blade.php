@@ -1,13 +1,28 @@
 <div>
     <div class="row">
-        <div class="col-md-8 ">
+        <div class="col-md-4 ">
             <a href="{{url('barang/list')}}" class="btn btn-success mb-2">tutup</a>
         </div>
 
+        <div class="col-md-4">
+            <form>
+                <div class="input-group mb-3">
+                    <select wire:model='selectLokasi' class="form-select">
+                        <option value="">--pilih ruangan--</option>
+                        @foreach ($lokasis as $lok)
+                            <option value="{{$lok->id}}">{{$lok->nama_lokasi}}</option>
+                            {{-- <option value="{{$lok->lokasi_fk}}">{{$lok->nama_lokasi}}</option> --}}
+
+                        @endforeach
+                    </select>
+                </div>
+            </form>
+        </div>
+        
         <div class="col-md-4 ">
             <form>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Search" aria-label="Search"
+                    <input type="text" class="form-control" placeholder="Cari merek / kode BMN" aria-label="Search"
                         aria-describedby="button-addon2"  wire:model.debounce.350ms="search">
                     <button class="btn btn-outline-secondary" id="button-addon2">
                         <i class="bi bi-search"></i>
@@ -18,7 +33,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="card overflow-auto">
+            <div class="card ">
                 <table class="table table-striped table-hover">
                     <thead>
                         <th class="no">No</th>
@@ -32,7 +47,7 @@
                         <?php $no=1; ?>
                         @foreach($barangs as $key=>$data)
                         <tr>
-                            <td>{{$no++ }}</td>
+                            <td>{{$barangs->firstItem() + $key }}</td>
                             <td>{{$data->merek}}</td>
                             <td>{{$data->kode_item}}</td>
                             <td>{{$data->nama_lokasi}}</td>
@@ -55,7 +70,7 @@
                                         href="/pemeliharaan/riwayat/{{$data->kategori_fk}}"><i class="bi bi-clock-history"></i>
                                     </a> --}}
                                     <span class="hide-to-mobile">|</span>
-                                    <button type="button" wire:click="openInputModal()" class="btn btn-sm btn-outline-danger" data-bs-toggle="tooltip"
+                                    <button type="button" wire:click="openInputModal('{{$data->kode_item}}','{{$data->merek}}')" class="btn btn-sm btn-outline-danger" data-bs-toggle="tooltip"
                                         data-bs-placement="bottom" title="input data pemeliharaan"><i
                                             class="bi bi-tools"></i>
                                     </button> 
@@ -80,6 +95,9 @@
 
                     </tbody>
                 </table>
+                @if (count($barangs))
+                    {{$barangs->links('livewire/paginate-live')}}
+                @endif
             </div>
         </div>
     </div>

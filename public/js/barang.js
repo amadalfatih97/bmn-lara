@@ -66,6 +66,8 @@ function deleteConfirmation(id) {
 	// 	});
 	// });
 
-  window.addEventListener('openAddModal',function() {
+  window.addEventListener('openAddPemeliharaanModal',function() {
+    // console.log(event);
+    // $('.addPemeliharaan').find('form')[0].reset();
     $('.addPemeliharaan').modal('show');  
   })
