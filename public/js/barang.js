@@ -71,3 +71,16 @@ function deleteConfirmation(id) {
     // $('.addPemeliharaan').find('form')[0].reset();
     $('.addPemeliharaan').modal('show');  
   })
+
+  window.addEventListener('openRiwayatPemeliharaanModal',function(params) {
+    $('.riwayatPemeliharaan').modal('show');  
+    // console.log(params.detail.data);
+    const items = params.detail.data;
+    $('.modal-content').find('h2').html('AC');
+    const tableBody = document.getElementById('rowitem');
+    let dataHtml = ``;
+    items.forEach((el,i) => {
+                  dataHtml += `<tr><td>${i+1}</td><td>${el.tgl_pemeliharaan}</td><td>${el.tindakan}</td><td>${el.pelaksana}</td><td>${el.kondisi_sebelum}</td></tr>`
+              });
+    tableBody.innerHTML = dataHtml;
+  })

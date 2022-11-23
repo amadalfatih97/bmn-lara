@@ -6,9 +6,11 @@ use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use App\Barang;
 use App\lokasi;
+use Livewire\WithPagination;
 class BarangViewLive extends Component
 {
 
+    use WithPagination;
     public $key;
     public $search='';
     public $selectLokasi='';
@@ -61,6 +63,19 @@ class BarangViewLive extends Component
         ];
             // dd($this->selectPemeliharaan);
         $this->dispatchBrowserEvent('openAddPemeliharaanModal');
+    }
+
+    public function openRiwayatPemeliharaan($kode){
+        $riwayat = DB::table('pemeliharaans')
+        ->select('pemeliharaans.*','barangs.kategori_fk','barangs.merek')
+        ->leftJoin('barangs', 'pemeliharaans.barang_fk', '=', 'barangs.kode_item')
+        ->where('barang_fk', '=', $kode)
+        ->orderBy('pemeliharaans.tgl_pemeliharaan','DESC')
+        ->get();
+        $this->dispatchBrowserEvent('openRiwayatPemeliharaanModal',[
+            'data'=> $riwayat
+        ]);
+        // dd($riwayat);
     }
 
     // public function updatedselectLokasi(){

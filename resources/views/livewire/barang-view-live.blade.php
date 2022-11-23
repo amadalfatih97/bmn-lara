@@ -82,7 +82,8 @@
                                       <ul class="dropdown-menu dropdown-menu-dark">
                                         <li><a class="dropdown-item" href="/barang/riwayat/{{$data->kategori_fk}}">Penggunaan</a></li>
                                         <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="/pemeliharaan/riwayat/{{$data->kategori_fk}}">Pemeliharaan</a></li>
+                                        <li><button type="button" class="dropdown-item"  wire:click="openRiwayatPemeliharaan('{{$data->kode_item}}')">Pemeliharaan</button></li>
+                                        {{-- <li><a class="dropdown-item" href="/pemeliharaan/riwayat/{{$data->kode_item}}">Pemeliharaan</a></li> --}}
                                       </ul>
                                     {{-- <span class="hide-to-mobile">|</span>
                                 
@@ -102,4 +103,5 @@
         </div>
     </div>
     @include('pemeliharaan.input')
+    @include('pemeliharaan.riwayatById')
 </div>

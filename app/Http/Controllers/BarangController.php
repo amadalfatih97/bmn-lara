@@ -38,7 +38,6 @@ class BarangController extends Controller
     }
 
     public function byItem($key){
-        
         return view('barang.view',compact('key'));
     }
 
@@ -203,12 +202,12 @@ class BarangController extends Controller
 
     public function pemeliharaan($kode){
         $riwayat = DB::table('pemeliharaans')
-        ->select('pemeliharaans.*','barangs.nama_barang')
-        ->leftJoin('barangs', 'pemeliharaans.aset_fk', '=', 'barangs.kode')
-        ->where('nama_barang', '=', $kode)
-        ->orderBy('pemeliharaans.waktu_pelaksanaan','DESC')
+        ->select('pemeliharaans.*','barangs.kategori_fk','barangs.merek')
+        ->leftJoin('barangs', 'pemeliharaans.barang_fk', '=', 'barangs.kode_item')
+        ->where('barang_fk', '=', $kode)
+        ->orderBy('pemeliharaans.tgl_pemeliharaan','DESC')
         ->get();
-        // dd($riwayat);
+        dd($riwayat);
         return view('pemeliharaan.riwayat',compact('riwayat'));
     }
 
@@ -244,15 +243,15 @@ class BarangController extends Controller
         return response()->json($detail,200);
     }
 
-    public function findByName(Request $request)
-    {
-        $datas = Barang::select('id','nama_barang', 'kode')
-        ->where('nama_barang', $request->key)
-        ->where('status', 'true')
-        ->get();
-        // return response()->json($data);
-        foreach($datas as $data){
-            echo "<option value='$data->kode'>$data->kode</option>";
-        }
-    }
+    // public function findByName(Request $request)
+    // {
+    //     $datas = Barang::select('id','nama_barang', 'kode')
+    //     ->where('nama_barang', $request->key)
+    //     ->where('status', 'true')
+    //     ->get();
+    //     // return response()->json($data);
+    //     foreach($datas as $data){
+    //         echo "<option value='$data->kode'>$data->kode</option>";
+    //     }
+    // }
 }
