@@ -42,9 +42,15 @@ class BarangController extends Controller
     }
 
     public function input(Request $request){
-        $barangs = DB::table('kategoris')
+        // $barangs = DB::table('kategoris')
+        //             ->where('aktif', '=', '1')
+        //             ->orderBy('nama_kategori','asc')
+        //             ->get();
+        $kategoris = DB::table('barangs')
+                    ->select('barangs.kategori_fk')
                     ->where('aktif', '=', '1')
-                    ->orderBy('nama_kategori','asc')
+                    ->groupBy('kategori_fk')
+                    ->orderBy('kategori_fk','ASC')
                     ->get();
         $satuans = DB::table('satuans')
                     ->where('aktif', '=', '1')
@@ -56,7 +62,7 @@ class BarangController extends Controller
                     ->get();
         // $data = DB::table('barangs')->latest('id')->first();
         // $last = isset($data->id) ? $data->id : 0;
-        return view('barang.input', compact('barangs','satuans','lokasis'/* ,'last' */));
+        return view('barang.input', compact('satuans','lokasis','kategoris'));
     }
 
     public function prosesInput(Request $request){

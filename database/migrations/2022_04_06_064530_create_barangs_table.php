@@ -26,7 +26,7 @@ class CreateBarangsTable extends Migration
             $table->string('kondisi',30);//baik/rusak ringan/ rusak berat
             $table->string('status',30)->default('sedia');//sedia/tidak sedia
             $table->boolean('type')->default(0)->change();//chek berkala?
-            $table->date('pemeliharaan_terakhir');
+            $table->date('pemeliharaan_terakhir')->nullable();;
             $table->string('jadwal_service',100)->nullable();
             $table->text('ket')->nullable();
             $table->text('img')->nullable();
