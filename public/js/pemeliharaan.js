@@ -47,3 +47,9 @@ $(document).on('change', '#selectname', function() {
       },
   });
 });
+
+window.addEventListener('openModalDetail',function (params) {
+  // console.log(params.detail);
+  $(".detailPemeliharaanModal").modal('show');
+
+});

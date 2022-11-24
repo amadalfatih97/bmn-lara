@@ -76,15 +76,15 @@
                                     </button> 
                                     <span class="hide-to-mobile">|</span>
                                     <button type="button" class="btn btn-sm btn-outline-info dropdown-toggle" data-bs-toggle="dropdown"
-                                        data-bs-toggle="tooltip" data-bs-placement="bottom" title="Cek Riwayat" aria-expanded="false">
+                                        data-toggle="tooltip" data-bs-placement="bottom" title="Cek Riwayat" aria-expanded="false">
                                         <i class="bi bi-clock-history"></i>
-                                      </button>
-                                      <ul class="dropdown-menu dropdown-menu-dark">
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-dark">
                                         <li><a class="dropdown-item" href="/barang/riwayat/{{$data->kategori_fk}}">Penggunaan</a></li>
                                         <li><hr class="dropdown-divider"></li>
                                         <li><button type="button" class="dropdown-item"  wire:click="openRiwayatPemeliharaan('{{$data->kode_item}}')">Pemeliharaan</button></li>
                                         {{-- <li><a class="dropdown-item" href="/pemeliharaan/riwayat/{{$data->kode_item}}">Pemeliharaan</a></li> --}}
-                                      </ul>
+                                    </ul>
                                     {{-- <span class="hide-to-mobile">|</span>
                                 
                                     <button class="btn btn-outline-danger" type="submit"><i class="bi bi-trash"></i></button> --}}

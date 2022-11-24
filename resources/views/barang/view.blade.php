@@ -20,7 +20,7 @@
         @endif
         <div class="card px-3 py-3">
             {{-- @livewire('barang-view-live') --}}
-            @livewire('barang-view-live', ['key' => $key])
+            @livewire('barang.barang-view-live', ['key' => $key])
         </div>
     </div>
 </div>

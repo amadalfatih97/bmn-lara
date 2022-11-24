@@ -2,7 +2,7 @@
     <div class="card px-3 py-3">
         <div class="row">
             <div class="col-md-8 ">
-                <button class="btn btn-success mb-2">input</button>
+                {{-- <button class="btn btn-success mb-2">input</button> --}}
             </div>
         
             <div class="col-md-4 ">
@@ -43,8 +43,8 @@
                             <td>{{$data->tgl_pemeliharaan}}</td>
                             <td>{{$data->pelaksana}}</td>
                             <td>
-                                <a class="btn btn-outline-primary"  data-bs-toggle="tooltip"
-                                data-bs-placement="bottom" title="lihat daftar" href="/barang/view/{{$data->kategori_fk}}"><i class="bi bi-list"></i></a>
+                                <button type="button" class="btn btn-outline-info"  data-bs-toggle="tooltip"
+                                data-bs-placement="bottom" title="lihat info Pemeliharaan" wire:click="openDetail('{{$data->id}}')"><i class="bi bi-info-lg"></i></button>
                                 
                             </td>
                         </tr>
@@ -59,5 +59,6 @@
             </div>
         </div>
     </div>
-    {{-- @include('pemeliharaan.input') --}}
+@include('pemeliharaan.detail')
+{{-- @include('pemeliharaan.input') --}}
 </div>

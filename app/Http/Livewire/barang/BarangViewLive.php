@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\barang;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
@@ -49,7 +49,7 @@ class BarangViewLive extends Component
         ->orderBy('barangs.merek','asc')
         ->paginate(5);
         // dd($barangs);
-        return view('livewire.barang-view-live', compact('barangs'));
+        return view('livewire.barang.barang-view-live', compact('barangs'));
     }
 
     public function openInputModal($kode,$merek){

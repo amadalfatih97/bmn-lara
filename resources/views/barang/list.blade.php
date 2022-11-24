@@ -19,7 +19,7 @@
         </div>
         @endif
         <div class="card px-3 py-3">
-            @livewire('barang-live')
+            @livewire('barang.barang-live')
             
         </div>
     </div>

@@ -76,11 +76,13 @@ function deleteConfirmation(id) {
     $('.riwayatPemeliharaan').modal('show');  
     // console.log(params.detail.data);
     const items = params.detail.data;
-    $('.modal-content').find('h2').html('AC');
+    $('.modal-content').find('span').html(`${items[0].kategori_fk} ${items[0].merek} [${items[0].barang_fk} ]`);
     const tableBody = document.getElementById('rowitem');
     let dataHtml = ``;
-    items.forEach((el,i) => {
-                  dataHtml += `<tr><td>${i+1}</td><td>${el.tgl_pemeliharaan}</td><td>${el.tindakan}</td><td>${el.pelaksana}</td><td>${el.kondisi_sebelum}</td></tr>`
-              });
-    tableBody.innerHTML = dataHtml;
+    if (items.length > 0) {
+      items.forEach((el,i) => {
+                dataHtml += `<tr><td>${i+1}</td><td>${el.tgl_pemeliharaan}</td><td>${el.tindakan}</td><td>${el.pelaksana}</td><td>${el.kondisi_sebelum}</td></tr>`
+            });
+      tableBody.innerHTML = dataHtml;
+    }
   })

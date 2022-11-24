@@ -2,7 +2,7 @@
 
 @section('main') --}}
 <div class="modal fade addPemeliharaan" wire:ignore.self role="dialog" aria-hidden="true"
-    data-keyboard="false" data-backdrop="static" tabindex="-1">
+    data-bs-keyboard="false" id="staticBackdrop" data-bs-backdrop="static" tabindex="-1">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">

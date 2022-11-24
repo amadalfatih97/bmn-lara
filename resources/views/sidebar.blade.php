@@ -45,12 +45,12 @@
                         </a>
                     </li>
                     @if (auth()->user()->username!='hermawan')
-                    <li>
+                    {{-- <li>
                         <a href='{{url("pengguna/list")}}' class="nav-link px-3 {{ Request::segment(1) == 'pengguna' ? 'active' : null }}">
                             <span class="me-2"><i class="bi bi-person-workspace"></i></span>
                             <span>Penempatan</span>
                         </a>
-                    </li>
+                    </li> --}}
 
                     <li>
                         <a href='{{url("pemeliharaan/list")}}' class="nav-link px-3 {{ Request::segment(1) == 'pemeliharaan' ? 'active' : null }}">
@@ -60,7 +60,7 @@
                     </li>
                     <li>
                         <a href='{{url("keluhan/list")}}' class="nav-link px-3 {{ Request::segment(1) == 'keluhan' ? 'active' : null }}">
-                            <span class="me-2"><i class="bi bi-tools"></i></span>
+                            <span class="me-2"><i class="bi bi-chat-left-text"></i></span>
                             <span>Laporan Keluhan Aset</span>
                         </a>
                     </li>
@@ -74,7 +74,7 @@
                     </li>
                     <li>
                         <a href='{{url("request/pemeliharaan")}}' class="nav-link px-3 {{ Request::segment(1) == 'request' ? 'active' : null }}">
-                            <span class="me-2"><i class="bi bi-tools"></i></span>
+                            <span class="me-2"><i class="bi bi-chat-left-text"></i></span>
                             <span>Laporkan Asset</span>
                         </a>
                     </li>
