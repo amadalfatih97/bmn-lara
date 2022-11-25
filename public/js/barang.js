@@ -14,10 +14,22 @@ $(document).ready(function(){
     
     // $('#mySwitch').on('change',(res)=>{
     //   // function (res) {
-    //     console.log(res);
-        
+    //     if(this.checked)
+    //       console.log('true');
+    //     else
+    //       console.log('false');
+    //     // if($('#mySwitch').is(':checked')){
+
+    //     // }
     //   // }
     // })
+
+    $('#mySwitch').on('change', function () {
+      if (this.checked)
+        $('#checktype').prop('disabled', false);
+      else
+      $('#checktype').prop('disabled', true);
+  });
 });
 
 function deleteConfirmation(id) {
@@ -86,3 +98,28 @@ function deleteConfirmation(id) {
       tableBody.innerHTML = dataHtml;
     }
   })
+
+$(document).on('change', '#select-kategori', function() {
+  let nameitem = $(this).val();
+  $.ajax({
+      type: 'get',
+      url: '/find-kode',
+      data: {'key':nameitem},
+      // dataType: 'json',
+      cache: false,
+      success: function(data){
+        console.log(data);
+          $('#kode-bmn').val(data.kode_bmn);
+          $('#tag').val(data.keyword);
+          $('#satuan').val(data.satuan_fk);
+          $('#jangka-pemeliharaan').val(data.jadwal_service);
+          if (data.type == 1)
+            $("#my-switch").prop("checked", true);
+          else
+            $("#my-switch").prop("checked", false);
+      },
+      error: function(){
+          console.log('err');
+      },
+  });
+});

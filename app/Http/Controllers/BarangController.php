@@ -228,13 +228,13 @@ class BarangController extends Controller
         return redirect('/barang/view/'.$key)->with('success','data berhasil dihapus!');;
     }
 
-    public function stok($key){
-        $stok = DB::table('barangs')
-        ->select(DB::raw('count(nama_barang) as stok'))
-        ->where('barangs.nama_barang', '=', $key)
-        ->where('barangs.aktif', '=', '1')->first();
-        dd($stok);
-        // return $stok;
+    public function getKodeKtg(Request $request){
+        $kode = DB::table('barangs')
+        ->select('barangs.kode_bmn','barangs.satuan_fk','barangs.keyword','barangs.type','barangs.jadwal_service')
+        ->where('kategori_fk',$request->key)
+        ->first();
+        return response()->json($kode,200);
+
     }
 
     /* find stok */

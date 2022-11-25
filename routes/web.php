@@ -72,6 +72,7 @@ Route::group(['middleware'=>['auth','cekRole:admin']], function(){
 Route::group(['middleware'=>['auth','cekRole:admin,pegawai']], function(){
     Route::get('/findstok', 'BarangController@findstok');
     Route::get('/findname', 'BarangController@findByName');
+    Route::get('/find-kode', 'BarangController@getKodeKtg');
     Route::get('/keluhan/list', 'KeluhanController@index');
     Route::get('/keluhan/add', 'KeluhanController@input');
     Route::post('/keluhan/add', 'KeluhanController@prosesInput');

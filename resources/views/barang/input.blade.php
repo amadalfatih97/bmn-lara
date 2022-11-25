@@ -89,7 +89,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-12  mb-2">
+                                        <div class="col-md-6  mb-2">
                                             <label for="merek" class="form-label">Merek/ Sernum/ Spec</label>
                                             <div class="input-group has-validation">
                                                 <input type="text" value="{{old('merek')}}" class="form-control 
@@ -159,12 +159,12 @@
                                             name="tag" required placeholder="#laptop #kamera #soundsistem #proyektor. . .">
                                         </div>
                                     </div>
-                                    <div class="mb-2">
+                                    {{-- <div class="mb-2">
                                         <label for="ket" class="form-label">Keterangan</label>
                                         <textarea class="form-control  
                                             {{ $errors->get('ket') ? 'is-invalid'  : ''}}" name="ket"
                                             id="exampleFormControlTextarea1" rows="3">{{old('ket')}} </textarea>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 
                                 <div class="card p-3  mb-3">
@@ -210,15 +210,16 @@
                             <form action="{{url('/barang/masuk')}}" method="post">
                                 @csrf
                                 <div class="card p-3 mb-2">
-                                    <div class="mb-2">
-                                        <label for="tglperolehan" class="form-label">Tanggal Perolehan</label>
-                                        <div class="mb-2 input-group has-validation">
-                                            <input type="date" value="{{old('tglperolehan')}}" class="form-control 
-                                            {{ $errors->get('tglperolehan') ? 'is-invalid'  : ''}}"  data-date-format="DD MMMM YYYY"
-                                                name="tglperolehan" required max="{{date('Y-m-d')}}">
-                                        </div>
-                                    </div>
+                                    
                                     <div class="row">
+                                        <div class="col-md-12 mb-2">
+                                            <label for="tglperolehan" class="form-label">Tanggal Perolehan</label>
+                                            <div class="mb-2 input-group has-validation">
+                                                <input type="date" value="{{old('tglperolehan')}}" class="form-control 
+                                                {{ $errors->get('tglperolehan') ? 'is-invalid'  : ''}}"  data-date-format="DD MMMM YYYY"
+                                                    name="tglperolehan" required max="{{date('Y-m-d')}}">
+                                            </div>
+                                        </div>
                                         <div class="col-md-6  mb-2">
                                             <label for="kategori" class="form-label">Nama Aset/ Kategori</label>
                                             <select class="form-select  {{ $errors->get('kategori') ? 'is-invalid'  : ''}}"
@@ -234,14 +235,12 @@
                                         <div class="col-md-6  mb-2">
                                             <label for="kodebmn" class="form-label">Kode BMN</label>
                                             <div class="input-group has-validation">
-                                                <input type="text" value="{{old('kodebmn')}}" autocomplete="false" class="form-control 
+                                                <input type="text" value="{{old('kodebmn')}}" id="kode-bmn" class="form-control 
                                                 {{ $errors->get('kodebmn') ? 'is-invalid'  : ''}}" 
-                                                name="kodebmn" required autocomplete="off">
+                                                name="kodebmn" required readonly>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12  mb-2">
+                                        <div class="col-md-6  mb-2">
                                             <label for="merek" class="form-label">Merek/ Sernum/ Spec</label>
                                             <div class="input-group has-validation">
                                                 <input type="text" value="{{old('merek')}}" class="form-control 
@@ -252,7 +251,7 @@
                                         <div class="col-md-6  mb-2">
                                             <label for="kodeitem" class="form-label">Kode Aset</label>
                                             <div class="input-group has-validation">
-                                                <input type="text" value="{{old('kodeitem')}}" autocomplete="false" class="form-control 
+                                                <input type="text" value="{{old('kodeitem')}}" class="form-control 
                                                 {{ $errors->get('kodeitem') ? 'is-invalid'  : ''}}" 
                                                 name="kodeitem" required autocomplete="off">
                                             </div>
@@ -261,7 +260,8 @@
                                     <div class="mb-2">
                                         <label for="lokasi" class="form-label">Ruang / Lokasi Alat</label>
                                         <select class="form-select  {{ $errors->get('lokasi') ? 'is-invalid'  : ''}}"
-                                            name="lokasi" aria-label="Default select example" required>
+                                            name="lokasi" aria-label="Default select example" required
+                                            id="lokasi">
                                             <option>Pilih Lokasi</option>
                                             @foreach ($lokasis as $item)
                                             <option value="{{$item->id}}" {{$item->id == $getLokasi ? 'selected' : ''}}>
@@ -273,15 +273,21 @@
                                     <div class="row">
                                         <div class="col-md-4 mb-2">
                                             <label for="satuan" class="form-label">Satuan</label>
-                                            <select class="form-select  {{ $errors->get('satuan') ? 'is-invalid'  : ''}}"
-                                                name="satuan" aria-label="Default select example" required>
-                                                <option value="">Pilih Satuan</option>
-                                                @foreach ($satuans as $item)
-                                                <option value="{{$item->id}}" {{$item->id == $getSelect ? 'selected' : ''}}>
-                                                    {{$item->nama_satuan}}
-                                                </option>
-                                                @endforeach
-                                            </select>
+                                            <div class="input-group has-validation">
+                                                {{-- <input type="text" value="{{old('kodesatuan')}}" id="satuan" class="form-control 
+                                                {{ $errors->get('satuan') ? 'is-invalid'  : ''}}" 
+                                                name="satuan" required readonly> --}}
+                                                <select class="form-select  {{ $errors->get('satuan') ? 'is-invalid'  : ''}}"
+                                                    name="satuan" aria-label="Default select example" required disabled
+                                                    id="satuan">
+                                                    <option value="">Pilih Satuan</option>
+                                                    @foreach ($satuans as $item)
+                                                    <option value="{{$item->id}}" {{$item->id == $getSelect ? 'selected' : ''}}>
+                                                        {{$item->nama_satuan}}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
                                         <div class="col-md-4 mb-2">
                                             <label for="kondisi" class="form-label">Kondisi</label>
@@ -306,22 +312,23 @@
                                     <div class="mb-2">
                                         <label for="tag" class="form-label">Keyword / Tag</label>
                                         <div class="input-group has-validation">
-                                            <input type="text" value="{{old('tag')}}" autocomplete="false" class="form-control 
+                                            <input type="text" value="{{old('tag')}}" id="tag" class="form-control 
                                             {{ $errors->get('tag') ? 'is-invalid'  : ''}}" 
                                             name="tag" required placeholder="#laptop #kamera #soundsistem #proyektor. . .">
                                         </div>
                                     </div>
-                                    <div class="mb-2">
+                                    {{-- <div class="mb-2">
                                         <label for="ket" class="form-label">Keterangan</label>
                                         <textarea class="form-control  
                                             {{ $errors->get('ket') ? 'is-invalid'  : ''}}" name="ket"
                                             id="exampleFormControlTextarea1" rows="3">{{old('ket')}} </textarea>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 
                                 <div class="card p-3  mb-3">
                                     <div class="form-check form-switch mb-2">
-                                        <input class="form-check-input" type="checkbox" id="mySwitch" name="switchservice" value="1">
+                                        <input class="form-check-input" type="checkbox" id="my-switch"
+                                        disabled name="switchservice" value="1">
                                         <label class="form-check-label" for="mySwitch">Type Service Berkala</label>
                                     </div>
                                     <div class="row mb-2">
@@ -336,8 +343,8 @@
                                         <div class="col-md-6">
                                             <label for="waktupemeliharaan" class="form-label">Jangka Pemeliharaan</label>
                                             <div class="input-group has-validation">
-                                                <input type="number" value="{{old('waktupemeliharaan')}}" autocomplete="false" class="form-control 
-                                                {{ $errors->get('waktupemeliharaan') ? 'is-invalid'  : ''}}" id="checktype"
+                                                <input type="number" id="jangka-pemeliharaan" 
+                                                class="form-control" readonly 
                                                 name="waktupemeliharaan" placeholder="dalam hitungan bulan" > 
                                             </div>
                                         </div>
