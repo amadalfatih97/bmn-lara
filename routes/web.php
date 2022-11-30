@@ -19,7 +19,8 @@ Route::get('/login', 'UserController@login')->name('login');
 Route::post('/proseslogin', 'UserController@prosesLogin')->name('proseslogin');
 Route::post('/logout', 'UserController@prosesLogot')->name('logout');
 
-Route::get('/', 'HomeController@index')->name('home');
+// Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'BarangController@index');
 
 Route::group(['middleware'=>['auth','cekRole:admin']], function(){
     Route::get('/user/list', 'UserController@index');
@@ -80,4 +81,9 @@ Route::group(['middleware'=>['auth','cekRole:admin,pegawai']], function(){
     Route::put('/keluhan/accept/{id}', 'KeluhanController@accept');
     Route::delete('/keluhan/delete/{id}', 'KeluhanController@prosesDelete');
     Route::patch('/keluhan/proses/{id}', 'KeluhanController@proses');
+
+    Route::get('/permintaan/list', 'PermintaanController@index');
+
+    Route::get('/keluhan/list', 'PermintaanController@index');
+
 });

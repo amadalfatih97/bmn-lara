@@ -40,16 +40,16 @@
                             <div class="input-group has-validation">
                                 <input type="text" autocomplete="false" class="form-control 
                                 {{ $errors->get('kodebmn') ? 'is-invalid'  : ''}}" name="pelaksana"
-                                required wire:model="selectPemeliharaan.pelaksana">
+                                required wire:model="selectPemeliharaan.pelaksana" placeholder="teknisi">
                             </div>
                         </div>
                         <div class="col-md-12 mb-2">
                             <label for="ket" class="form-label">Kondisi</label>
-                            <textarea class="form-control" rows="3" name="kondisi" wire:model="selectPemeliharaan.kondisi"></textarea>
+                            <textarea class="form-control" rows="3" placeholder="kondisi sebelum pemeliharaan " name="kondisi" wire:model="selectPemeliharaan.kondisi"></textarea>
                         </div>
                         <div class="col-md-12 mb-2">
                             <label for="ket" class="form-label">Tindakan</label>
-                            <textarea class="form-control" rows="3" name="tindakan" wire:model="selectPemeliharaan.tindakan"></textarea>
+                            <textarea class="form-control" rows="3" placeholder="kegiatan pemeliharaan" name="tindakan" wire:model="selectPemeliharaan.tindakan"></textarea>
                         </div>
                     </div>
                 </div>

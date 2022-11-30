@@ -41,7 +41,7 @@
                     <li>
                         <a href='{{url("permintaan/list")}}' class="nav-link px-3 {{ Request::segment(1) == 'permintaan' ? 'active' : null }}">
                             <span class="me-2"><i class="bi bi-clipboard2-check"></i></span>
-                            <span>Semua Permintaan</span>
+                            <span>Data Permintaan</span>
                         </a>
                     </li>
                     @if (auth()->user()->username!='hermawan')
