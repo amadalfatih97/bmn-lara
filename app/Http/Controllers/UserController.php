@@ -89,7 +89,7 @@ class UserController extends Controller
 
         // dd($request->all());
         if(Auth::attempt($request->only('username','password'))){
-            return redirect('/');
+            return redirect('/barang/list');
         }
         return redirect('login');
     }

@@ -28,7 +28,7 @@ $(document).ready(function(){
       if (this.checked)
         $('#checktype').prop('disabled', false);
       else
-      $('#checktype').prop('disabled', true);
+        $('#checktype').prop('disabled', true);
   });
 });
 
@@ -113,10 +113,14 @@ $(document).on('change', '#select-kategori', function() {
           $('#tag').val(data.keyword);
           $('#satuan').val(data.satuan_fk);
           $('#jangka-pemeliharaan').val(data.jadwal_service);
-          if (data.type == 1)
+          if (data.type == 1){
             $("#my-switch").prop("checked", true);
-          else
+            $("#pemeliharaan-terakhir").prop("disabled",false);
+          }
+          else{
             $("#my-switch").prop("checked", false);
+            $("#pemeliharaan-terakhir").prop("disabled",true);
+          }
       },
       error: function(){
           console.log('err');

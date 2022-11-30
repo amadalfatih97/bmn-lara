@@ -46,6 +46,9 @@ aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" dat
                             <div class="col-md-4 ms-auto">
                                 <u class="fw-bolder"> Tanggal Pelaksanaan</u> 
                                 <p>{{$detail['tanggal'] }}</p>
+
+                                <u class="fw-bolder">Pelaksana</u> 
+                                <p class="m-0">{{$detail['pelaksana'] }}</p>
                             </div>
                         </div>
 
@@ -58,6 +61,7 @@ aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" dat
                         <span class="fw-bolder">Kondisi Sebelum Pemeliharaan</span> 
                         {{-- <p>{{$detail['kondisi'] }}</p> --}}
                         <textarea class="form-control bg-white" rows="3" readonly wire:model="detail.kondisi"></textarea>
+                        
                         
                         <hr class="divider" />
                         <div class="d-grid">

@@ -272,13 +272,12 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4 mb-2">
-                                            <label for="satuan" class="form-label">Satuan</label>
+                                            <label for="inputsatuan" class="form-label">Satuan</label>
                                             <div class="input-group has-validation">
-                                                {{-- <input type="text" value="{{old('kodesatuan')}}" id="satuan" class="form-control 
-                                                {{ $errors->get('satuan') ? 'is-invalid'  : ''}}" 
-                                                name="satuan" required readonly> --}}
+                                                <input type="text" id="satuan" class="form-control" 
+                                                name="satuan" required >
                                                 <select class="form-select  {{ $errors->get('satuan') ? 'is-invalid'  : ''}}"
-                                                    name="satuan" aria-label="Default select example" required disabled
+                                                    name="inputsatuan" required disabled
                                                     id="satuan">
                                                     <option value="">Pilih Satuan</option>
                                                     @foreach ($satuans as $item)
@@ -336,7 +335,7 @@
                                             <label for="terakhircek" class="form-label">Terakhir Pemeliharaan</label>
                                             <div class="mb-2 input-group has-validation">
                                                 <input type="date" value="{{old('terakhircek')}}" class="form-control 
-                                                {{ $errors->get('terakhircek') ? 'is-invalid'  : ''}}" id="checktype" data-date-format="DD MMMM YYYY"
+                                                {{ $errors->get('terakhircek') ? 'is-invalid'  : ''}}" id="pemeliharaan-terakhir" data-date-format="DD MMMM YYYY"
                                                     name="terakhircek" max="{{date('Y-m-d')}}">
                                             </div>
                                         </div>

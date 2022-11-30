@@ -114,44 +114,42 @@ class BarangController extends Controller
     }
 
     public function barangMasuk(Request $request){
+        dd($request->input());
         /* validation */
         $request->validate([
-            'namabarang' => 'required|max:100',
-            'kode' => 'required|max:30',
-            // 'satuan' => 'required|max:3',
-            'lokasi' => 'required|max:3',
-            'kondisi' => 'required|max:30',
+            'tglperolehan' => 'required',
+            'kategori' => 'required',
+            'kodebmn' => 'required|max:50',
+            'merek' => 'required|max:100',
+            'kodeitem' => 'required|max:50',
+            'lokasi' => 'required',
+            'inputsatuan' => 'required',
+            'kondisi' => 'required|max:3',
             'status' => 'required|max:30',
+            'tag' => 'max:250',
+            'ket' => 'max:250',
         ]);
-        $satuan = DB::table('barangs')
-                    ->select('satuan_fk','jenis')
-                    ->where('nama_barang', '=', $request->input('namabarang'))
-                    ->first();
-        // dd($satuan);
+        
         /* proses input */
         $barang = new Barang([
             /* database                      namefield */
-            'nama_barang'=> $request->input('namabarang'),
-            'kode'=> $request->input('kode'),
-            'jenis'=> $satuan->jenis,
-            'satuan_fk'=> $satuan->satuan_fk,
+            'merek'=> $request->input('merek'),
+            'kode_bmn'=> $request->input('kodebmn'),
+            'kode_item'=> $request->input('kodeitem'),
+            'kategori_fk'=> $request->input('kategori'),
+            'keyword'=> $request->input('tag'),
+            'satuan_fk'=> $request->input('satuan'),
             'lokasi_fk'=> $request->input('lokasi'),
-            'stok'=> 1,
+            'tgl_perolehan'=> $request->input('tglperolehan'),
             'kondisi'=> $request->input('kondisi'),
             'status'=> $request->input('status'),
+            'type'=> $request->input('switchservice') ? $request->input('switchservice') : 0,
+            'pemeliharaan_terakhir'=> $request->input('terakhircek'),
+            'jadwal_service'=> $request->input('waktupemeliharaan'),
             'ket'=> $request->input('ket'),
         ]);
-        // $masuk = new masuk([
-        //     'kodebarang' => $request->input('kode'),
-        //     'qty'=> $request->input('stok'),
-        //     'tanggalmasuk'=>$request->input('tanggalmasuk'),
-        // ]);
-        $savebarang = $barang->save();
-        if ($savebarang) {
-            # code...
-            // $masuk->save();
-            return redirect('/barang/list')->with('success','data berhasil disimpan!');
-        }
+        $barang->save();
+        return redirect('/barang/list/',$request->input('kategori'))->with('success','data berhasil disimpan!');
     }
 
 
