@@ -23,32 +23,36 @@ class HomeLive extends Component
         //                         ->addColumn('Shopping', 200, '#fc8181')
         //                         ->addColumn('Travel', 300, '#90cdf4');
         $barangs = DB::table('barangs')
-        ->select(DB::raw('count(nama_barang) as qty'))
+        ->select(DB::raw('count(merek) as qty'))
         ->where('barangs.aktif', '=', '1')
         // ->orderBy('barangs.nama_barang','asc')
         ->first();
-        $data = DB::table('detail_pinjams')
-        ->select(DB::raw('sum(qty) as total'))
-        ->leftJoin('permintaans', 'detail_pinjams.pinjam_fk', '=', 'permintaans.kode')
-        ->where('permintaans.status', '=', 'pending')
-        ->first(); 
-        $antrian = $data->total ? $data->total : '0';
+
+        // $data = DB::table('detail_pinjams')
+        // ->select(DB::raw('sum(qty) as total'))
+        // ->leftJoin('permintaans', 'detail_pinjams.pinjam_fk', '=', 'permintaans.kode')
+        // ->where('permintaans.status', '=', 'pending')
+        // ->first(); 
+        // $antrian = $data->total ? $data->total : '0';
+
         // DB::table('barangs')
         // ->select(DB::raw('count(distinct nama_barang) as qty'))
         // ->where('barangs.aktif', '=', '1')
         // ->orderBy('barangs.nama_barang','asc')
         // ->first();
-        $pakai = DB::table('detail_pinjams')
-        ->select(DB::raw('sum(qty) as total'))
-        ->leftJoin('permintaans', 'detail_pinjams.pinjam_fk', '=', 'permintaans.kode')
+
+        $pakai = 0; 
+        //DB::table('detail_pinjams')
+        // ->select(DB::raw('sum(qty) as total'))
+        // ->leftJoin('permintaans', 'detail_pinjams.pinjam_fk', '=', 'permintaans.kode')
         // ->where(function ($query) {
         //     $query->where('permintaans.status', '=', 'approved')
         //     ->orWhere('permintaans.status', '=', '%applied%');
         // })
-        ->whereIn('permintaans.status', ['approved','applied'])
-        ->first();
+        // ->whereIn('permintaans.status', ['approved','applied'])
+        // ->first();
         // dd($pakai);
-        return view('livewire.home-live', compact('barangs','antrian','pakai'));
+        return view('livewire.home-live', compact('barangs'/* ,'antrian' */,'pakai'));
         // ->with([
         //     'columnChartModel' => $columnChartModel
         //     // 'pieChartModel' => $pieChartModel,

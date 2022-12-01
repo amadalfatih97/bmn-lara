@@ -19,8 +19,8 @@ Route::get('/login', 'UserController@login')->name('login');
 Route::post('/proseslogin', 'UserController@prosesLogin')->name('proseslogin');
 Route::post('/logout', 'UserController@prosesLogot')->name('logout');
 
-// Route::get('/', 'HomeController@index')->name('home');
-Route::get('/', 'BarangController@index');
+Route::get('/', 'HomeController@index')->name('home');
+// Route::get('/', 'BarangController@index');
 
 Route::group(['middleware'=>['auth','cekRole:admin']], function(){
     Route::get('/user/list', 'UserController@index');
