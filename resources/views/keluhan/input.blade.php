@@ -46,11 +46,11 @@
                             <select class="form-select  {{ $errors->get('sarana') ? 'is-invalid'  : ''}}"
                                 name="sarana" aria-label="Default select example" required id="selectname">
                                 <option value="">Pilih Aset</option>
-                                @foreach ($barangs as $item)
-                                <option value="{{$item->nama_barang}}" {{$item->kode == $getBarang ? 'selected' : ''}}>
-                                    {{$item->nama_barang}}
+                                {{-- @foreach ($barangs as $item)
+                                <option value="{{$item->merek}}" {{$item->kode_item == $getBarang ? 'selected' : ''}}>
+                                    {{$item->merek}}
                                 </option>
-                                @endforeach
+                                @endforeach --}}
                             </select>
                         </div>
                         {{-- <div class="mb-3">

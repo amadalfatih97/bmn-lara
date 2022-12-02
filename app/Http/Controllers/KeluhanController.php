@@ -13,9 +13,9 @@ class KeluhanController extends Controller
 {
     public function index(Request $request){
         $keluhans = DB::table('keluhans')
-        ->select('keluhans.*','barangs.nama_barang','barangs.lokasi_fk','barangs.kode'
+        ->select('keluhans.*','barangs.kategori_fk','barangs.merek','barangs.lokasi_fk','barangs.kode_item'
                 ,'lokasis.nama_lokasi','users.name')
-        ->leftJoin('barangs', 'keluhans.aset_fk', '=', 'barangs.kode')
+        ->leftJoin('barangs', 'keluhans.aset_fk', '=', 'barangs.kode_item')
         ->leftJoin('lokasis', 'barangs.lokasi_fk', '=', 'lokasis.id')
         ->leftJoin('users', 'keluhans.user_fk', '=', 'users.id')
         // // ->where('barangs.aktif', '=', '1')
@@ -28,8 +28,8 @@ class KeluhanController extends Controller
 
     public function input(Request $request){
         $barangs = DB::table('barangs')
-                    ->groupBy('nama_barang')
-                    ->orderBy('nama_barang','asc')
+                    // ->groupBy('merek')
+                    ->orderBy('kategori_fk','asc')
                     ->get();
         return view('keluhan.input', compact('barangs'));
     }

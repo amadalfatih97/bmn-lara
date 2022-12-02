@@ -84,6 +84,4 @@ Route::group(['middleware'=>['auth','cekRole:admin,pegawai']], function(){
 
     Route::get('/permintaan/list', 'PermintaanController@index');
 
-    Route::get('/keluhan/list', 'PermintaanController@index');
-
 });

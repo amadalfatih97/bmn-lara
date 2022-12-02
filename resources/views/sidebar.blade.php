@@ -73,7 +73,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href='{{url("request/pemeliharaan")}}' class="nav-link px-3 {{ Request::segment(1) == 'request' ? 'active' : null }}">
+                        <a href='{{url("keluhan/add")}}' class="nav-link px-3 {{ Request::segment(1) == 'keluhan' ? 'active' : null }}">
                             <span class="me-2"><i class="bi bi-chat-left-text"></i></span>
                             <span>Laporkan Asset</span>
                         </a>

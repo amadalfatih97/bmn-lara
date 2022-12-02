@@ -42,9 +42,10 @@
                         <table class="table table-striped table-hover">
                             <thead>
                                 <th class="no">No</th>
-                                <th>Nama Pegawai</th>
-                                <th>Nama Aset</th>
+                                <th>Aset</th>
+                                <th>Kode Aset</th>
                                 <th>Lokasi</th>
+                                <th>Nama Pegawai</th>
                                 <th>Tanggal Laporan</th>
                                 <th>Status</th>
                                 <th class="action" colspan=2>Aksi</th>
@@ -54,9 +55,10 @@
                                 @foreach($keluhans as $data)
                                 <tr>
                                     <td>{{$no++}}</td>
-                                    <td>{{$data->name}}</td>
-                                    <td>{{$data->nama_barang}}</td>
+                                    <td>{{$data->kategori_fk}} {{$data->merek}}</td>
+                                    <td>{{$data->kode_item}}</td>
                                     <td>{{$data->nama_lokasi}}</td>
+                                    <td>{{$data->name}}</td>
                                     <td>{{$data->created_at ? date('d M Y', strtotime($data->created_at)) : date('d M Y') }} </td>
                                     <td> <span role="button" class="badge text-capitalize
                                             {{$data->status == '1' ? 'bg-warning' : 'bg-success'}}">
