@@ -60,8 +60,8 @@
                     </li>
                     <li>
                         <a href='{{url("keluhan/list")}}' class="nav-link px-3 {{ Request::segment(1) == 'keluhan' ? 'active' : null }}">
-                            <span class="me-2"><i class="bi bi-chat-left-text"></i></span>
-                            <span>Laporan Keluhan Aset</span>
+                            <span class="me-2"><i class="bi bi-exclamation-circle"></i></span>
+                            <span>Laporan Kondisi Aset</span>
                         </a>
                     </li>
                     @endif
@@ -74,7 +74,7 @@
                     </li>
                     <li>
                         <a href='{{url("keluhan/add")}}' class="nav-link px-3 {{ Request::segment(1) == 'keluhan' ? 'active' : null }}">
-                            <span class="me-2"><i class="bi bi-chat-left-text"></i></span>
+                            <span class="me-2"> <i class="bi bi-chat-left-text"></i></span>
                             <span>Laporkan Asset</span>
                         </a>
                     </li>

@@ -39,40 +39,43 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card overflow-auto">
-                        <table class="table table-striped table-hover">
-                            <thead>
-                                <th class="no">No</th>
-                                <th>Aset</th>
-                                <th>Kode Aset</th>
-                                <th>Lokasi</th>
-                                <th>Nama Pegawai</th>
-                                <th>Tanggal Laporan</th>
-                                <th>Status</th>
-                                <th class="action" colspan=2>Aksi</th>
-                            </thead>
-                            <tbody>
-                                <?php $no=1; ?>
-                                @foreach($keluhans as $data)
-                                <tr>
-                                    <td>{{$no++}}</td>
-                                    <td>{{$data->kategori_fk}} {{$data->merek}}</td>
-                                    <td>{{$data->kode_item}}</td>
-                                    <td>{{$data->nama_lokasi}}</td>
-                                    <td>{{$data->name}}</td>
-                                    <td>{{$data->created_at ? date('d M Y', strtotime($data->created_at)) : date('d M Y') }} </td>
-                                    <td> <span role="button" class="badge text-capitalize
-                                            {{$data->status == '1' ? 'bg-warning' : 'bg-success'}}">
-                                            {{$data->status == '1' ? 'pending' : 'received'}}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-outline-primary" href="/keluhan-detail/{{$data->id}}"><i class="bi bi-info-square"></i></button>
-                                    </td>
-                                </tr>
-                                @endforeach
-                
-                            </tbody>
-                        </table>
+                        <div class="table-responsive ">
+                            <table class="table table-striped table-hover  w-auto">
+                                <thead>
+                                    <th class="no">No</th>
+                                    <th>Aset</th>
+                                    <th>Kode Aset</th>
+                                    <th>Lokasi</th>
+                                    <th>Nama Pegawai</th>
+                                    <th>Tanggal Laporan</th>
+                                    <th>Status</th>
+                                    <th class="action" colspan=2>Aksi</th>
+                                </thead>
+                                <tbody>
+                                    <?php $no=1; ?>
+                                    @foreach($keluhans as $data)
+                                    <tr>
+                                        <td>{{$no++}}</td>
+                                        <td>{{$data->kategori_fk}} {{$data->merek}}</td>
+                                        <td>{{$data->kode_item}}</td>
+                                        <td>{{$data->nama_lokasi}}</td>
+                                        <td>{{$data->name}}</td>
+                                        <td>{{$data->created_at ? date('d M Y', strtotime($data->created_at)) : date('d M Y') }} </td>
+                                        <td> <span role="button" class="badge text-capitalize
+                                                {{$data->status == '1' ? 'bg-warning' : 'bg-success'}}">
+                                                {{$data->status == '1' ? 'pending' : 'received'}}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-outline-primary" href="/keluhan-detail/{{$data->id}}"><i class="bi bi-info-square"></i></button>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                    
+                                </tbody>
+                            </table>
+
+                        </div>
                     </div>
                 </div>
             </div>

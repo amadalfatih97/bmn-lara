@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Barang;
 use App\Keluhan;
 use App\User;
+use App\Lokasi;
 
 class KeluhanController extends Controller
 {
@@ -15,7 +16,7 @@ class KeluhanController extends Controller
         $keluhans = DB::table('keluhans')
         ->select('keluhans.*','barangs.kategori_fk','barangs.merek','barangs.lokasi_fk','barangs.kode_item'
                 ,'lokasis.nama_lokasi','users.name')
-        ->leftJoin('barangs', 'keluhans.aset_fk', '=', 'barangs.kode_item')
+        ->leftJoin('barangs', 'keluhans.aset_fk', '=', 'barangs.id')
         ->leftJoin('lokasis', 'barangs.lokasi_fk', '=', 'lokasis.id')
         ->leftJoin('users', 'keluhans.user_fk', '=', 'users.id')
         // // ->where('barangs.aktif', '=', '1')
@@ -27,17 +28,20 @@ class KeluhanController extends Controller
     }
 
     public function input(Request $request){
+        $lokasis = Lokasi::all();
+        // dd($lokasis);
         $barangs = DB::table('barangs')
                     // ->groupBy('merek')
                     ->orderBy('kategori_fk','asc')
                     ->get();
-        return view('keluhan.input', compact('barangs'));
+        return view('keluhan.input', compact('barangs','lokasis'));
     }
 
     public function prosesInput(Request $request){
         /* validation */
         $request->validate([
-            'sarana' => 'required',
+            'lokasi' => 'required',
+            'kategori' => 'required',
             'kode' => 'required',
             'desc' => 'required|max:200'
         ]);
@@ -57,9 +61,9 @@ class KeluhanController extends Controller
 
     public function dataById($id){
         $keluhan = DB::table('keluhans')
-        ->select('keluhans.*','barangs.jenis','barangs.nama_barang','barangs.lokasi_fk','barangs.kode'
+        ->select('keluhans.*','barangs.kategori_fk','barangs.merek','barangs.lokasi_fk','barangs.kode_item'
                 ,'lokasis.nama_lokasi','users.name')
-        ->leftJoin('barangs', 'keluhans.aset_fk', '=', 'barangs.kode')
+        ->leftJoin('barangs', 'keluhans.aset_fk', '=', 'barangs.id')
         ->leftJoin('lokasis', 'barangs.lokasi_fk', '=', 'lokasis.id')
         ->leftJoin('users', 'keluhans.user_fk', '=', 'users.id')
         ->where('keluhans.id', '=', $id)

@@ -23,29 +23,71 @@ window.addEventListener('confirmperubahan',function(event){
     });
   });
 
-$(document).on('change', '#selectname', function() {
-  let nameitem = $(this).val();
-  let div = $(this).parent();
-  let op = '<option value="">Pilih Serial</option>';
-  // console.log(nameitem);
-  $.ajax({
-      type: 'get',
-      url: '/findname',
-      data: {'key':nameitem},
-      // dataType: 'json',
-      cache: false,
-      success: function(data){
-          // for (let i = 0; i < data.length; i++){
-          //     // console.log(data[i].kode);
-          //     op += '<option value="'+data[i].kode+'">'+data[i].kode+'</option>';
-          // }
-          $('#selectsernum').html(data);
-          // $('#selectsernum').append(op);
-      },
-      error: function(){
-          console.log('err');
-      },
-  });
+  // cari barang by lokasi input pemeliharaan oleh user
+$(document).on('change', '#selectloc', async function() {
+  let loc = await $(this).val();
+  let div = await $(this).parent();
+  let op = await '<option value="">--Pilih Aset--</option>';
+  // console.log(loc);
+  if (loc != '') {
+    $('#selectname').prop('disabled', false); //jika lokasi belum dipilih
+
+    $.ajax({
+        type: 'get',
+        url: '/barang-by-loc',
+        data: {'key':loc},
+        // dataType: 'json',
+        cache: false,
+        success: function(data){
+            // for (let i = 0; i < data.length; i++){
+            //     // console.log(data[i].kode);
+            //     op += '<option value="'+data[i].kode+'">'+data[i].kode+'</option>';
+            // }
+            // console.log(data);
+            $('#selectname').html('<option value="">--Pilih Aset--</option>'+data);
+            // $('#selectname').append(op);
+        },
+        error: function(){
+            console.log('err');
+        },
+    });
+  } else {
+    $('#selectname').prop('disabled', true);
+    $('#selectname').html(op);
+  }
+});
+
+ // cari barang by kategori input pemeliharaan oleh user
+ $(document).on('change', '#selectname', async function() {
+  let ktg = await $(this).val();
+  let loc = await $('#selectloc').val();
+  let div = await $(this).parent();
+  let op = await '<option value="">--Pilih Kode--</option>';
+  // console.log(loc);
+  if (ktg != '') {
+    $('#selectkode').prop('disabled', false); //jika kategori belum dipilih
+
+    $.ajax({
+        type: 'get',
+        url: '/barang-by-ktg',
+        data: {
+          'lokasi':loc,
+          'kategori': ktg
+        },
+        // dataType: 'json',
+        cache: false,
+        success: function(data){
+            $('#selectkode').html('<option value="">--Pilih Kode--</option>'+data);
+            // $('#selectname').append(op);
+        },
+        error: function(){
+            console.log('err');
+        },
+    });
+  } else {
+    $('#selectkode').prop('disabled', true);
+    $('#selectkode').html(op);
+  }
 });
 
 window.addEventListener('openModalDetail',function (params) {

@@ -54,7 +54,7 @@
                             @csrf
                             <div class="col-md-12 mt-2">
                                 <p class="mb-0 text-muted">Detail Aset</p>
-                                <div class="card p-2 text-capitalize">{{$keluhan->jenis}} {{$keluhan->nama_barang}} - {{$keluhan->kode}} </div>
+                                <div class="card p-2 text-capitalize">{{$keluhan->kategori_fk}} {{$keluhan->merek}} - {{$keluhan->kode_item}} </div>
                             </div>
                             <div class="col-md-12 mt-2">
                                 <p class="mb-0 text-muted">Deskripsi Keluhan</p>

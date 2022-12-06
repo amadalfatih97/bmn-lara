@@ -42,9 +42,21 @@
                     <form action="{{url('/keluhan/add')}}" method="post">
                         @csrf
                         <div class="mb-3">
-                            <label for="sarana" class="form-label">Aset</label>
-                            <select class="form-select  {{ $errors->get('sarana') ? 'is-invalid'  : ''}}"
-                                name="sarana" aria-label="Default select example" required id="selectname">
+                            <label for="lokasi" class="form-label">Lokasi</label>
+                            <select class="form-select  {{ $errors->get('lokasi') ? 'is-invalid'  : ''}}"
+                                name="lokasi" aria-label="Default select example" required id="selectloc">
+                                <option value="">Pilih Lokasi Aset</option>
+                                @foreach ($lokasis as $loc)
+                                <option value="{{$loc->id}}" >
+                                    {{$loc->nama_lokasi}}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="kategori" class="form-label">Aset</label>
+                            <select class="form-select  {{ $errors->get('kategori') ? 'is-invalid'  : ''}}"
+                                name="kategori" aria-label="Default select example" required id="selectname" disabled>
                                 <option value="">Pilih Aset</option>
                                 {{-- @foreach ($barangs as $item)
                                 <option value="{{$item->merek}}" {{$item->kode_item == $getBarang ? 'selected' : ''}}>
@@ -53,25 +65,11 @@
                                 @endforeach --}}
                             </select>
                         </div>
-                        {{-- <div class="mb-3">
-                            <label for="kode" class="form-label">Serialnumber/ Kode</label>
-                            <div class="mb-3 input-group has-validation">
-                                <input type="text" value="{{old('kode')}}" class="form-control 
-                                {{ $errors->get('kode') ? 'is-invalid'  : ''}}" 
-                                    name="kode" required>
-                            </div>
-                        </div> --}}
                         <div class="mb-3">
-                            <label for="kode" class="form-label">Serial / Kode Aset</label>
+                            <label for="kode" class="form-label">Kode / Merek</label>
                             <select class="form-select  {{ $errors->get('kode') ? 'is-invalid'  : ''}}"
-                                name="kode" aria-label="Default select example" required id="selectsernum">
-                                <option value="">Pilih Serial...</option>
-
-                                {{-- @foreach ($barangs as $item) --}}
-                                {{-- <option value="{{$item->kode}}" {{$item->kode == $getBarang ? 'selected' : ''}}> --}}
-                                    {{-- {{$item->nama_barang}} --}}
-                                {{-- </option> --}}
-                                {{-- @endforeach --}}
+                                name="kode" aria-label="Default select example" required id="selectkode" disabled>
+                                <option value="">--Pilih Kode--</option>
                             </select>
                         </div>
                         <div class="mb-3">

@@ -247,15 +247,31 @@ class BarangController extends Controller
         return response()->json($detail,200);
     }
 
-    // public function findByName(Request $request)
-    // {
-    //     $datas = Barang::select('id','nama_barang', 'kode')
-    //     ->where('nama_barang', $request->key)
-    //     ->where('status', 'true')
-    //     ->get();
-    //     // return response()->json($data);
-    //     foreach($datas as $data){
-    //         echo "<option value='$data->kode'>$data->kode</option>";
-    //     }
-    // }
+
+    public function findByLoc(Request $request)
+    {
+        $datas = Barang::select('barangs.*')
+        ->where('lokasi_fk', $request->key)
+        ->where('status', 'true')
+        ->groupBy('kategori_fk')
+        ->get();
+        // return response()->json($data);
+        foreach($datas as $data){
+            echo "<option value='$data->kategori_fk'>$data->kategori_fk</option>";
+        }
+    }
+
+    public function findByKategori(Request $request)
+    {
+        $datas = Barang::select('id','merek', 'kode_item','kategori_fk','lokasi_fk')
+        ->where('lokasi_fk', $request->lokasi)
+        ->where('kategori_fk', $request->kategori)
+        ->where('status', 'true')
+        ->orderBy('merek')
+        ->get();
+        // return response()->json($data);
+        foreach($datas as $data){
+            echo "<option value='$data->id'>$data->kode_item - $data->merek</option>";
+        }
+    }
 }
