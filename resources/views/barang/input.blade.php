@@ -62,7 +62,7 @@
                             <form action="{{url('/barang/add')}}" method="post">
                                 @csrf
                                 <div class="card p-3 mb-2">
-                                    <div class="col-md-6 mb-2">
+                                    <div class="mb-2">
                                         <label for="tglperolehan" class="form-label">Tanggal Perolehan</label>
                                         <div class="mb-2 input-group has-validation">
                                             <input type="date" value="{{old('tglperolehan')}}" class="form-control 

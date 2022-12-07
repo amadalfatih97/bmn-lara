@@ -167,28 +167,37 @@ class BarangController extends Controller
         $barang = barang::find($id);
         /* validation */
         $request->validate([
-            'namabarang' => 'required|max:100',
-            'jenis' => 'required|max:100',
-            'kode' => 'required|max:100',
-            'satuan' => 'required|max:3',
-            'lokasi' => 'required|max:3',
-            'kondisi' => 'required|max:30',
+            'tglperolehan' => 'required',
+            'kategori' => 'required',
+            'kodebmn' => 'required|max:50',
+            'merek' => 'required|max:100',
+            'kodeitem' => 'required|max:50',
+            'lokasi' => 'required',
+            'satuan' => 'required',
+            'kondisi' => 'required|max:3',
             'status' => 'required|max:30',
+            'tag' => 'max:250',
             'ket' => 'max:250',
         ]);
         
         /* proses update */
-        $barang->jenis = $request->input('jenis');
-        $barang->nama_barang = $request->input('namabarang');
-        $barang->kode = $request->input('kode');
-        $barang->stok = 1;
+        $barang->merek = $request->input('merek');
+        $barang->kode_bmn = $request->input('kodebmn');
+        $barang->kode_item = $request->input('kodeitem');
+        $barang->kategori_fk = $request->input('kategori');
+        $barang->keyword = $request->input('tag');
         $barang->satuan_fk = $request->input('satuan');
         $barang->lokasi_fk = $request->input('lokasi');
+        $barang->tgl_perolehan = $request->input('tglperolehan');
         $barang->kondisi = $request->input('kondisi');
         $barang->status = $request->input('status');
+        $barang->type = $request->input('switchservice') ? $request->input('switchservice') : 0;
+        $barang->pemeliharaan_terakhir = $request->input('terakhircek');
+        $barang->jadwal_service = $request->input('waktupemeliharaan');
         $barang->ket = $request->input('ket');
         $barang->save();
-        return redirect('/barang/list')->with('success','data berhasil diupdate!');;
+
+        return redirect('/barang/view/'.$barang->kategori_fk)->with('success','data berhasil diupdate!');
     }
 
     public function riwayat($kode){

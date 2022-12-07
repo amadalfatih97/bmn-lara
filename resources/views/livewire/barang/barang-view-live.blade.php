@@ -53,12 +53,13 @@
                             <td>{{$data->nama_lokasi}}</td>
                             <td class="hide-to-mobile">{{$data->kondisi == 'b' ? 'Baik' : ($data->kondisi == 'rr' ? 'rusak ringan' : 'rusak') }}</td>
                             <td>
+                                {{-- 
                                 <form action='{{url("barang/delete/{$data->id}/{$data->kode_item}")}}' method="post">
                                     @csrf
-                                    @method('DELETE')
+                                    @method('DELETE') --}}
                                     <a class="btn btn-sm btn-outline-primary" data-bs-toggle="tooltip"
-                                        data-bs-placement="bottom" title="edit data" href="/barang/{{$data->id}}"><i
-                                            class="bi bi-pencil-fill"></i>
+                                        data-bs-placement="bottom" title="edit data" href="/barang-edit/{{$data->id}}">
+                                            <i class="bi bi-pencil-fill"></i>
                                     </a> 
                                     {{-- <span class="hide-to-mobile">|</span>
                                     <a class="btn btn-outline-warning"  data-bs-toggle="tooltip"
@@ -85,10 +86,11 @@
                                         <li><button type="button" class="dropdown-item"  wire:click="openRiwayatPemeliharaan('{{$data->kode_item}}')">Pemeliharaan</button></li>
                                         {{-- <li><a class="dropdown-item" href="/pemeliharaan/riwayat/{{$data->kode_item}}">Pemeliharaan</a></li> --}}
                                     </ul>
-                                    {{-- <span class="hide-to-mobile">|</span>
+                                    {{-- 
+                                    <span class="hide-to-mobile">|</span>
                                 
                                     <button class="btn btn-outline-danger" type="submit"><i class="bi bi-trash"></i></button> --}}
-                                </form>
+                                {{-- </form> --}}
                             </td>
 
                         </tr>

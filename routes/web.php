@@ -35,7 +35,7 @@ Route::group(['middleware'=>['auth','cekRole:admin']], function(){
     Route::get('/barang/add', 'BarangController@input');
     Route::post('/barang/add', 'BarangController@prosesInput');
     Route::post('/barang/masuk', 'BarangController@barangMasuk');
-    Route::get('/barang/{id}', 'BarangController@dataById');
+    Route::get('/barang-edit/{id}', 'BarangController@dataById');
     Route::get('/barang/view/{key}', 'BarangController@byItem');
     Route::patch('/barang/update/{id}', 'BarangController@prosesUpdate');
     Route::get('/barang/riwayat/{id}', 'BarangController@riwayat');
