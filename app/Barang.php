@@ -8,7 +8,7 @@ class Barang extends Model
 {
     //
     protected $fillable = [
-        'nama_barang','kode_bmn','kode_item','merek',
+        'kode_bmn','kode_item','merek',
         'kategori_fk','keyword','satuan_fk','lokasi_fk',
         'tgl_perolehan','kondisi','status','type',
         'pemeliharaan_terakhir','jadwal_service','ket',

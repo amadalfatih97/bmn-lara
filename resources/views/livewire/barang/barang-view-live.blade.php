@@ -51,7 +51,7 @@
                             <td>{{$data->merek}}</td>
                             <td>{{$data->kode_item}}</td>
                             <td>{{$data->nama_lokasi}}</td>
-                            <td class="hide-to-mobile">{{$data->kondisi == 'b' ? 'Baik' : 'rusak' }}</td>
+                            <td class="hide-to-mobile">{{$data->kondisi == 'b' ? 'Baik' : ($data->kondisi == 'rr' ? 'rusak ringan' : 'rusak') }}</td>
                             <td>
                                 <form action='{{url("barang/delete/{$data->id}/{$data->kode_item}")}}' method="post">
                                     @csrf

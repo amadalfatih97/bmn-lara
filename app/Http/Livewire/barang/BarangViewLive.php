@@ -66,14 +66,19 @@ class BarangViewLive extends Component
     }
 
     public function openRiwayatPemeliharaan($kode){
+        $barang = DB::table('barangs')
+        ->select('kategori_fk','merek','kode_item')
+        ->where('kode_item', '=', $kode)
+        ->first();
         $riwayat = DB::table('pemeliharaans')
-        ->select('pemeliharaans.*','barangs.kategori_fk','barangs.merek')
+        ->select('pemeliharaans.*')
         ->leftJoin('barangs', 'pemeliharaans.barang_fk', '=', 'barangs.kode_item')
         ->where('barang_fk', '=', $kode)
         ->orderBy('pemeliharaans.tgl_pemeliharaan','DESC')
         ->get();
         $this->dispatchBrowserEvent('openRiwayatPemeliharaanModal',[
-            'data'=> $riwayat
+            'datariwayat'=> $riwayat,
+            'databarang'=> $barang
         ]);
         // dd($riwayat);
     }

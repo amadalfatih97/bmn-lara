@@ -25,10 +25,13 @@ $(document).ready(function(){
     // })
 
     $('#mySwitch').on('change', function () {
-      if (this.checked)
+      if (this.checked){
         $('#checktype').prop('disabled', false);
-      else
+        $('#checktype2').prop('disabled', false);
+      }else{
         $('#checktype').prop('disabled', true);
+        $('#checktype2').prop('disabled', true);
+      }
   });
 });
 
@@ -86,13 +89,14 @@ function deleteConfirmation(id) {
 
   window.addEventListener('openRiwayatPemeliharaanModal',function(params) {
     $('.riwayatPemeliharaan').modal('show');  
-    // console.log(params.detail.data);
-    const items = params.detail.data;
-    $('.modal-content').find('span').html(`${items[0].kategori_fk} ${items[0].merek} [${items[0].barang_fk} ]`);
+    // console.log(params.detail);
+    const item = params.detail.databarang;
+    const riwayat = params.detail.datariwayat;
+    $('.modal-content').find('span').html(`${item.kategori_fk} ${item.merek} [${item.kode_item} ]`);
     const tableBody = document.getElementById('rowitem');
     let dataHtml = ``;
-    if (items.length > 0) {
-      items.forEach((el,i) => {
+    if (riwayat.length > 0) {
+      riwayat.forEach((el,i) => {
                 dataHtml += `<tr><td>${i+1}</td><td>${el.tgl_pemeliharaan}</td><td>${el.tindakan}</td><td>${el.pelaksana}</td><td>${el.kondisi_sebelum}</td></tr>`
             });
       tableBody.innerHTML = dataHtml;
@@ -108,18 +112,22 @@ $(document).on('change', '#select-kategori', function() {
       // dataType: 'json',
       cache: false,
       success: function(data){
-        console.log(data);
+        // console.log(data);
           $('#kode-bmn').val(data.kode_bmn);
           $('#tag').val(data.keyword);
           $('#satuan').val(data.satuan_fk);
+          $('#kodesatuan').val(data.satuan_fk);
           $('#jangka-pemeliharaan').val(data.jadwal_service);
           if (data.type == 1){
             $("#my-switch").prop("checked", true);
             $("#pemeliharaan-terakhir").prop("disabled",false);
+            $("#jangka-pemeliharaan").prop("disabled",false);
           }
           else{
             $("#my-switch").prop("checked", false);
             $("#pemeliharaan-terakhir").prop("disabled",true);
+            $("#jangka-pemeliharaan").prop("disabled",true);
+            
           }
       },
       error: function(){

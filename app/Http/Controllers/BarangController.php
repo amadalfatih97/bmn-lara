@@ -66,6 +66,7 @@ class BarangController extends Controller
     }
 
     public function prosesInput(Request $request){
+        // dd($request->input());
         /* validation */
         $request->validate([
             'tglperolehan' => 'required',
@@ -114,7 +115,7 @@ class BarangController extends Controller
     }
 
     public function barangMasuk(Request $request){
-        dd($request->input());
+        // dd($request->input());
         /* validation */
         $request->validate([
             'tglperolehan' => 'required',
@@ -138,7 +139,7 @@ class BarangController extends Controller
             'kode_item'=> $request->input('kodeitem'),
             'kategori_fk'=> $request->input('kategori'),
             'keyword'=> $request->input('tag'),
-            'satuan_fk'=> $request->input('satuan'),
+            'satuan_fk'=> $request->input('inputsatuan'),
             'lokasi_fk'=> $request->input('lokasi'),
             'tgl_perolehan'=> $request->input('tglperolehan'),
             'kondisi'=> $request->input('kondisi'),
@@ -149,7 +150,8 @@ class BarangController extends Controller
             'ket'=> $request->input('ket'),
         ]);
         $barang->save();
-        return redirect('/barang/list/',$request->input('kategori'))->with('success','data berhasil disimpan!');
+        return redirect('/barang/view/'.$barang->kategori_fk)->with('success','data berhasil disimpan!');
+        // return redirect('/barang/list')->with('success','data berhasil disimpan!');
     }
 
 

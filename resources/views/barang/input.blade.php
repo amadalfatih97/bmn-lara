@@ -62,7 +62,7 @@
                             <form action="{{url('/barang/add')}}" method="post">
                                 @csrf
                                 <div class="card p-3 mb-2">
-                                    <div class="mb-2">
+                                    <div class="col-md-6 mb-2">
                                         <label for="tglperolehan" class="form-label">Tanggal Perolehan</label>
                                         <div class="mb-2 input-group has-validation">
                                             <input type="date" value="{{old('tglperolehan')}}" class="form-control 
@@ -72,7 +72,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6  mb-2">
-                                            <label for="kategori" class="form-label">Nama Aset/ Kategori</label>
+                                            <label for="kategori" class="form-label">Jenis Aset/ Kategori</label>
                                             <div class="input-group has-validation">
                                                 <input type="text" value="{{old('kategori')}}" class="form-control 
                                                 {{ $errors->get('kategori') ? 'is-invalid'  : ''}}" 
@@ -186,15 +186,15 @@
                                             <div class="mb-2 input-group has-validation">
                                                 <input type="date" value="{{old('terakhircek')}}" class="form-control 
                                                 {{ $errors->get('terakhircek') ? 'is-invalid'  : ''}}" id="checktype" data-date-format="DD MMMM YYYY"
-                                                    name="terakhircek" max="{{date('Y-m-d')}}">
+                                                    name="terakhircek" max="{{date('Y-m-d')}}" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <label for="waktupemeliharaan" class="form-label">Jangka Pemeliharaan</label>
                                             <div class="input-group has-validation">
                                                 <input type="number" value="{{old('waktupemeliharaan')}}" autocomplete="false" class="form-control 
-                                                {{ $errors->get('waktupemeliharaan') ? 'is-invalid'  : ''}}" id="checktype"
-                                                name="waktupemeliharaan" placeholder="dalam hitungan bulan" > 
+                                                {{ $errors->get('waktupemeliharaan') ? 'is-invalid'  : ''}}" id="checktype2"
+                                                name="waktupemeliharaan" placeholder="dalam hitungan bulan" disabled> 
                                             </div>
                                         </div>
                                     </div>
@@ -274,10 +274,10 @@
                                         <div class="col-md-4 mb-2">
                                             <label for="inputsatuan" class="form-label">Satuan</label>
                                             <div class="input-group has-validation">
-                                                <input type="text" id="satuan" class="form-control" 
-                                                name="satuan" required >
+                                                <input type="text" hidden id="kodesatuan" class="form-control" 
+                                                name="inputsatuan" required >
                                                 <select class="form-select  {{ $errors->get('satuan') ? 'is-invalid'  : ''}}"
-                                                    name="inputsatuan" required disabled
+                                                    required disabled
                                                     id="satuan">
                                                     <option value="">Pilih Satuan</option>
                                                     @foreach ($satuans as $item)
@@ -327,7 +327,7 @@
                                 <div class="card p-3  mb-3">
                                     <div class="form-check form-switch mb-2">
                                         <input class="form-check-input" type="checkbox" id="my-switch"
-                                        disabled name="switchservice" value="1">
+                                        readonly name="switchservice" value="1">
                                         <label class="form-check-label" for="mySwitch">Type Service Berkala</label>
                                     </div>
                                     <div class="row mb-2">
