@@ -65,7 +65,8 @@ Route::group(['middleware'=>['auth','cekRole:admin']], function(){
     Route::delete('/kategori/delete/{id}', 'KategoriController@prosesDelete');
 
     Route::get('/pemeliharaan/list', 'PemeliharaanController@index');
-    // Route::get('/pemeliharaan/add', 'PemeliharaanController@input');
+    
+    
     Route::post('/pemeliharaan/add', 'PemeliharaanController@prosesInput');
     Route::get('/pemeliharaan/riwayat/{id}', 'BarangController@pemeliharaan');
 });

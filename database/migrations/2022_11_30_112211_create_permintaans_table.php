@@ -14,7 +14,16 @@ class CreatePermintaansTable extends Migration
     public function up()
     {
         Schema::create('permintaans', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->string('user_fk',12);
+            $table->text('kegunaan');
+            $table->date('keluar');
+            $table->date('jadwal_pakai');
+            $table->integer('lama')->lenght(3)->nullable();
+            $table->date('masuk')->nullable();
+            $table->integer('status')->lenght(1)->default(1)->unsigned();
+            $table->text('ket')->nullable();
+            $table->text('img')->nullable();
             $table->timestamps();
         });
     }

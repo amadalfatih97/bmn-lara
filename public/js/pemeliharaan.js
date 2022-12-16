@@ -25,6 +25,10 @@ window.addEventListener('confirmperubahan',function(event){
 
   // cari barang by lokasi input pemeliharaan oleh user
 $(document).on('change', '#selectloc', async function() {
+  //disable dan kosongkan value pilih kode
+  $('#selectkode').prop('disabled', true); 
+  $('#selectkode').val(''); 
+
   let loc = await $(this).val();
   let div = await $(this).parent();
   let op = await '<option value="">--Pilih Aset--</option>';
